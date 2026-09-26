@@ -106,7 +106,7 @@ MANDO-LLM~\cite{nguyen2026mando}         & 2026 & \cmark & \cmark & NR & \xmark 
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\textwidth]{figures/src/prism_architecture.pdf}
+\includegraphics[width=\textwidth]{figures/prism_architecture.pdf}
 \caption{PRISM architecture. All eight stages run inside the audit host. Ranked functions are audited by a local open-weight LLM, whose findings are hypotheses, and exercised by Foundry invariant harnesses, which confirm a finding only through a failing assertion. $\mathcal{T}$: pseudonymization map; $\Phi$: ranking score; $\tau$: forwarding threshold.}
 \label{fig:pipeline}
 \end{figure}
@@ -224,7 +224,7 @@ The more informative result is that all graph learners converge to the same leve
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=84mm]{figures/src/confusion_matrix.pdf}
+\includegraphics[width=84mm]{figures/confusion_matrix.pdf}
 \caption{Confusion matrix of a single GNNMHAv2 training run on a stratified 70/15/15 random split (seed 42) that precedes the frozen split manifest ($n=1{,}949$; accuracy 0.7409, macro-F1 0.7577; five-seed results are in Table~\ref{tab:baselines}). Cells show counts and the share of the true class. Columns follow the row order: Reentrancy (RE, SWC-107), Integer overflow (IO, SWC-101), Access control (AC, SWC-105), Unchecked return (UR, SWC-104), Front-running (FR, SWC-114).}
 \label{fig:confusion}
 \end{figure}
