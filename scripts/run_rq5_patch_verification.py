@@ -29,8 +29,10 @@ sys.path.insert(0, str(ROOT_DIR))
 
 from src.sai.repair import AutoRepair
 
-SOLC_BIN = "/opt/homebrew/bin/solc"
-FORGE_BIN = "/Users/nguyendinhkhang/.foundry/bin/forge"
+import shutil
+
+SOLC_BIN = shutil.which("solc") or "solc"
+FORGE_BIN = shutil.which("forge") or "forge"
 WS_DIR = ROOT_DIR / "artifacts/fuzzing_runs/benchmark_workspace"
 
 TARGETS_DATA = [

@@ -39,6 +39,11 @@ out/
 *.aux
 *.log
 *.out
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.out
 *.toc
 *.bbl
 *.blg

@@ -1,4 +1,4 @@
-# PRISM: Privacy-Preserving Smart Contract Auditing with Edge-Aware Graph Attention, Local LLMs, and EVM Validation
+# PRISM: Confidential Smart Contract Auditing via Pseudonymized Graph Screening and Local Dynamic Verification
 
 [![Paper](https://img.shields.io/badge/Paper-NSS--2026-blue)](paper/main.pdf)
 [![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-brightgreen)](https://www.python.org/)

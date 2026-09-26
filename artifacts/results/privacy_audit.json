@@ -4,8 +4,8 @@
   "execution_scope": "DataMasker/DeMasker plus solc and Slither detector-name retention; no LLM invocation",
   "input_manifest": "artifacts/nss2026/phase2_readiness.json",
   "tools": {
-    "solc": "/opt/homebrew/bin/solc",
-    "slither": "/Users/nguyendinhkhang/khangnd/PRISM/.venv/bin/slither"
+    "solc": "solc",
+    "slither": ".venv/bin/slither"
   },
   "contracts_evaluated": 57,
   "metrics": {

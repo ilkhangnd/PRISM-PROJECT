@@ -19,29 +19,30 @@ import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 
 # Directories
-PROJECT_ROOT = Path("/Users/nguyendinhkhang/khangnd/PRISM")
-TIKZ_SRC_DIR = PROJECT_ROOT / "NSS2026_PRISM" / "figures" / "src"
-FIGURES_DIR = PROJECT_ROOT / "NSS2026_PRISM" / "figures"
-ARTIFACTS_DIR = Path("/Users/nguyendinhkhang/.gemini/antigravity-ide/brain/29c2e560-356a-4323-9727-b0d967bede0d")
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+TIKZ_SRC_DIR = PROJECT_ROOT / "paper" / "figures" / "src"
+FIGURES_DIR = PROJECT_ROOT / "paper" / "figures"
+ARTIFACTS_DIR = PROJECT_ROOT / "artifacts"
 ARTIFACTS_DIR.mkdir(parents=True, exist_ok=True)
 
 # ----------------- Exact Data -----------------
 # (a) Five-class GNNMHAv2 (n = 1,949)
 CLASSES_A = ["RE", "IO", "AC", "UR", "FR"]
 CM_A = np.array([
-    [253,   0,   1, 114,   3],
-    [  2, 237,   1, 119,   0],
-    [  0,   0, 169, 135,   0],
-    [  0,   0,   4, 442,   2],
-    [  0,   0,   2, 122, 343]
+    [255,   1,   2, 110,   3],
+    [  0, 237,   1, 121,   0],
+    [  0,   0, 166, 138,   0],
+    [  0,   1,   1, 444,   2],
+    [  0,   0,   0, 124, 343]
 ])
 
 # (b) Stage-A binary gate (n = 3,669)
 CLASSES_B = ["Vuln.", "Safe"]
 CM_B = np.array([
-    [3059,  73],
-    [ 108, 429]
+    [2773,  359],
+    [  35,  502]
 ])
+
 
 
 def compile_tikz_and_render():
@@ -144,15 +145,15 @@ def plot_matplotlib_binary_gate():
     plt.rcParams['font.sans-serif'] = 'Helvetica, Arial, DejaVu Sans'
 
     cmap = mcolors.LinearSegmentedColormap.from_list("tikz_blue", ["#ffffff", "#0000ff"])
-    norm = mcolors.Normalize(vmin=0, vmax=3059)
+    norm = mcolors.Normalize(vmin=0, vmax=2773)
 
     im = ax.imshow(CM_B, cmap=cmap, norm=norm, origin="upper")
 
     for r in range(len(CLASSES_B)):
         for c in range(len(CLASSES_B)):
             val = CM_B[r, c]
-            txt_color = "white" if val > 2000 else "black"
-            fontweight = "bold" if val > 2000 else "normal"
+            txt_color = "white" if val > 1500 else "black"
+            fontweight = "bold" if val > 1500 else "normal"
             ax.text(c, r, f"{val:,}", ha="center", va="center", color=txt_color,
                     fontweight=fontweight, fontsize=12)
 
@@ -192,7 +193,7 @@ def plot_matplotlib_combined():
     cmap = mcolors.LinearSegmentedColormap.from_list("tikz_blue", ["#ffffff", "#0000ff"])
 
     # Plot (a)
-    norm1 = mcolors.Normalize(vmin=0, vmax=442)
+    norm1 = mcolors.Normalize(vmin=0, vmax=444)
     ax1.imshow(CM_A, cmap=cmap, norm=norm1, origin="upper")
     for r in range(len(CLASSES_A)):
         for c in range(len(CLASSES_A)):
@@ -218,13 +219,13 @@ def plot_matplotlib_combined():
         spine.set_linewidth(1.0)
 
     # Plot (b)
-    norm2 = mcolors.Normalize(vmin=0, vmax=3059)
+    norm2 = mcolors.Normalize(vmin=0, vmax=2773)
     ax2.imshow(CM_B, cmap=cmap, norm=norm2, origin="upper")
     for r in range(len(CLASSES_B)):
         for c in range(len(CLASSES_B)):
             val = CM_B[r, c]
-            txt_color = "white" if val > 2000 else "black"
-            fontweight = "bold" if val > 2000 else "normal"
+            txt_color = "white" if val > 1500 else "black"
+            fontweight = "bold" if val > 1500 else "normal"
             ax2.text(c, r, f"{val:,}", ha="center", va="center", color=txt_color,
                      fontweight=fontweight, fontsize=11)
 

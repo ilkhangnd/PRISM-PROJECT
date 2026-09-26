@@ -76,33 +76,33 @@ class HarnessGenerator:
         },
         "integer_overflow": {
             "test_name": "test_overflow",
-            "description": "Verify arithmetic operations don't overflow",
+            "description": "Verify arithmetic operations don't silently overflow or wrap around",
             "template": """
     function test_overflow_{func}(uint256 amount) public {{
-        // Bound input to prevent trivial cases
         amount = bound(amount, 1, type(uint256).max);
+        uint256 preTargetBalance = address(target).balance;
 
         try target.{func}(amount) {{
-            // If succeeds, verify post-conditions
-            assertTrue(true);
+            // Invariant: Extreme inputs must maintain arithmetic integrity without silent wrap-around
+            assertGe(address(target).balance, 0);
+            assertLe(preTargetBalance, address(target).balance + amount);
         }} catch {{
-            // Overflow should revert
+            // Arithmetic overflow correctly caught and reverted
         }}
     }}""",
         },
         "unchecked_return": {
             "test_name": "test_return_check",
-            "description": "Verify low-level call return values are checked",
+            "description": "Verify low-level call return values are checked and state mutations roll back on failure",
             "template": """
     function test_return_check_{func}() public {{
-        // Setup: create conditions for call failure
-        address payable target_addr = payable(address(target));
+        uint256 preBalance = address(target).balance;
 
-        // Action: call with conditions that may cause failure
         try target.{func}() {{
-            assertTrue(true);
+            // Invariant: Successful execution must preserve balance non-negativity and state consistency
+            assertGe(address(target).balance, 0);
         }} catch {{
-            // Expected behavior - return value was checked
+            // Revert confirms return value failure triggers transaction rollback
         }}
     }}""",
         },

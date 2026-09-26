@@ -18,8 +18,9 @@ import time
 from pathlib import Path
 from datetime import datetime, timezone
 
+import shutil
 ROOT_DIR = Path(__file__).resolve().parent.parent
-FORGE_BIN = "/Users/nguyendinhkhang/.foundry/bin/forge"
+FORGE_BIN = shutil.which("forge") or "forge"
 
 SEEDS = list(range(101, 131))  # 30 independent seeds: 101 to 130
 TARGETS = [

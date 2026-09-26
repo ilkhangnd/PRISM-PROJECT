@@ -18,7 +18,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 # Directories
-PROJECT_ROOT = Path("/Users/nguyendinhkhang/khangnd/PRISM")
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
 OUT_DIR_PAPER = PROJECT_ROOT / "paper" / "figures"
 ARTIFACTS_DIR = PROJECT_ROOT / "artifacts"
 for d in [OUT_DIR_PAPER, ARTIFACTS_DIR]:
@@ -26,17 +26,18 @@ for d in [OUT_DIR_PAPER, ARTIFACTS_DIR]:
 
 # Data
 CM_5CLASS = np.array([
-    [253,   0,   1, 114,   3],
-    [  2, 237,   1, 119,   0],
-    [  0,   0, 169, 135,   0],
-    [  0,   0,   4, 442,   2],
-    [  0,   0,   2, 122, 343]
+    [255,   1,   2, 110,   3],
+    [  0, 237,   1, 121,   0],
+    [  0,   0, 166, 138,   0],
+    [  0,   1,   1, 444,   2],
+    [  0,   0,   0, 124, 343]
 ])
 
 CM_BINARY = np.array([
-    [3059,  73],
-    [ 108, 429]
+    [2773,  359],
+    [  35,  502]
 ])
+
 
 LABELS_5CLASS_VN = ["Reentrancy", "Integer\noverflow", "Access\ncontrol", "Unchecked\nreturn", "Front\nrunning"]
 LABELS_5CLASS_EN = ["Reentrancy", "Integer\noverflow", "Access\ncontrol", "Unchecked\nreturn", "Front\nrunning"]
@@ -195,5 +196,11 @@ if __name__ == "__main__":
     plot_5class("en")
     plot_binary("en")
     plot_combined("en")
+
+    # Sync default paper figure names
+    shutil.copy2(OUT_DIR_PAPER / "confusion_matrices_combined_en.png", OUT_DIR_PAPER / "confusion_matrices_combined.png")
+    shutil.copy2(OUT_DIR_PAPER / "confusion_matrix_5class_en.png", OUT_DIR_PAPER / "confusion_matrix_5class.png")
+    shutil.copy2(OUT_DIR_PAPER / "confusion_matrix_binary_en.png", OUT_DIR_PAPER / "confusion_matrix_binary.png")
+    shutil.copy2(OUT_DIR_PAPER / "confusion_matrices_combined_en.png", ARTIFACTS_DIR / "confusion_matrices_combined.png")
 
     print("✅ All styled confusion matrices successfully generated!")

@@ -1,0 +1,59 @@
+{
+  "created_utc": "2026-09-26T17:21:05.056498+00:00",
+  "protocol": "Canonical graph hashing and empirical Bayes label ceiling analysis",
+  "description": "Examines graph structure hash collisions between train and test sets to establish the upper bound on classification accuracy imposed by contract-derived weak labels.",
+  "splits": {
+    "random_stratified": {
+      "total_test_graphs": 1949,
+      "test_with_identical_train_graph": 1905,
+      "test_with_identical_train_graph_pct": 97.74,
+      "identical_train_agreeing_label": 1784,
+      "identical_train_agreeing_label_pct": 91.53,
+      "identical_train_conflicting_label": 121,
+      "identical_train_conflicting_label_pct": 6.21,
+      "novel_test_graphs": 44,
+      "novel_test_graphs_pct": 2.26,
+      "bayes_accuracy_ceiling_pct": 72.96,
+      "conflict_free_test_count": 1828,
+      "conflicting_test_count": 121,
+      "gnnmhav2_accuracy_overall": {
+        "mean_pct": 74.26,
+        "std_pct": 0.12
+      },
+      "gnnmhav2_accuracy_conflict_free": {
+        "mean_pct": 78.65,
+        "std_pct": 0.13
+      },
+      "gnnmhav2_accuracy_conflicting": {
+        "mean_pct": 7.93,
+        "std_pct": 0.4
+      }
+    },
+    "lineage_disjoint": {
+      "total_test_graphs": 2146,
+      "test_with_identical_train_graph": 2062,
+      "test_with_identical_train_graph_pct": 96.09,
+      "identical_train_agreeing_label": 2051,
+      "identical_train_agreeing_label_pct": 95.57,
+      "identical_train_conflicting_label": 11,
+      "identical_train_conflicting_label_pct": 0.51,
+      "novel_test_graphs": 84,
+      "novel_test_graphs_pct": 3.91,
+      "bayes_accuracy_ceiling_pct": 76.56,
+      "conflict_free_test_count": 2135,
+      "conflicting_test_count": 11,
+      "gnnmhav2_accuracy_overall": {
+        "mean_pct": 74.45,
+        "std_pct": 0.06
+      },
+      "gnnmhav2_accuracy_conflict_free": {
+        "mean_pct": 74.64,
+        "std_pct": 0.06
+      },
+      "gnnmhav2_accuracy_conflicting": {
+        "mean_pct": 36.36,
+        "std_pct": 0.0
+      }
+    }
+  }
+}

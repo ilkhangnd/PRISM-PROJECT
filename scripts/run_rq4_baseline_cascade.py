@@ -17,11 +17,13 @@ import subprocess
 from pathlib import Path
 from datetime import datetime, timezone
 
+import shutil
+
 ROOT_DIR = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT_DIR))
 
-SLITHER_BIN = str(ROOT_DIR / ".venv/bin/slither")
-FORGE_BIN = "/Users/nguyendinhkhang/.foundry/bin/forge"
+SLITHER_BIN = shutil.which("slither") or str(ROOT_DIR / ".venv/bin/slither")
+FORGE_BIN = shutil.which("forge") or "forge"
 WS_DIR = ROOT_DIR / "artifacts/fuzzing_runs/benchmark_workspace"
 GT_FILE = ROOT_DIR / "data/ground_truth_57.json"
 
