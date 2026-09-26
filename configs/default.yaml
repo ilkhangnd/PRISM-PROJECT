@@ -1,0 +1,109 @@
+# PRISM Pipeline Configuration
+# ================================
+
+pipeline:
+  name: "prism-default"
+  stages:
+    - security
+    - preprocessing
+    - analysis
+    - fuzzing
+    - sai
+
+# Input/Output paths
+paths:
+  input_dir: "data/raw"
+  processed_dir: "data/processed"
+  output_dir: "output"
+  model_dir: "models/v5_top5_focal"
+
+# Solidity compiler
+solidity:
+  solc_version: "0.8.30"  # Physical compiler version on host (solc 0.8.30)
+  evm_version: "shanghai"
+  remappings: []
+
+# Security Layer settings
+security:
+  masking:
+    enabled: true
+    mask_function_names: true
+    mask_variable_names: true
+    mask_contract_names: true
+    preserve_standard_interfaces: true  # Keep ERC-20/721 names
+    mask_prefix: "prism_"
+  privacy_filter:
+    enabled: true
+    redact_addresses: true
+    redact_private_keys: true
+    redact_api_keys: true
+    sensitivity_level: "high"  # low, medium, high
+
+# Preprocessing settings
+preprocessing:
+  graph_type: "cfg+dfg"  # Options: cfg, dfg, cfg+dfg, ast
+  node_features:
+    - opcode_type
+    - function_visibility
+    - modifier_count
+    - state_mutability
+    - has_external_call
+    - has_eth_transfer
+  edge_features:
+    - flow_type  # sequential, branch, loop_back, data_dep
+  # Checkpoint v5_top5_focal uses the V2 32-dimensional node schema.
+  embedding_dim: 32
+
+# GNN Model settings
+gnn:
+  model_path: "models/v5_top5_focal/best_model.pt"
+  architecture: "GNNMHAv2"
+  num_layers: 4
+  hidden_dim: 256
+  num_heads: 8
+  dropout: 0.15
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  epochs: 35
+  patience: 15  # Early stopping
+  batch_size: 64
+  num_classes: 5  # Number of vulnerability types
+  focal_gamma: 2.0
+  label_smoothing: 0.05
+  threshold: 0.3
+
+# LLM settings
+llm:
+  provider: "local"  # Options: local, openai, anthropic
+  local:
+    model: "deepseek-coder-v2:latest"  # Local Ollama 16B MoE model (8.29 GB on disk)
+    base_url: "http://localhost:11434"
+  openai:
+    model: "gpt-4o"
+  anthropic:
+    model: "claude-sonnet-4-20250514"
+  temperature: 0.1
+  max_tokens: 4096
+
+# Fuzzing settings
+fuzzing:
+  engine: "foundry"  # Options: echidna, foundry
+  timeout: 300  # seconds per contract
+  max_iterations: 1000
+  seed_pool_size: 100
+  coverage_target: 0.90
+  feedback_loop:
+    max_rounds: 5
+    convergence_threshold: 0.01  # Stop if coverage improves < 1%
+
+# SAI settings
+sai:
+  cot_enabled: true
+  repair_enabled: true
+  report_format: "markdown"  # Options: json, markdown, pdf
+  severity_levels:
+    - critical
+    - high
+    - medium
+    - low
+    - informational

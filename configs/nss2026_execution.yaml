@@ -1,0 +1,33 @@
+# Traceable local configuration for the NSS 2026 end-to-end campaign.
+# This names frozen-run artifacts rather than historical models/ checkpoints.
+security:
+  masking:
+    enabled: true
+    mask_function_names: true
+    mask_variable_names: true
+    mask_contract_names: true
+    preserve_standard_interfaces: true
+  privacy_filter:
+    enabled: true
+    redact_addresses: true
+    redact_private_keys: true
+    redact_api_keys: true
+    sensitivity_level: high
+solidity:
+  solc_version: "0.8.30"
+  solc: /opt/homebrew/bin/solc
+gnn:
+  stage_a_model_path: artifacts/nss2026/stage_a/seed_42/best_model.pt
+  model_path: artifacts/nss2026/runs/random/gnnmhav2/seed_42/best_model.pt
+  threshold: 0.3
+llm:
+  provider: local
+  allow_mock_fallback: false
+  local:
+    model: deepseek-coder-v2:latest
+    base_url: http://localhost:11434
+  temperature: 0.1
+  max_tokens: 4096
+fuzzing:
+  engine: foundry
+  timeout: 300

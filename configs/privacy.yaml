@@ -1,0 +1,88 @@
+# Privacy Filter Configuration
+# ================================
+
+# Patterns to detect and redact
+sensitive_patterns:
+  # Ethereum addresses (0x followed by 40 hex chars)
+  ethereum_address:
+    pattern: "0x[a-fA-F0-9]{40}"
+    action: "replace"
+    replacement: "0x_REDACTED_ADDRESS_"
+
+  # Private keys (64 hex chars, optionally prefixed with 0x)
+  private_key:
+    pattern: "(0x)?[a-fA-F0-9]{64}"
+    action: "replace"
+    replacement: "REDACTED_PRIVATE_KEY"
+    context_keywords: ["privateKey", "private_key", "secret", "PRIVATE"]
+
+  # API keys (common patterns)
+  api_key:
+    pattern: "(sk-|pk-|api_)[a-zA-Z0-9]{20,}"
+    action: "replace"
+    replacement: "REDACTED_API_KEY"
+
+  # Infura/Alchemy endpoints
+  rpc_endpoint:
+    pattern: "https://(mainnet|goerli|sepolia)\\.(infura|alchemy)\\.(io|com)/v[0-9]/[a-zA-Z0-9]+"
+    action: "replace"
+    replacement: "REDACTED_RPC_ENDPOINT"
+
+  # Comments containing sensitive info
+  sensitive_comments:
+    pattern: "//.*(?:password|secret|key|token|credential).*"
+    action: "remove"
+    case_insensitive: true
+
+# Masking configuration
+masking:
+  # Standard interfaces to preserve (don't mask these function names)
+  preserved_identifiers:
+    - "transfer"
+    - "transferFrom"
+    - "approve"
+    - "allowance"
+    - "balanceOf"
+    - "totalSupply"
+    - "ownerOf"
+    - "safeTransferFrom"
+    - "mint"
+    - "burn"
+    - "name"
+    - "symbol"
+    - "decimals"
+    - "msg.sender"
+    - "msg.value"
+    - "block.timestamp"
+    - "require"
+    - "assert"
+    - "revert"
+    - "emit"
+
+  # Solidity keywords (never mask)
+  keywords:
+    - "contract"
+    - "function"
+    - "modifier"
+    - "event"
+    - "mapping"
+    - "struct"
+    - "enum"
+    - "public"
+    - "private"
+    - "internal"
+    - "external"
+    - "view"
+    - "pure"
+    - "payable"
+    - "returns"
+    - "uint256"
+    - "address"
+    - "bool"
+    - "string"
+    - "bytes"
+    - "if"
+    - "else"
+    - "for"
+    - "while"
+    - "return"

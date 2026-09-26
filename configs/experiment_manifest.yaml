@@ -1,0 +1,111 @@
+# Reproducibility manifest for the configuration reported in the thesis.
+# This document records facts supported by the saved result and training log;
+# dataset provenance and group-aware splits are tracked separately.
+project: PRISM
+experiment_id: v5_top5_focal
+status: canonical-fresh-run-verified
+run_completed_at: "2026-08-29T08:51:46"
+
+artifacts:
+  checkpoint: models/v5_top5_focal/best_model.pt
+  checkpoint_sha256: b6041ab734025457892a0cec7c325dab6bc41920a74952070983aa0f3e6e7b1b
+  result: models/v5_top5_focal/results.json
+  result_sha256: 69d8e76644bae07dba24e4d2f3dbb7b03ead5041c01d3cb420cfcf088621a437
+  training_log: models/v5_top5_focal/training.log
+  training_log_sha256: baf9cfc8fcd72d9ec730036b773c2d252d966e01555796936bebe9f6e16ca270
+  training_script: scripts/train_canonical_v5_top5.py
+  training_script_sha256: 5d8284d33708936f13d0abf56ab079a2cf2adc8f772c7a1cd49e4eb12c10e145
+
+task:
+  name: top5_multiclass_vulnerability_classification
+  labels:
+    - reentrancy
+    - integer_overflow
+    - access_control
+    - unchecked_return
+    - front_running
+  minimum_nodes: 3
+  feature_version: V2
+  in_channels: 32
+  edge_dim: 4
+  graph_representation: homogeneous_merged
+  edge_types: [sequential, branch, loop_back, data_dep]
+  edge_encoding: one_hot_edge_attr
+
+model:
+  architecture: GNNMHAv2
+  hidden_channels: 256
+  num_heads: 8
+  num_layers: 4
+  jk_mode: cat
+  dropout: 0.15
+  drop_edge: 0.1
+
+training:
+  optimizer: AdamW
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  loss: focal
+  focal_gamma: 2.0
+  label_smoothing: 0.05
+  batch_size: 64
+  max_epochs: 35
+  early_stopping_patience: 15
+  epochs_trained: 35
+  scheduler: OneCycleLR
+  scheduler_pct_start: 0.1
+  scheduler_anneal_strategy: cos
+  split_seed: 42
+  split: {train: 0.70, validation: 0.15, test: 0.15}
+
+reported_metrics:
+  test_accuracy: 0.7409
+  test_macro_f1: 0.7577
+  test_weighted_f1: 0.7589
+  best_validation_accuracy: 0.7537
+  best_validation_macro_f1: 0.7722
+
+privacy_utility_evaluation:
+  status: not_reported
+  available_evidence:
+    - src/security/data_masking.py
+    - src/security/privacy_filter.py
+    - src/pipeline.py
+  source_validation:
+    data_masking_py: verified_via_pytest_suite
+  not_claimed: [ILR, MCR, SPS, privacy_guarantee]
+  required_protocol:
+    - audit prompts_logs_outputs_mapping_and_network_traces
+    - paired_raw_masked_and_masked_summary_task_evaluation
+    - report corpus_raw_counts_seeds_and_confidence_intervals
+
+end_to_end_baseline_evaluation:
+  status: not_reported
+  canonical_classifier_evidence:
+    - models/v5_top5_focal/results.json
+    - models/v5_top5_focal/evaluation.json
+  missing_artifacts:
+    - baseline_versions_label_map_budgets_and_raw_outputs
+    - fixed_shared_untouched_test_set_and_prediction_files
+    - sample_level_cross_stage_routing_traces
+    - per_stage_confusion_matrices_and_confidence_intervals
+  not_claimed: [end_to_end_f1, end_to_end_fpr, recall_recovery, baseline_ranking, runtime_speedup]
+
+appendix_d_reproducibility:
+  status: partial_source_inventory
+  source_listed:
+    - src/analysis/gnn/model_v2.py
+    - scripts/train_canonical_v5_top5.py
+    - src/pipeline.py
+  source_validation:
+    model_v2_py: passes_python_syntax_check
+    train_v5_full_py: passes_python_syntax_check
+    pipeline_py: passes_python_syntax_check
+    data_masking_py: passes_python_syntax_check_and_7_direct_test_assertions_2026_08_28; pytest_unavailable
+  missing_components: [ugda_grl, domain_discriminator, end_to_end_campaign_trace]
+  not_claimed: [fully_reproducible_end_to_end_pipeline]
+
+chapter_4_evidence:
+  ledger: configs/ch4_evidence_ledger.yaml
+  status: static_classifier_artifacts_only
+  not_claimed: [historical_environment, project_group_split, multi_seed_statistics, end_to_end_metrics]

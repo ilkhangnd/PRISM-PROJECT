@@ -1,0 +1,67 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "prism"
+version = "0.1.0"
+description = "PRISM: A Privacy-Preserving Security Audit Framework for Smart Contracts based on Graph Deep Learning and Generative AI"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [
+    {name = "Nguyen Dinh Khang"},
+]
+
+dependencies = [
+    # Solidity analysis
+    "slither-analyzer>=0.10.0",
+    "solc-select>=1.0.4",
+
+    # Graph ML
+    "torch>=2.2.0",
+    "torch-geometric>=2.5.0",
+
+    # LLM integration
+    "openai>=1.0.0",
+    "ollama>=0.1.0",
+
+    # Utilities
+    "networkx>=3.2",
+    "pyyaml>=6.0",
+    "omegaconf>=2.3.0",
+    "jinja2>=3.1.0",
+    "click>=8.1.0",
+    "rich>=13.0.0",
+    "pydantic>=2.5.0",
+
+    # Data & visualization
+    "pandas>=2.1.0",
+    "matplotlib>=3.8.0",
+    "seaborn>=0.13.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "ruff>=0.3.0",
+    "mypy>=1.8.0",
+    "pre-commit>=3.6.0",
+    "jupyter>=1.0.0",
+]
+
+[project.scripts]
+prism = "src.cli:main"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP"]
+ignore = ["N812"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v --tb=short"

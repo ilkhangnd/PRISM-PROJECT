@@ -1,0 +1,46 @@
+# Canonical configuration for the reported v5_top5_focal experiment.
+# Source artifacts: models/v5_top5_focal/{best_model.pt,results.json} and
+# models/v5_training.log (run completed 2026-05-26). Do not use this file for
+# a different task without recording a separate experiment manifest.
+
+experiment_id: "v5_top5_focal"
+architecture: "GNNMHAv2"
+
+# Model dimensions
+in_channels: 32
+hidden_channels: 256
+num_classes: 5
+label_set: [reentrancy, integer_overflow, access_control, unchecked_return, front_running]
+
+# Attention and graph encoding: one homogeneous edge_index with a
+# four-column one-hot edge_attr (sequential, branch, loop_back, data_dep).
+num_heads: 8
+num_layers: 4
+edge_dim: 4
+jk_mode: "cat"
+
+# Regularization
+dropout: 0.15
+drop_edge: 0.1
+weight_decay: 0.0001
+
+# Training
+learning_rate: 0.001
+max_epochs: 35
+early_stopping_patience: 15
+batch_size: 64
+loss: "focal"
+focal_gamma: 2.0
+label_smoothing: 0.05
+seed: 42
+
+# Scheduler
+lr_scheduler: "OneCycleLR"
+one_cycle_pct_start: 0.1
+one_cycle_anneal_strategy: "cos"
+
+# Data preparation used for the reported result
+minimum_nodes: 3
+train_split: 0.7
+val_split: 0.15
+test_split: 0.15

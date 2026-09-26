@@ -1,0 +1,61 @@
+# ==============================================================================
+# PRISM: Graduation Thesis Python Dependencies (Khóa luận Tốt nghiệp PRISM)
+# Python Compatibility: >= 3.11
+# Usage:
+#   pip install -r requirements.txt
+# ==============================================================================
+
+# --- 1. Core Deep Learning & Graph Neural Networks (GNN) ---
+torch>=2.2.0
+torch-geometric>=2.5.0
+torchvision>=0.17.0
+
+# --- 2. Smart Contract & Static Security Analysis (Slither / Solc) ---
+slither-analyzer>=0.10.0
+solc-select>=1.0.4
+crytic-compile>=0.3.11
+web3>=7.0.0
+pycryptodome>=3.20.0
+eth-utils>=5.0.0
+eth-abi>=5.0.0
+
+# --- 3. Machine Learning, Graph & Data Science ---
+numpy>=1.26.0
+scipy>=1.12.0
+scikit-learn>=1.4.0
+pandas>=2.1.0
+networkx>=3.2
+
+# --- 4. Plotting & Figures Visualization (Chương 4 Khóa luận) ---
+matplotlib>=3.8.0
+seaborn>=0.13.0
+pillow>=10.0.0
+
+# --- 5. LLM Inference & Local Security Layer (Ollama / OpenAI) ---
+ollama>=0.1.0
+openai>=1.0.0
+requests>=2.31.0
+httpx>=0.27.0
+
+# --- 6. Pipeline Configuration, CLI & Utilities ---
+pydantic>=2.5.0
+pydantic-core>=2.14.0
+pyyaml>=6.0
+omegaconf>=2.3.0
+jinja2>=3.1.0
+click>=8.1.0
+rich>=13.0.0
+python-dotenv>=1.0.0
+psutil>=5.9.0
+tqdm>=4.66.0
+
+# --- 7. Backend Web Server & APIs (Optional DApp Service) ---
+fastapi>=0.110.0
+uvicorn>=0.29.0
+websockets>=12.0
+python-multipart>=0.0.9
+
+# --- 8. Automated Testing & Verification CI (Gate A / Gate B) ---
+pytest>=7.4.0
+pytest-cov>=4.1.0
+ruff>=0.3.0

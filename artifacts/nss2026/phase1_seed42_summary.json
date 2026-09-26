@@ -1,0 +1,58 @@
+{
+  "purpose": "Single-seed intermediate summary; not a mean-plus-standard-deviation comparison table",
+  "seed": 42,
+  "label_protocol": "contract-derived weak labels",
+  "complete_runs": [],
+  "missing_runs": [
+    {
+      "split": "random",
+      "model": "gcn",
+      "run_dir": "artifacts/nss2026/runs/random/gcn/seed_42"
+    },
+    {
+      "split": "random",
+      "model": "gin",
+      "run_dir": "artifacts/nss2026/runs/random/gin/seed_42"
+    },
+    {
+      "split": "random",
+      "model": "gat",
+      "run_dir": "artifacts/nss2026/runs/random/gat/seed_42"
+    },
+    {
+      "split": "random",
+      "model": "gatv2",
+      "run_dir": "artifacts/nss2026/runs/random/gatv2/seed_42"
+    },
+    {
+      "split": "random",
+      "model": "gnnmhav2",
+      "run_dir": "artifacts/nss2026/runs/random/gnnmhav2/seed_42"
+    },
+    {
+      "split": "lineage",
+      "model": "gcn",
+      "run_dir": "artifacts/nss2026/runs/lineage/gcn/seed_42"
+    },
+    {
+      "split": "lineage",
+      "model": "gin",
+      "run_dir": "artifacts/nss2026/runs/lineage/gin/seed_42"
+    },
+    {
+      "split": "lineage",
+      "model": "gat",
+      "run_dir": "artifacts/nss2026/runs/lineage/gat/seed_42"
+    },
+    {
+      "split": "lineage",
+      "model": "gatv2",
+      "run_dir": "artifacts/nss2026/runs/lineage/gatv2/seed_42"
+    },
+    {
+      "split": "lineage",
+      "model": "gnnmhav2",
+      "run_dir": "artifacts/nss2026/runs/lineage/gnnmhav2/seed_42"
+    }
+  ]
+}

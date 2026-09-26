@@ -1,0 +1,128 @@
+{
+  "purpose": "Single-seed intermediate summary; not a mean-plus-standard-deviation comparison table",
+  "seed": 42,
+  "label_protocol": "contract-derived weak labels",
+  "complete_runs": [
+    {
+      "split": "random",
+      "model": "gcn",
+      "seed": 42,
+      "accuracy": 0.7424320164186763,
+      "macro_precision": 0.8855782407550514,
+      "macro_recall": 0.7252460844043366,
+      "macro_f1": 0.7596363000143984,
+      "elapsed_seconds": 53.50464224815369,
+      "prediction_rows": 1949,
+      "run_dir": "artifacts/nss2026/runs/random/gcn/seed_42"
+    },
+    {
+      "split": "random",
+      "model": "gin",
+      "seed": 42,
+      "accuracy": 0.7434581836839405,
+      "macro_precision": 0.884041619584966,
+      "macro_recall": 0.7264347824721898,
+      "macro_f1": 0.7605056169391841,
+      "elapsed_seconds": 66.75267910957336,
+      "prediction_rows": 1949,
+      "run_dir": "artifacts/nss2026/runs/random/gin/seed_42"
+    },
+    {
+      "split": "random",
+      "model": "gat",
+      "seed": 42,
+      "accuracy": 0.7398665982555156,
+      "macro_precision": 0.8739765328090477,
+      "macro_recall": 0.7231065965337166,
+      "macro_f1": 0.7561845576391009,
+      "elapsed_seconds": 167.72237420082092,
+      "prediction_rows": 1949,
+      "run_dir": "artifacts/nss2026/runs/random/gat/seed_42"
+    },
+    {
+      "split": "random",
+      "model": "gatv2",
+      "seed": 42,
+      "accuracy": 0.7408927655207799,
+      "macro_precision": 0.8746375906526056,
+      "macro_recall": 0.7242026396150469,
+      "macro_f1": 0.7570886500512131,
+      "elapsed_seconds": 283.8308861255646,
+      "prediction_rows": 1949,
+      "run_dir": "artifacts/nss2026/runs/random/gatv2/seed_42"
+    },
+    {
+      "split": "random",
+      "model": "gnnmhav2",
+      "seed": 42,
+      "accuracy": 0.741405849153412,
+      "macro_precision": 0.8855174585515921,
+      "macro_recall": 0.723819620438014,
+      "macro_f1": 0.7581267186175167,
+      "elapsed_seconds": 360.4288260936737,
+      "prediction_rows": 1949,
+      "run_dir": "artifacts/nss2026/runs/random/gnnmhav2/seed_42"
+    },
+    {
+      "split": "lineage",
+      "model": "gcn",
+      "seed": 42,
+      "accuracy": 0.7451071761416589,
+      "macro_precision": 0.8885417184028143,
+      "macro_recall": 0.7311509542670487,
+      "macro_f1": 0.7636482460756853,
+      "elapsed_seconds": 40.85281801223755,
+      "prediction_rows": 2146,
+      "run_dir": "artifacts/nss2026/runs/lineage/gcn/seed_42"
+    },
+    {
+      "split": "lineage",
+      "model": "gin",
+      "seed": 42,
+      "accuracy": 0.744641192917055,
+      "macro_precision": 0.8868348214185863,
+      "macro_recall": 0.7304197256112918,
+      "macro_f1": 0.7630179592669847,
+      "elapsed_seconds": 55.00108599662781,
+      "prediction_rows": 2146,
+      "run_dir": "artifacts/nss2026/runs/lineage/gin/seed_42"
+    },
+    {
+      "split": "lineage",
+      "model": "gat",
+      "seed": 42,
+      "accuracy": 0.7437092264678472,
+      "macro_precision": 0.873715661291202,
+      "macro_recall": 0.7304809836087662,
+      "macro_f1": 0.7610850141075278,
+      "elapsed_seconds": 113.05050301551819,
+      "prediction_rows": 2146,
+      "run_dir": "artifacts/nss2026/runs/lineage/gat/seed_42"
+    },
+    {
+      "split": "lineage",
+      "model": "gatv2",
+      "seed": 42,
+      "accuracy": 0.7437092264678472,
+      "macro_precision": 0.8819989308303577,
+      "macro_recall": 0.7297974910267933,
+      "macro_f1": 0.762068340365335,
+      "elapsed_seconds": 245.2324800491333,
+      "prediction_rows": 2146,
+      "run_dir": "artifacts/nss2026/runs/lineage/gatv2/seed_42"
+    },
+    {
+      "split": "lineage",
+      "model": "gnnmhav2",
+      "seed": 42,
+      "accuracy": 0.7451071761416589,
+      "macro_precision": 0.8905114183046321,
+      "macro_recall": 0.7307668995433714,
+      "macro_f1": 0.7638574660636681,
+      "elapsed_seconds": 238.85714101791382,
+      "prediction_rows": 2146,
+      "run_dir": "artifacts/nss2026/runs/lineage/gnnmhav2/seed_42"
+    }
+  ],
+  "missing_runs": []
+}

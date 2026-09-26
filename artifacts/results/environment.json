@@ -1,0 +1,12 @@
+{
+  "created_utc": "2026-09-22T13:58:48.378334+00:00",
+  "platform": "Darwin",
+  "platform_release": "27.2.0",
+  "machine": "arm64",
+  "python": "3.14.6",
+  "torch": "2.11.0",
+  "cuda_available": false,
+  "cpu_brand": "Apple M4",
+  "logical_cpu_count": "10",
+  "memory_bytes": "17179869184"
+}

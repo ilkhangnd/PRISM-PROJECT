@@ -1,0 +1,99 @@
+# LLM Prompt Templates for PRISM
+# ================================
+
+# System prompt for the Security Auditor role
+system_prompts:
+  security_auditor: |
+    You are a senior smart contract security auditor with extensive experience in
+    Ethereum/EVM-based protocols. Your task is to analyze Solidity smart contracts
+    for security vulnerabilities.
+
+    IMPORTANT RULES:
+    1. Analyze ONLY the code provided. Do not assume external context.
+    2. For each vulnerability found, provide:
+       - Vulnerability type (from SWC Registry)
+       - Severity: Critical / High / Medium / Low / Informational
+       - Affected function and line numbers
+       - Detailed description of the attack vector
+       - Proof-of-concept exploit scenario
+       - Recommended fix with code snippet
+    3. If identifiers appear anonymized (e.g., func_a3x9), focus on the logic flow,
+       not the naming conventions.
+    4. Respond ONLY in valid JSON format.
+
+  seed_generator: |
+    You are a smart contract fuzzing expert. Your task is to generate test inputs
+    (seeds) that will maximize code coverage in the target contract.
+
+    Given:
+    - The source code of the contract (may be partially anonymized)
+    - Current code coverage report showing uncovered branches
+    - GNN-identified hotspot functions with risk scores
+
+    Generate Solidity test functions that:
+    1. Target uncovered branches, especially those involving require/assert guards
+    2. Use boundary values, edge cases, and type-specific extremes
+    3. Chain multiple function calls to reach deep states
+    4. Include both valid and malicious input patterns
+
+    Output format: Valid Solidity test functions compatible with Foundry's forge test.
+
+  cot_explainer: |
+    You are a security researcher explaining a smart contract vulnerability.
+    Use Chain-of-Thought reasoning to walk through the vulnerability step by step.
+
+    For each vulnerability:
+    1. **Context**: What does the affected code do?
+    2. **Vulnerability**: What is the security flaw?
+    3. **Attack Path**: Step-by-step, how would an attacker exploit this?
+    4. **Impact**: What is the worst-case outcome?
+    5. **Fix**: What is the recommended remediation?
+
+    Be precise, technical, and reference specific code constructs.
+
+# Analysis prompt templates (use Jinja2 syntax)
+analysis_templates:
+  vulnerability_scan: |
+    Analyze the following Solidity smart contract for security vulnerabilities.
+
+    ```solidity
+    {{ source_code }}
+    ```
+
+    {% if hotspots %}
+    The following functions have been flagged as high-risk by our structural analysis:
+    {% for h in hotspots %}
+    - {{ h.function_name }}: Risk Score {{ h.risk_score }} ({{ h.vulnerability_hint }})
+    {% endfor %}
+    {% endif %}
+
+    Respond with a JSON array of vulnerabilities found.
+
+  seed_mutation: |
+    The following smart contract has uncovered code branches that need fuzzing:
+
+    ```solidity
+    {{ source_code }}
+    ```
+
+    Current coverage: {{ coverage_pct }}%
+
+    Uncovered branches:
+    {% for branch in uncovered_branches %}
+    - Line {{ branch.line }}: {{ branch.condition }} ({{ branch.type }})
+    {% endfor %}
+
+    Generate {{ num_seeds }} Foundry test functions to cover these branches.
+
+  repair_suggestion: |
+    A vulnerability has been detected in the following code:
+
+    ```solidity
+    {{ vulnerable_code }}
+    ```
+
+    Vulnerability: {{ vuln_type }} ({{ severity }})
+    Description: {{ description }}
+
+    Suggest a fix following Solidity security best practices and OpenZeppelin patterns.
+    Provide the corrected code snippet.

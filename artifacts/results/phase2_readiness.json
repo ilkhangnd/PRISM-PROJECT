@@ -1,0 +1,450 @@
+{
+  "schema_version": "1.0",
+  "created_utc": "2026-09-22T11:11:34.779270+00:00",
+  "purpose": "NSS2026 Phase-2 frozen benchmark and execution-readiness audit",
+  "ground_truth_source": "data/ground_truth_57.json",
+  "contracts_total": 57,
+  "contracts_clean": 27,
+  "contracts_vulnerable": 30,
+  "category_counts": {
+    "SWC-101": 6,
+    "SWC-104": 5,
+    "SWC-105": 6,
+    "SWC-107": 7,
+    "SWC-114": 6,
+    "clean": 27
+  },
+  "compiler": {
+    "command": "/opt/homebrew/bin/solc --version",
+    "returncode": 0,
+    "stdout": "solc, the solidity compiler commandline interface\nVersion: 0.8.30+commit.73712a01.Darwin.appleclang"
+  },
+  "missing_sources": [],
+  "records": [
+    {
+      "file_name": "SafeAccessControl_0.sol",
+      "relative_path": "data/raw_50/SafeAccessControl_0.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "sha256": "1ab2a49b3f4f6923eb8591d33e15703f6e531a9ab81b2ee23c43c4d19cbb9705"
+    },
+    {
+      "file_name": "SafeAccessControl_1.sol",
+      "relative_path": "data/raw_50/SafeAccessControl_1.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "sha256": "46f60dea3f641d130232c9fd24fd42af352579fefd4946c3e687d8c395452f12"
+    },
+    {
+      "file_name": "SafeAccessControl_2.sol",
+      "relative_path": "data/raw_50/SafeAccessControl_2.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "sha256": "161fd8c56559f0cb09e3c95ff367dca64efbc00be4d328f3bc5f53d0ef054a63"
+    },
+    {
+      "file_name": "SafeAccessControl_3.sol",
+      "relative_path": "data/raw_50/SafeAccessControl_3.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "sha256": "ffa3213f7e574cd29603239f356661046580fcbad47f2844a9d16434af8b63a6"
+    },
+    {
+      "file_name": "SafeAccessControl_4.sol",
+      "relative_path": "data/raw_50/SafeAccessControl_4.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "sha256": "2a647e4aba683923ffd0499670ffbe65f88547dac436bcd5fea506f1e5ffec5e"
+    },
+    {
+      "file_name": "SafeOverflow_0.sol",
+      "relative_path": "data/raw_50/SafeOverflow_0.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "sha256": "675bda5f33d03e414375fe17cd08b1910972ab4da4ccfbf6a1c1f5f19185f6a1"
+    },
+    {
+      "file_name": "SafeOverflow_1.sol",
+      "relative_path": "data/raw_50/SafeOverflow_1.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "sha256": "a98a1807edb0a5689b969ccaec22024c868476f7dfe3bdd29421c08257cdc0a6"
+    },
+    {
+      "file_name": "SafeOverflow_2.sol",
+      "relative_path": "data/raw_50/SafeOverflow_2.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "sha256": "8dac7a600cc20315de71ee92d3f09bb0dad2d0953d2ba6994e4a80a25d6c042b"
+    },
+    {
+      "file_name": "SafeOverflow_3.sol",
+      "relative_path": "data/raw_50/SafeOverflow_3.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "sha256": "ffb63e4664fc4d1cd91d209faf54fa367b7d0c01531b8d48846ab2521c960785"
+    },
+    {
+      "file_name": "SafeOverflow_4.sol",
+      "relative_path": "data/raw_50/SafeOverflow_4.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "sha256": "32bdc710aa668c37b6f78c9a2ca2ad38e65913367fbd7e8386a8cb1ae8c634ae"
+    },
+    {
+      "file_name": "SafeReentrancy_0.sol",
+      "relative_path": "data/raw_50/SafeReentrancy_0.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "sha256": "9b4b2b554290702074f88f68b82617ac48ec880a739e336b4d528941fc398cc3"
+    },
+    {
+      "file_name": "SafeReentrancy_1.sol",
+      "relative_path": "data/raw_50/SafeReentrancy_1.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "sha256": "d9c1d17f2bca292055ec16b90d4d5d9d48cf9acc6bc178d75718467856984187"
+    },
+    {
+      "file_name": "SafeReentrancy_2.sol",
+      "relative_path": "data/raw_50/SafeReentrancy_2.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "sha256": "d4cb647a731f6729cc6d97872ba10789cbcc8aebcc1048729b4cdb425ca83068"
+    },
+    {
+      "file_name": "SafeReentrancy_3.sol",
+      "relative_path": "data/raw_50/SafeReentrancy_3.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "sha256": "7259911f94d6ce44ae808d9d0cfd898738d747cd85b7983d0ac8768f9be818f3"
+    },
+    {
+      "file_name": "SafeReentrancy_4.sol",
+      "relative_path": "data/raw_50/SafeReentrancy_4.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "sha256": "4f89be4835a6323327b653baf1c4d1e962ccaf4e75e9c2fead499047bf68e1f1"
+    },
+    {
+      "file_name": "SafeTimestamp_0.sol",
+      "relative_path": "data/raw_50/SafeTimestamp_0.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "sha256": "63ccdca66182a5ca9cc3e027e35aaf47ca4ae6805decc484a8581f8a34f2cff2"
+    },
+    {
+      "file_name": "SafeTimestamp_1.sol",
+      "relative_path": "data/raw_50/SafeTimestamp_1.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "sha256": "a27fbbee15f2696b71a66b2607cc7f23ef1b527f07cdf5598dd422b933f41b88"
+    },
+    {
+      "file_name": "SafeTimestamp_2.sol",
+      "relative_path": "data/raw_50/SafeTimestamp_2.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "sha256": "e25b7c87948d2e2326230484b072a964bc223dc32d7e2efcf7fa1bfe74df8c27"
+    },
+    {
+      "file_name": "SafeTimestamp_3.sol",
+      "relative_path": "data/raw_50/SafeTimestamp_3.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "sha256": "5b7041a9ba9368eed31a76cd8e295b22cf0989848c2a6eb906dd33032043f622"
+    },
+    {
+      "file_name": "SafeTimestamp_4.sol",
+      "relative_path": "data/raw_50/SafeTimestamp_4.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "sha256": "3400c00f7550e10b907eef2a01d685d206d41c20048c501820c8c877c76fe128"
+    },
+    {
+      "file_name": "SafeUncheckedReturn_0.sol",
+      "relative_path": "data/raw_50/SafeUncheckedReturn_0.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "sha256": "55ac37e4b388675e211efbca1189b14cec03bcbc4968aa34d32df15467e40a55"
+    },
+    {
+      "file_name": "SafeUncheckedReturn_1.sol",
+      "relative_path": "data/raw_50/SafeUncheckedReturn_1.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "sha256": "cdf6c93da415fc1f55cbfd280aaf98e20e71218a4dde3fb95f333b1431c4cb3b"
+    },
+    {
+      "file_name": "SafeUncheckedReturn_2.sol",
+      "relative_path": "data/raw_50/SafeUncheckedReturn_2.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "sha256": "3227092435050ff12a6447c3595429b1fbda54b7a79f6af2b208979b2460371d"
+    },
+    {
+      "file_name": "SafeUncheckedReturn_3.sol",
+      "relative_path": "data/raw_50/SafeUncheckedReturn_3.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "sha256": "1c498111e7c64ba87f3f7543c8fa012ec368414c4c8f7dd1dcf523eaaa734b74"
+    },
+    {
+      "file_name": "SafeUncheckedReturn_4.sol",
+      "relative_path": "data/raw_50/SafeUncheckedReturn_4.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "sha256": "28038831a3745ba2e5806abc06b6c366922bb903d45c46fbd718a47832affa6d"
+    },
+    {
+      "file_name": "VulnAccessControl_0.sol",
+      "relative_path": "data/raw_50/VulnAccessControl_0.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-105",
+      "sha256": "bdea7d9b6d17bd38ca8e7bb5b36d71e0a78606a18b9e710763fea8b5735e8838"
+    },
+    {
+      "file_name": "VulnAccessControl_1.sol",
+      "relative_path": "data/raw_50/VulnAccessControl_1.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-105",
+      "sha256": "03f0649095199494399639e107188be19b6a30b5000770fa084d8f7b94fd7ff7"
+    },
+    {
+      "file_name": "VulnAccessControl_2.sol",
+      "relative_path": "data/raw_50/VulnAccessControl_2.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-105",
+      "sha256": "e46844d53d44dc0d32f2e68e77b4fe3bcaa90aa246cad83704d43cc005a79023"
+    },
+    {
+      "file_name": "VulnAccessControl_3.sol",
+      "relative_path": "data/raw_50/VulnAccessControl_3.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-105",
+      "sha256": "721ef0b6277519557acc14c24c07320af6362894d7916e64610381f69dbc0df5"
+    },
+    {
+      "file_name": "VulnAccessControl_4.sol",
+      "relative_path": "data/raw_50/VulnAccessControl_4.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-105",
+      "sha256": "1123c356e4a5d643927f7f0cd21035b2ed400a77d91e8aa9a89117a92fa57dbc"
+    },
+    {
+      "file_name": "VulnOverflow_0.sol",
+      "relative_path": "data/raw_50/VulnOverflow_0.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-101",
+      "sha256": "8c8acc789155835c1107edf17bb44f66c00dc7eb5cce08dee026ab40aa90e71f"
+    },
+    {
+      "file_name": "VulnOverflow_1.sol",
+      "relative_path": "data/raw_50/VulnOverflow_1.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-101",
+      "sha256": "c854846da49985cbda461e113c14d4e5e3b9f0173a9ca343eb3fd23dcae5e72c"
+    },
+    {
+      "file_name": "VulnOverflow_2.sol",
+      "relative_path": "data/raw_50/VulnOverflow_2.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-101",
+      "sha256": "7bdcc96e4c57f92bcdf4a073fe0106b61bb3b43b530e002a2feb6cc4937a09c2"
+    },
+    {
+      "file_name": "VulnOverflow_3.sol",
+      "relative_path": "data/raw_50/VulnOverflow_3.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-101",
+      "sha256": "c3f2c83e0cdb4a993705c7784346f3426365c81030a8d283783350129eea14fd"
+    },
+    {
+      "file_name": "VulnOverflow_4.sol",
+      "relative_path": "data/raw_50/VulnOverflow_4.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-101",
+      "sha256": "3723e6289ab0f98cdd4ff6c55590f6a001ee7388771942de91c5646e9a558562"
+    },
+    {
+      "file_name": "VulnReentrancy_0.sol",
+      "relative_path": "data/raw_50/VulnReentrancy_0.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-107",
+      "sha256": "f310d2379a8dfd9fa12890753a8c3e06c89051b11ee82a558b58377afa6e2a08"
+    },
+    {
+      "file_name": "VulnReentrancy_1.sol",
+      "relative_path": "data/raw_50/VulnReentrancy_1.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-107",
+      "sha256": "475696f1b31e5b351b1866552cd25263cb948c091fc237804701c8a638193338"
+    },
+    {
+      "file_name": "VulnReentrancy_2.sol",
+      "relative_path": "data/raw_50/VulnReentrancy_2.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-107",
+      "sha256": "ed2f30307bcc4bee166ecf90cfcc6c5049bb6a7a89b3c34556938168ec4ae33b"
+    },
+    {
+      "file_name": "VulnReentrancy_3.sol",
+      "relative_path": "data/raw_50/VulnReentrancy_3.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-107",
+      "sha256": "1e288baa78e361568ffe6cd194e2d149e0e05305117935a6df9b21e06f887060"
+    },
+    {
+      "file_name": "VulnReentrancy_4.sol",
+      "relative_path": "data/raw_50/VulnReentrancy_4.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-107",
+      "sha256": "989965038dbbd454a55ce377e35beda545382a190e34aecc57475fe3dcae8699"
+    },
+    {
+      "file_name": "VulnTimestamp_0.sol",
+      "relative_path": "data/raw_50/VulnTimestamp_0.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-114",
+      "sha256": "95a4639c5158728743eeceb7d0731e05a4fa44629aec1281731a4afe122c0393"
+    },
+    {
+      "file_name": "VulnTimestamp_1.sol",
+      "relative_path": "data/raw_50/VulnTimestamp_1.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-114",
+      "sha256": "abe99f27e847647872b8942db111450665fa498b9891c10324dd5cfd63420fa4"
+    },
+    {
+      "file_name": "VulnTimestamp_2.sol",
+      "relative_path": "data/raw_50/VulnTimestamp_2.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-114",
+      "sha256": "71c8be974f74e612fd740d69bef5b25612e9b9f3665c8c0b5796a802cd1b31ca"
+    },
+    {
+      "file_name": "VulnTimestamp_3.sol",
+      "relative_path": "data/raw_50/VulnTimestamp_3.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-114",
+      "sha256": "d8f50a807e40f7228d207fdee6d5997fba6a14f0ef42ca0b37e760418e4c198b"
+    },
+    {
+      "file_name": "VulnTimestamp_4.sol",
+      "relative_path": "data/raw_50/VulnTimestamp_4.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-114",
+      "sha256": "c0746446f983cc8b5a3b403ebbd351015d6d7658b066ada54fb3aa09a2336e8a"
+    },
+    {
+      "file_name": "VulnUncheckedReturn_0.sol",
+      "relative_path": "data/raw_50/VulnUncheckedReturn_0.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-104",
+      "sha256": "5f8fb825c5e3bb21c5c2d79aac6663028d49bedf5d1126727a672434a7b3882a"
+    },
+    {
+      "file_name": "VulnUncheckedReturn_1.sol",
+      "relative_path": "data/raw_50/VulnUncheckedReturn_1.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-104",
+      "sha256": "8db9ea692c9fc48615ba238b2656ca6eb32a2ab5e73ff82ba31d54c0c47ada12"
+    },
+    {
+      "file_name": "VulnUncheckedReturn_2.sol",
+      "relative_path": "data/raw_50/VulnUncheckedReturn_2.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-104",
+      "sha256": "d1e56b0fcfb6313f390c04f0aed4359e7db819368df532b784f63b06ed2b04e2"
+    },
+    {
+      "file_name": "VulnUncheckedReturn_3.sol",
+      "relative_path": "data/raw_50/VulnUncheckedReturn_3.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-104",
+      "sha256": "50c6b56e9b7790665edd588ff81181371870f6dae06f3d523a39786171a33f85"
+    },
+    {
+      "file_name": "VulnUncheckedReturn_4.sol",
+      "relative_path": "data/raw_50/VulnUncheckedReturn_4.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-104",
+      "sha256": "f223099521493f4e7b9fb39f11b0f3c11de1800c1d4db0cc728cbb73409e069b"
+    },
+    {
+      "file_name": "SafeBank.sol",
+      "relative_path": "data/raw/SafeBank.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "sha256": "6fda4e02a40fbb04f0845b735ccad088be46a705c71424cefcf04d2a310164d2"
+    },
+    {
+      "file_name": "SafeMathContract.sol",
+      "relative_path": "data/raw/SafeMathContract.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "sha256": "67144a0ef42ee72d8716c18ae3f40ffa0980a89e874cf58fe32fe306a8abe95b"
+    },
+    {
+      "file_name": "SimpleDAO.sol",
+      "relative_path": "data/raw/SimpleDAO.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-107",
+      "sha256": "aaa0df6942bc8a859e7a3e76f8aa3dcf80038d1313208a67611acd561341e98a"
+    },
+    {
+      "file_name": "TokenSale.sol",
+      "relative_path": "data/raw/TokenSale.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-101",
+      "sha256": "71aaf0a310533e73487ce8b2343fc14503eac0cdce5109aee736a2321aedd87b"
+    },
+    {
+      "file_name": "UnsafeWallet.sol",
+      "relative_path": "data/raw/UnsafeWallet.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-105",
+      "sha256": "b4a0932fcaeb3a4366305a1082802eaf2d6ff1a08535f06d74ae2ad5009bfdb3"
+    },
+    {
+      "file_name": "VulnerableBank.sol",
+      "relative_path": "data/raw/VulnerableBank.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-107",
+      "sha256": "eb062255b902bf4aa9373026b0620a676a3502386d4e2329224c2d8eb8006b5a"
+    },
+    {
+      "file_name": "WeakRandom.sol",
+      "relative_path": "data/raw/WeakRandom.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-114",
+      "sha256": "52fded298afdf60bb490cf56025d59c922bd545693e2d641ceeb663f719f27ba"
+    }
+  ],
+  "foundry_campaign_harnesses": [
+    "AccessControlFuzz.t.sol",
+    "OverflowFuzz.t.sol",
+    "ReentrancyFuzz.t.sol",
+    "UncheckedReturnFuzz.t.sol"
+  ],
+  "legacy_patch_workspace_harnesses": [
+    "SimpleDAO.t.sol",
+    "TokenSale.t.sol",
+    "UncheckedBank.t.sol",
+    "UnprotectedVault.t.sol",
+    "WeakLottery.t.sol"
+  ],
+  "claim_boundaries": [
+    "The 57 labels are benchmark/template labels from data/ground_truth_57.json, not independently source-span validated SWC ground truth.",
+    "The five SWC-114 records named VulnTimestamp_* are timestamp-dependence proxies; they must not be described as a validated front-running benchmark.",
+    "Existing Foundry harnesses cover four campaign examples only; existing patch-workspace harnesses cover five named case studies. Neither is a 57-contract end-to-end replay surface.",
+    "Legacy RQ3/RQ4/RQ5 runners write historical artifact directories; RQ5 also temporarily overwrites source files in its Foundry workspace. They are not used as fresh Phase-2 execution entrypoints."
+  ],
+  "fresh_execution_scope": {
+    "privacy_masking": "eligible on all frozen sources in an isolated output directory",
+    "static_baseline": "eligible after a new runner writes only isolated outputs",
+    "end_to_end_foundry_replay": "blocked: harness coverage must be expanded and each exploit oracle documented",
+    "llm_masked_unmasked": "blocked: fixed model/version, prompts, decoding, and response logs are absent",
+    "patch_benchmark": "blocked: current AutoRepair is rule-based and the legacy runner mutates its workspace"
+  }
+}
