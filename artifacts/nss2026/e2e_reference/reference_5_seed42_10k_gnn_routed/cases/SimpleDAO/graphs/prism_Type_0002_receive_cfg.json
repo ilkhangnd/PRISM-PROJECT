@@ -1,0 +1,15 @@
+{
+  "function": "prism_Type_0002.receive",
+  "num_nodes": 1,
+  "num_edges": 0,
+  "nodes": [
+    {
+      "id": 0,
+      "label": "ENTRY_POINT",
+      "node_type": "NodeType.ENTRYPOINT",
+      "expression": "",
+      "irs": []
+    }
+  ],
+  "edges": []
+}

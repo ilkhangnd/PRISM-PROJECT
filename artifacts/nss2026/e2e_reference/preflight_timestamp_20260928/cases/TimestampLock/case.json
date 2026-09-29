@@ -1,0 +1,91 @@
+{
+  "target": "TimestampLock",
+  "source": "artifacts/fuzzing_runs/benchmark_workspace/src/TimestampLock.sol",
+  "source_sha256": "8f1134e46370644c2878b5fa564cea04d1f6d4d521126453ab63867a024d082f",
+  "vulnerability_class": "Timestamp Dependence",
+  "swc": "SWC-114",
+  "harness_kind": "pre-authored Foundry reference harness",
+  "gnn": {
+    "status": "completed",
+    "checkpoint": "artifacts/nss2026/runs/random/gnnmhav2/seed_42/best_model.pt",
+    "checkpoint_sha256": "3fc2937a90bf9081fa08e0c93d46ed2761977f9a19bff59af4702b1dc50f2f08",
+    "masked_identifier_count": 5,
+    "graphs_built": 3,
+    "hotspot_count": 1,
+    "hotspots": [
+      {
+        "function_name": "prism_v_0000",
+        "contract_name": "prism_Type_0001",
+        "full_name": "prism_Type_0001.prism_v_0000",
+        "risk_score": 0.3707,
+        "vulnerability_hint": "integer_overflow",
+        "predicted_class": 1,
+        "detection_source": "GNN"
+      }
+    ]
+  },
+  "llm": {
+    "status": "completed",
+    "model": "deepseek-coder-v2:latest",
+    "finding_count": 1,
+    "findings": [
+      {
+        "vulnerability_type": "timestamp_dependence",
+        "function_name": "prism_v_0000",
+        "evidence": "Function's state transition relies on block.timestamp comparison."
+      }
+    ],
+    "duration_ms": 16792.21
+  },
+  "routing": {
+    "policy": "any_gnn_hotspot",
+    "routed_to_foundry": true,
+    "hotspot_count": 1
+  },
+  "foundry": {
+    "guided_reference_test": {
+      "command": [
+        "/Users/nguyendinhkhang/.foundry/bin/forge",
+        "test",
+        "--fuzz-seed",
+        "42",
+        "--match-contract",
+        "TimestampLockTest",
+        "--match-test",
+        "testGuidedExploit",
+        "-vvv"
+      ],
+      "return_code": 0,
+      "timed_out": false,
+      "passed": true,
+      "duration_ms": 2822.7,
+      "stdout_sha256": "37ec5163851207c58ab8674eb8bbf61ba5fbfdff9f5c8b31c25c6dcd4f3751c4",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_tail": "No files changed, compilation skipped\n2026-09-28T16:07:31.904227Z  WARN evm::traces::external: etherscan config not found\n\nRan 1 test for test/TimestampLock.t.sol:TimestampLockTest\n[PASS] testGuidedExploit() (gas: 39827)\nSuite result: ok. 1 passed; 0 failed; 0 skipped; finished in 30.73ms (1.23ms CPU time)\n\nRan 1 test suite in 942.67ms (30.73ms CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)\n",
+      "stderr_tail": ""
+    },
+    "parameterized_reference_fuzz": {
+      "command": [
+        "/Users/nguyendinhkhang/.foundry/bin/forge",
+        "test",
+        "--fuzz-seed",
+        "42",
+        "--match-contract",
+        "TimestampLockTest",
+        "--match-test",
+        "testRandomFuzz",
+        "--fuzz-runs",
+        "10000",
+        "-vvv"
+      ],
+      "return_code": 0,
+      "timed_out": false,
+      "passed": true,
+      "duration_ms": 1931.23,
+      "stdout_sha256": "d97f415f51e1043ba08ece1fd65546939fa9053042d4a8820ff1e6b96b45b65b",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_tail": "No files changed, compilation skipped\n2026-09-28T16:07:34.473409Z  WARN evm::traces::external: etherscan config not found\n\nRan 1 test for test/TimestampLock.t.sol:TimestampLockTest\n[PASS] testRandomFuzz(uint256) (runs: 10000, \u03bc: 13180, ~: 13518)\nSuite result: ok. 1 passed; 0 failed; 0 skipped; finished in 207.39ms (181.89ms CPU time)\n\nRan 1 test suite in 399.58ms (207.39ms CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)\n",
+      "stderr_tail": ""
+    }
+  }
+}

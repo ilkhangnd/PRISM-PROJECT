@@ -1,0 +1,10 @@
+{
+  "forward": {
+    "VulnTimestamp_1": "prism_Type_0000",
+    "play": "prism_v_0001"
+  },
+  "reverse": {
+    "prism_Type_0000": "VulnTimestamp_1",
+    "prism_v_0001": "play"
+  }
+}

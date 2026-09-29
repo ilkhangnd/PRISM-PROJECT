@@ -1,0 +1,57 @@
+{
+  "completed_at_utc": "2026-09-27T14:42:37.748688+00:00",
+  "model": "stage_a_binary_gate",
+  "task": "binary_vulnerability_screening",
+  "seed": 44,
+  "test_samples_total": 3669,
+  "test_support": {
+    "vulnerable": 3132,
+    "safe": 537
+  },
+  "hyperparameters": {
+    "epochs_completed": 35,
+    "batch_size": 64,
+    "hidden_channels": 256,
+    "num_classes": 2
+  },
+  "elapsed_seconds": 85.01,
+  "metrics": {
+    "accuracy": 0.8917961297356228,
+    "vulnerable_recall": 0.884418901660281,
+    "safe_specificity": 0.9348230912476722,
+    "macro_precision": 0.7842588260051495,
+    "macro_recall": 0.9096209964539766,
+    "macro_f1": 0.8248809815971793,
+    "classification_report": {
+      "vulnerable": {
+        "precision": 0.9875222816399287,
+        "recall": 0.884418901660281,
+        "f1-score": 0.9331309853214106,
+        "support": 3132
+      },
+      "safe": {
+        "precision": 0.5809953703703703,
+        "recall": 0.9348230912476722,
+        "f1-score": 0.7166309778729479,
+        "support": 537
+      },
+      "accuracy": 0.8917961297356228,
+      "macro avg": {
+        "precision": 0.7842588260051495,
+        "recall": 0.9096209964539766,
+        "f1-score": 0.8248809815971793,
+        "support": 3669
+      }
+    },
+    "confusion_matrix": [
+      [
+        2770,
+        362
+      ],
+      [
+        35,
+        502
+      ]
+    ]
+  }
+}

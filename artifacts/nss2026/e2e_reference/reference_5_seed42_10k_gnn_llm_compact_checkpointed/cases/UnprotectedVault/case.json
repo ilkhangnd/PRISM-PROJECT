@@ -1,0 +1,114 @@
+{
+  "target": "UnprotectedVault",
+  "source": "artifacts/fuzzing_runs/benchmark_workspace/src/UnprotectedVault.sol",
+  "source_sha256": "e500b0ca9ad05e5653f457675f8ab8e2818b6bd654ad323289d8559de94abf3d",
+  "vulnerability_class": "Access Control",
+  "swc": "SWC-105",
+  "harness_kind": "pre-authored Foundry reference harness",
+  "gnn": {
+    "status": "completed",
+    "checkpoint": "artifacts/nss2026/runs/random/gnnmhav2/seed_42/best_model.pt",
+    "checkpoint_sha256": "3fc2937a90bf9081fa08e0c93d46ed2761977f9a19bff59af4702b1dc50f2f08",
+    "masked_identifier_count": 7,
+    "graphs_built": 5,
+    "hotspot_count": 3,
+    "hotspots": [
+      {
+        "function_name": "prism_v_0001",
+        "contract_name": "prism_Type_0000",
+        "full_name": "prism_Type_0000.prism_v_0001",
+        "risk_score": 0.7727,
+        "vulnerability_hint": "access_control",
+        "predicted_class": 2,
+        "detection_source": "GNN"
+      },
+      {
+        "function_name": "prism_v_0005",
+        "contract_name": "prism_Type_0000",
+        "full_name": "prism_Type_0000.prism_v_0005",
+        "risk_score": 0.591,
+        "vulnerability_hint": "access_control",
+        "predicted_class": 2,
+        "detection_source": "GNN"
+      },
+      {
+        "function_name": "constructor",
+        "contract_name": "prism_Type_0000",
+        "full_name": "prism_Type_0000.constructor",
+        "risk_score": 0.3785,
+        "vulnerability_hint": "access_control",
+        "predicted_class": 2,
+        "detection_source": "GNN"
+      }
+    ]
+  },
+  "llm": {
+    "status": "completed",
+    "model": "deepseek-coder-v2:latest",
+    "finding_count": 2,
+    "findings": [
+      {
+        "vulnerability_type": "access_control",
+        "function_name": "prism_v_0001",
+        "evidence": "Function requires only owner to withdraw funds."
+      },
+      {
+        "vulnerability_type": "unchecked_return",
+        "function_name": "prism_v_0005",
+        "evidence": "Transfer function call does not check return value."
+      }
+    ],
+    "duration_ms": 8130.6
+  },
+  "routing": {
+    "policy": "any_gnn_hotspot",
+    "routed_to_foundry": true,
+    "hotspot_count": 3
+  },
+  "foundry": {
+    "guided_reference_test": {
+      "command": [
+        "/Users/nguyendinhkhang/.foundry/bin/forge",
+        "test",
+        "--fuzz-seed",
+        "42",
+        "--match-contract",
+        "UnprotectedVaultTest",
+        "--match-test",
+        "testGuidedExploit",
+        "-vvv"
+      ],
+      "return_code": 0,
+      "timed_out": false,
+      "passed": true,
+      "duration_ms": 864.4,
+      "stdout_sha256": "5e26bb4f5aa5f3545aba5781bf182036669ae09ce12221836b4c1d6ddbdc60ba",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_tail": "No files changed, compilation skipped\n2026-09-28T05:28:40.575100Z  WARN evm::traces::external: etherscan config not found\n\nRan 1 test for test/UnprotectedVault.t.sol:UnprotectedVaultTest\n[PASS] testGuidedExploit() (gas: 48550)\nSuite result: ok. 1 passed; 0 failed; 0 skipped; finished in 9.56ms (1.18ms CPU time)\n\nRan 1 test suite in 261.32ms (9.56ms CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)\n",
+      "stderr_tail": ""
+    },
+    "parameterized_reference_fuzz": {
+      "command": [
+        "/Users/nguyendinhkhang/.foundry/bin/forge",
+        "test",
+        "--fuzz-seed",
+        "42",
+        "--match-contract",
+        "UnprotectedVaultTest",
+        "--match-test",
+        "testRandomFuzz",
+        "--fuzz-runs",
+        "10000",
+        "-vvv"
+      ],
+      "return_code": 0,
+      "timed_out": false,
+      "passed": true,
+      "duration_ms": 496.34,
+      "stdout_sha256": "2d4269db12f4a9356f1848389dbf46b11218e4c68e6cd72db416acab46390f2b",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_tail": "No files changed, compilation skipped\n2026-09-28T05:28:41.081803Z  WARN evm::traces::external: etherscan config not found\n\nRan 1 test for test/UnprotectedVault.t.sol:UnprotectedVaultTest\n[PASS] testRandomFuzz(uint256) (runs: 10000, \u03bc: 42252, ~: 42252)\nSuite result: ok. 1 passed; 0 failed; 0 skipped; finished in 262.27ms (261.95ms CPU time)\n\nRan 1 test suite in 262.80ms (262.27ms CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)\n",
+      "stderr_tail": ""
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "forward": {
+    "noReentrant": "prism_v_0000",
+    "balances": "prism_v_0001",
+    "SafeBank": "prism_Type_0002",
+    "withdraw": "prism_v_0003",
+    "deposit": "prism_v_0004",
+    "_amount": "prism_v_0005",
+    "success": "prism_v_0006",
+    "locked": "prism_v_0007"
+  },
+  "reverse": {
+    "prism_v_0000": "noReentrant",
+    "prism_v_0001": "balances",
+    "prism_Type_0002": "SafeBank",
+    "prism_v_0003": "withdraw",
+    "prism_v_0004": "deposit",
+    "prism_v_0005": "_amount",
+    "prism_v_0006": "success",
+    "prism_v_0007": "locked"
+  }
+}

@@ -88,7 +88,12 @@ class LocalLLM:
         try:
             import ollama
 
-            response = ollama.chat(
+            # Use an explicit client so the configured host and timeout are
+            # honored. The module-level helper only observes environment
+            # defaults, which made campaign configuration non-reproducible.
+            if self._client is None:
+                self._client = ollama.Client(host=self.base_url, timeout=self.timeout)
+            response = self._client.chat(
                 model=self.model,
                 messages=messages,
                 options={

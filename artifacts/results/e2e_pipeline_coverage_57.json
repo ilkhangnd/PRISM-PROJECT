@@ -1,0 +1,594 @@
+{
+  "schema_version": "1.0",
+  "purpose": "Comprehensive E2E Pipeline Coverage and Claim Boundary Report across 57 Benchmark Contracts",
+  "summary": {
+    "total_benchmark_contracts": 57,
+    "safe_contracts": {
+      "total": 27,
+      "cleared_static_stage1": 21,
+      "refuted_foundry_stage3": 6,
+      "retained_false_alarms": 0,
+      "composite_specificity_derivation": "21/27 cleared statically at Stage 1 + 6/6 remaining safe reentrancy alarms refuted via Stage 3 Foundry replay (dynamic execution strictly limited to the 6 mutex-guarded contracts, not all 27)"
+    },
+    "vulnerable_contracts": {
+      "total": 30,
+      "retained_statically_stage2": 18,
+      "missed_slither_unmapped": 12,
+      "execution_confirmed_reference_harnesses": 5,
+      "automated_57_harness_synthesis": "open (not measured)"
+    },
+    "claim_boundary": "Stage 3 dynamic verification is strictly validated on 6 safe reentrancy mutex contracts (refuting 6/6 false alarms) and 5 canonical target contracts with reference harnesses. Automated end-to-end harness synthesis across all 57 contracts is not claimed."
+  },
+  "records": [
+    {
+      "file_name": "SafeAccessControl_0.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "cleared",
+      "stage2_impact": "cleared",
+      "stage3_execution": "cleared",
+      "pipeline_coverage_status": "safe_cleared_by_static_filter"
+    },
+    {
+      "file_name": "SafeAccessControl_1.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "cleared",
+      "stage2_impact": "cleared",
+      "stage3_execution": "cleared",
+      "pipeline_coverage_status": "safe_cleared_by_static_filter"
+    },
+    {
+      "file_name": "SafeAccessControl_2.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "cleared",
+      "stage2_impact": "cleared",
+      "stage3_execution": "cleared",
+      "pipeline_coverage_status": "safe_cleared_by_static_filter"
+    },
+    {
+      "file_name": "SafeAccessControl_3.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "cleared",
+      "stage2_impact": "cleared",
+      "stage3_execution": "cleared",
+      "pipeline_coverage_status": "safe_cleared_by_static_filter"
+    },
+    {
+      "file_name": "SafeAccessControl_4.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "cleared",
+      "stage2_impact": "cleared",
+      "stage3_execution": "cleared",
+      "pipeline_coverage_status": "safe_cleared_by_static_filter"
+    },
+    {
+      "file_name": "SafeOverflow_0.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "cleared",
+      "stage2_impact": "cleared",
+      "stage3_execution": "cleared",
+      "pipeline_coverage_status": "safe_cleared_by_static_filter"
+    },
+    {
+      "file_name": "SafeOverflow_1.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "cleared",
+      "stage2_impact": "cleared",
+      "stage3_execution": "cleared",
+      "pipeline_coverage_status": "safe_cleared_by_static_filter"
+    },
+    {
+      "file_name": "SafeOverflow_2.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "cleared",
+      "stage2_impact": "cleared",
+      "stage3_execution": "cleared",
+      "pipeline_coverage_status": "safe_cleared_by_static_filter"
+    },
+    {
+      "file_name": "SafeOverflow_3.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "cleared",
+      "stage2_impact": "cleared",
+      "stage3_execution": "cleared",
+      "pipeline_coverage_status": "safe_cleared_by_static_filter"
+    },
+    {
+      "file_name": "SafeOverflow_4.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "cleared",
+      "stage2_impact": "cleared",
+      "stage3_execution": "cleared",
+      "pipeline_coverage_status": "safe_cleared_by_static_filter"
+    },
+    {
+      "file_name": "SafeReentrancy_0.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "flagged_reentrancy",
+      "stage2_impact": "retained_high_impact",
+      "stage3_execution": "refuted_via_foundry_safe_replay",
+      "pipeline_coverage_status": "safe_alarm_refuted_by_execution"
+    },
+    {
+      "file_name": "SafeReentrancy_1.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "flagged_reentrancy",
+      "stage2_impact": "retained_high_impact",
+      "stage3_execution": "refuted_via_foundry_safe_replay",
+      "pipeline_coverage_status": "safe_alarm_refuted_by_execution"
+    },
+    {
+      "file_name": "SafeReentrancy_2.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "flagged_reentrancy",
+      "stage2_impact": "retained_high_impact",
+      "stage3_execution": "refuted_via_foundry_safe_replay",
+      "pipeline_coverage_status": "safe_alarm_refuted_by_execution"
+    },
+    {
+      "file_name": "SafeReentrancy_3.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "flagged_reentrancy",
+      "stage2_impact": "retained_high_impact",
+      "stage3_execution": "refuted_via_foundry_safe_replay",
+      "pipeline_coverage_status": "safe_alarm_refuted_by_execution"
+    },
+    {
+      "file_name": "SafeReentrancy_4.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "flagged_reentrancy",
+      "stage2_impact": "retained_high_impact",
+      "stage3_execution": "refuted_via_foundry_safe_replay",
+      "pipeline_coverage_status": "safe_alarm_refuted_by_execution"
+    },
+    {
+      "file_name": "SafeTimestamp_0.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "cleared",
+      "stage2_impact": "cleared",
+      "stage3_execution": "cleared",
+      "pipeline_coverage_status": "safe_cleared_by_static_filter"
+    },
+    {
+      "file_name": "SafeTimestamp_1.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "cleared",
+      "stage2_impact": "cleared",
+      "stage3_execution": "cleared",
+      "pipeline_coverage_status": "safe_cleared_by_static_filter"
+    },
+    {
+      "file_name": "SafeTimestamp_2.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "cleared",
+      "stage2_impact": "cleared",
+      "stage3_execution": "cleared",
+      "pipeline_coverage_status": "safe_cleared_by_static_filter"
+    },
+    {
+      "file_name": "SafeTimestamp_3.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "cleared",
+      "stage2_impact": "cleared",
+      "stage3_execution": "cleared",
+      "pipeline_coverage_status": "safe_cleared_by_static_filter"
+    },
+    {
+      "file_name": "SafeTimestamp_4.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "cleared",
+      "stage2_impact": "cleared",
+      "stage3_execution": "cleared",
+      "pipeline_coverage_status": "safe_cleared_by_static_filter"
+    },
+    {
+      "file_name": "SafeUncheckedReturn_0.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "cleared",
+      "stage2_impact": "cleared",
+      "stage3_execution": "cleared",
+      "pipeline_coverage_status": "safe_cleared_by_static_filter"
+    },
+    {
+      "file_name": "SafeUncheckedReturn_1.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "cleared",
+      "stage2_impact": "cleared",
+      "stage3_execution": "cleared",
+      "pipeline_coverage_status": "safe_cleared_by_static_filter"
+    },
+    {
+      "file_name": "SafeUncheckedReturn_2.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "cleared",
+      "stage2_impact": "cleared",
+      "stage3_execution": "cleared",
+      "pipeline_coverage_status": "safe_cleared_by_static_filter"
+    },
+    {
+      "file_name": "SafeUncheckedReturn_3.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "cleared",
+      "stage2_impact": "cleared",
+      "stage3_execution": "cleared",
+      "pipeline_coverage_status": "safe_cleared_by_static_filter"
+    },
+    {
+      "file_name": "SafeUncheckedReturn_4.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "cleared",
+      "stage2_impact": "cleared",
+      "stage3_execution": "cleared",
+      "pipeline_coverage_status": "safe_cleared_by_static_filter"
+    },
+    {
+      "file_name": "VulnAccessControl_0.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-105",
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "flagged_in_taxonomy",
+      "stage2_impact": "retained_high_confidence",
+      "stage3_execution": "statically_retained",
+      "pipeline_coverage_status": "statically_flagged_harness_open"
+    },
+    {
+      "file_name": "VulnAccessControl_1.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-105",
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "flagged_in_taxonomy",
+      "stage2_impact": "retained_high_confidence",
+      "stage3_execution": "statically_retained",
+      "pipeline_coverage_status": "statically_flagged_harness_open"
+    },
+    {
+      "file_name": "VulnAccessControl_2.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-105",
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "flagged_in_taxonomy",
+      "stage2_impact": "retained_high_confidence",
+      "stage3_execution": "statically_retained",
+      "pipeline_coverage_status": "statically_flagged_harness_open"
+    },
+    {
+      "file_name": "VulnAccessControl_3.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-105",
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "flagged_in_taxonomy",
+      "stage2_impact": "retained_high_confidence",
+      "stage3_execution": "statically_retained",
+      "pipeline_coverage_status": "statically_flagged_harness_open"
+    },
+    {
+      "file_name": "VulnAccessControl_4.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-105",
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "flagged_in_taxonomy",
+      "stage2_impact": "retained_high_confidence",
+      "stage3_execution": "statically_retained",
+      "pipeline_coverage_status": "statically_flagged_harness_open"
+    },
+    {
+      "file_name": "VulnOverflow_0.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-101",
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "flagged_in_taxonomy",
+      "stage2_impact": "retained_high_confidence",
+      "stage3_execution": "statically_retained",
+      "pipeline_coverage_status": "statically_flagged_harness_open"
+    },
+    {
+      "file_name": "VulnOverflow_1.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-101",
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "missed_no_detector",
+      "stage2_impact": "missed",
+      "stage3_execution": "missed",
+      "pipeline_coverage_status": "vulnerability_missed_by_slither"
+    },
+    {
+      "file_name": "VulnOverflow_2.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-101",
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "flagged_in_taxonomy",
+      "stage2_impact": "retained_high_confidence",
+      "stage3_execution": "statically_retained",
+      "pipeline_coverage_status": "statically_flagged_harness_open"
+    },
+    {
+      "file_name": "VulnOverflow_3.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-101",
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "missed_no_detector",
+      "stage2_impact": "missed",
+      "stage3_execution": "missed",
+      "pipeline_coverage_status": "vulnerability_missed_by_slither"
+    },
+    {
+      "file_name": "VulnOverflow_4.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-101",
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "flagged_in_taxonomy",
+      "stage2_impact": "retained_high_confidence",
+      "stage3_execution": "statically_retained",
+      "pipeline_coverage_status": "statically_flagged_harness_open"
+    },
+    {
+      "file_name": "VulnReentrancy_0.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-107",
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "flagged_in_taxonomy",
+      "stage2_impact": "retained_high_confidence",
+      "stage3_execution": "statically_retained",
+      "pipeline_coverage_status": "statically_flagged_harness_open"
+    },
+    {
+      "file_name": "VulnReentrancy_1.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-107",
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "flagged_in_taxonomy",
+      "stage2_impact": "retained_high_confidence",
+      "stage3_execution": "statically_retained",
+      "pipeline_coverage_status": "statically_flagged_harness_open"
+    },
+    {
+      "file_name": "VulnReentrancy_2.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-107",
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "flagged_in_taxonomy",
+      "stage2_impact": "retained_high_confidence",
+      "stage3_execution": "statically_retained",
+      "pipeline_coverage_status": "statically_flagged_harness_open"
+    },
+    {
+      "file_name": "VulnReentrancy_3.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-107",
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "flagged_in_taxonomy",
+      "stage2_impact": "retained_high_confidence",
+      "stage3_execution": "statically_retained",
+      "pipeline_coverage_status": "statically_flagged_harness_open"
+    },
+    {
+      "file_name": "VulnReentrancy_4.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-107",
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "flagged_in_taxonomy",
+      "stage2_impact": "retained_high_confidence",
+      "stage3_execution": "statically_retained",
+      "pipeline_coverage_status": "statically_flagged_harness_open"
+    },
+    {
+      "file_name": "VulnTimestamp_0.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-114",
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "flagged_in_taxonomy",
+      "stage2_impact": "retained_high_confidence",
+      "stage3_execution": "statically_retained",
+      "pipeline_coverage_status": "statically_flagged_harness_open"
+    },
+    {
+      "file_name": "VulnTimestamp_1.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-114",
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "flagged_in_taxonomy",
+      "stage2_impact": "retained_high_confidence",
+      "stage3_execution": "statically_retained",
+      "pipeline_coverage_status": "statically_flagged_harness_open"
+    },
+    {
+      "file_name": "VulnTimestamp_2.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-114",
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "flagged_in_taxonomy",
+      "stage2_impact": "retained_high_confidence",
+      "stage3_execution": "statically_retained",
+      "pipeline_coverage_status": "statically_flagged_harness_open"
+    },
+    {
+      "file_name": "VulnTimestamp_3.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-114",
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "flagged_in_taxonomy",
+      "stage2_impact": "retained_high_confidence",
+      "stage3_execution": "statically_retained",
+      "pipeline_coverage_status": "statically_flagged_harness_open"
+    },
+    {
+      "file_name": "VulnTimestamp_4.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-114",
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "flagged_in_taxonomy",
+      "stage2_impact": "retained_high_confidence",
+      "stage3_execution": "statically_retained",
+      "pipeline_coverage_status": "statically_flagged_harness_open"
+    },
+    {
+      "file_name": "VulnUncheckedReturn_0.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-104",
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "missed_no_detector",
+      "stage2_impact": "missed",
+      "stage3_execution": "missed",
+      "pipeline_coverage_status": "vulnerability_missed_by_slither"
+    },
+    {
+      "file_name": "VulnUncheckedReturn_1.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-104",
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "missed_no_detector",
+      "stage2_impact": "missed",
+      "stage3_execution": "missed",
+      "pipeline_coverage_status": "vulnerability_missed_by_slither"
+    },
+    {
+      "file_name": "VulnUncheckedReturn_2.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-104",
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "missed_no_detector",
+      "stage2_impact": "missed",
+      "stage3_execution": "missed",
+      "pipeline_coverage_status": "vulnerability_missed_by_slither"
+    },
+    {
+      "file_name": "VulnUncheckedReturn_3.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-104",
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "missed_no_detector",
+      "stage2_impact": "missed",
+      "stage3_execution": "missed",
+      "pipeline_coverage_status": "vulnerability_missed_by_slither"
+    },
+    {
+      "file_name": "VulnUncheckedReturn_4.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-104",
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "missed_no_detector",
+      "stage2_impact": "missed",
+      "stage3_execution": "missed",
+      "pipeline_coverage_status": "vulnerability_missed_by_slither"
+    },
+    {
+      "file_name": "SafeBank.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "flagged_reentrancy",
+      "stage2_impact": "retained_high_impact",
+      "stage3_execution": "refuted_via_foundry_safe_replay",
+      "pipeline_coverage_status": "safe_alarm_refuted_by_execution"
+    },
+    {
+      "file_name": "SafeMathContract.sol",
+      "is_vulnerable": false,
+      "swc_id": null,
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "cleared",
+      "stage2_impact": "cleared",
+      "stage3_execution": "cleared",
+      "pipeline_coverage_status": "safe_cleared_by_static_filter"
+    },
+    {
+      "file_name": "SimpleDAO.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-107",
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "flagged_in_taxonomy",
+      "stage2_impact": "retained_high_confidence",
+      "stage3_execution": "confirmed_via_reference_harness",
+      "pipeline_coverage_status": "execution_confirmed_reference_harness"
+    },
+    {
+      "file_name": "TokenSale.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-101",
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "flagged_in_taxonomy",
+      "stage2_impact": "retained_high_confidence",
+      "stage3_execution": "confirmed_via_reference_harness",
+      "pipeline_coverage_status": "execution_confirmed_reference_harness"
+    },
+    {
+      "file_name": "UnsafeWallet.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-105",
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "flagged_in_taxonomy",
+      "stage2_impact": "retained_high_confidence",
+      "stage3_execution": "confirmed_via_reference_harness",
+      "pipeline_coverage_status": "execution_confirmed_reference_harness"
+    },
+    {
+      "file_name": "VulnerableBank.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-107",
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "flagged_in_taxonomy",
+      "stage2_impact": "retained_high_confidence",
+      "stage3_execution": "confirmed_via_reference_harness",
+      "pipeline_coverage_status": "execution_confirmed_reference_harness"
+    },
+    {
+      "file_name": "WeakRandom.sol",
+      "is_vulnerable": true,
+      "swc_id": "SWC-114",
+      "stage0_slither": "flagged",
+      "stage1_taxonomy": "flagged_in_taxonomy",
+      "stage2_impact": "retained_high_confidence",
+      "stage3_execution": "confirmed_via_reference_harness",
+      "pipeline_coverage_status": "execution_confirmed_reference_harness"
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "schema_version": "1.0",
+  "test_samples_total": 1949,
+  "models_evaluated": [
+    "gcn",
+    "gin",
+    "gat",
+    "gatv2",
+    "gnnmhav2"
+  ],
+  "error_counts": {
+    "gcn": 502,
+    "gin": 500,
+    "gat": 507,
+    "gatv2": 505,
+    "gnnmhav2": 504
+  },
+  "total_unique_error_samples": 520,
+  "errors_shared_by_all_5_models": 493,
+  "shared_error_ratio_pct": 94.81,
+  "pairwise_jaccard_similarity": {
+    "gcn": {
+      "gcn": 1.0,
+      "gin": 0.9724,
+      "gat": 0.9784,
+      "gatv2": 0.9745,
+      "gnnmhav2": 0.9881
+    },
+    "gin": {
+      "gcn": 0.9724,
+      "gin": 1.0,
+      "gat": 0.9784,
+      "gatv2": 0.9667,
+      "gnnmhav2": 0.9764
+    },
+    "gat": {
+      "gcn": 0.9784,
+      "gin": 0.9784,
+      "gat": 1.0,
+      "gatv2": 0.965,
+      "gnnmhav2": 0.9746
+    },
+    "gatv2": {
+      "gcn": 0.9745,
+      "gin": 0.9667,
+      "gat": 0.965,
+      "gatv2": 1.0,
+      "gnnmhav2": 0.9669
+    },
+    "gnnmhav2": {
+      "gcn": 0.9881,
+      "gin": 0.9764,
+      "gat": 0.9746,
+      "gatv2": 0.9669,
+      "gnnmhav2": 1.0
+    }
+  },
+  "pairwise_overlap_ratio": {
+    "gcn": {
+      "gcn": 1.0,
+      "gin": 0.988,
+      "gat": 0.994,
+      "gatv2": 0.99,
+      "gnnmhav2": 0.996
+    },
+    "gin": {
+      "gcn": 0.988,
+      "gin": 1.0,
+      "gat": 0.996,
+      "gatv2": 0.988,
+      "gnnmhav2": 0.992
+    },
+    "gat": {
+      "gcn": 0.994,
+      "gin": 0.996,
+      "gat": 1.0,
+      "gatv2": 0.9842,
+      "gnnmhav2": 0.9901
+    },
+    "gatv2": {
+      "gcn": 0.99,
+      "gin": 0.988,
+      "gat": 0.9842,
+      "gatv2": 1.0,
+      "gnnmhav2": 0.9841
+    },
+    "gnnmhav2": {
+      "gcn": 0.996,
+      "gin": 0.992,
+      "gat": 0.9901,
+      "gatv2": 0.9841,
+      "gnnmhav2": 1.0
+    }
+  }
+}

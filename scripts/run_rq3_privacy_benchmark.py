@@ -30,8 +30,8 @@ sys.path.insert(0, str(ROOT_DIR))
 from src.security.data_masking import DataMasker
 from src.security.demasking import Demasker
 
-SOLC_BIN = "/opt/homebrew/bin/solc"
-SLITHER_BIN = str(ROOT_DIR / ".venv/bin/slither")
+SOLC_BIN = shutil.which("solc") or "/opt/homebrew/bin/solc"
+SLITHER_BIN = shutil.which("slither") or str(ROOT_DIR.parent / ".venv/bin/slither") or str(ROOT_DIR / ".venv/bin/slither")
 
 DOMAIN_DICTIONARY = set([
     "owner", "sender", "recipient", "admin", "balance", "balances", "amount",
@@ -220,6 +220,7 @@ def run_privacy_benchmark():
 > 3. **Bảo toàn Tên Detector Slither**: Thực nghiệm đo lường việc bảo toàn các tên detector của Slither (**100.0%**), phản ánh cấu trúc luồng điều khiển và luồng dữ liệu cơ bản không bị phá vỡ; việc đánh giá suy giảm ngữ nghĩa hay utility của LLM là định hướng mở rộng (Gate B).
 > 4. **Ranh giới Bảo mật**: Tỷ lệ rò rỉ dưới tấn công tần suất ({ilr_freq:.2f}%) và mô phỏng từ điển ({ilr_dict:.2f}%) là kết quả đo lường thực tế, phản ánh giới hạn khách quan của cơ chế che giấu định danh tĩnh trước các kẻ tấn công có tri thức tiên nghiệm về miền nghiệp vụ.
 """
+    rep_file.parent.mkdir(parents=True, exist_ok=True)
     rep_file.write_text(md_report, encoding="utf-8")
     print(f"✅ Exported real RQ3 privacy report: {rep_file}")
 

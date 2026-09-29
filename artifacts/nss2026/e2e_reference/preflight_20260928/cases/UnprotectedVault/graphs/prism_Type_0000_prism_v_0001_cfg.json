@@ -1,0 +1,48 @@
+{
+  "function": "prism_Type_0000.prism_v_0001",
+  "num_nodes": 3,
+  "num_edges": 2,
+  "nodes": [
+    {
+      "id": 0,
+      "label": "ENTRY_POINT",
+      "node_type": "NodeType.ENTRYPOINT",
+      "expression": "",
+      "irs": []
+    },
+    {
+      "id": 1,
+      "label": "EXPRESSION require(bool,string)(msg.sender == prism_v_0006,Not owner)",
+      "node_type": "NodeType.EXPRESSION",
+      "expression": "require(bool,string)(msg.sender == prism_v_0006,Not owner)",
+      "irs": [
+        "TMP_0(bool) = msg.sender == prism_v_0006",
+        "TMP_1(None) = SOLIDITY_CALL require(bool,string)(TMP_0,Not owner)"
+      ]
+    },
+    {
+      "id": 2,
+      "label": "EXPRESSION address(msg.sender).transfer(address(this).balance)",
+      "node_type": "NodeType.EXPRESSION",
+      "expression": "address(msg.sender).transfer(address(this).balance)",
+      "irs": [
+        "TMP_2 = CONVERT msg.sender to address",
+        "TMP_3 = CONVERT this to address",
+        "TMP_4(uint256) = SOLIDITY_CALL balance(address)(TMP_3)",
+        "Transfer dest:TMP_2 value:TMP_4"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": 0,
+      "target": 1,
+      "edge_type": "sequential"
+    },
+    {
+      "source": 1,
+      "target": 2,
+      "edge_type": "sequential"
+    }
+  ]
+}

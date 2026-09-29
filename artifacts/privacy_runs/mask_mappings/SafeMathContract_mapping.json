@@ -1,0 +1,16 @@
+{
+  "forward": {
+    "SafeMathContract": "prism_Type_0000",
+    "balances": "prism_v_0001",
+    "deposit": "prism_v_0002",
+    "amount": "prism_v_0003",
+    "to": "prism_v_0004"
+  },
+  "reverse": {
+    "prism_Type_0000": "SafeMathContract",
+    "prism_v_0001": "balances",
+    "prism_v_0002": "deposit",
+    "prism_v_0003": "amount",
+    "prism_v_0004": "to"
+  }
+}

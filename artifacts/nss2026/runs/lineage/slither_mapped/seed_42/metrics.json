@@ -1,0 +1,57 @@
+{
+  "completed_at_utc": "2026-09-22T15:05:54.623927+00:00",
+  "model": "slither_0.11.5_mapped",
+  "split": "lineage",
+  "seed": 42,
+  "metrics": {
+    "accuracy": 0.2222739981360671,
+    "macro_precision": 0.04445479962721342,
+    "macro_recall": 0.2,
+    "macro_f1": 0.07274113610369806,
+    "classification_report": {
+      "reentrancy": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 407.0
+      },
+      "integer_overflow": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 393.0
+      },
+      "access_control": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 339.0
+      },
+      "unchecked_return": {
+        "precision": 0.2222739981360671,
+        "recall": 1.0,
+        "f1-score": 0.3637056805184903,
+        "support": 477.0
+      },
+      "front_running": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 530.0
+      },
+      "accuracy": 0.2222739981360671,
+      "macro avg": {
+        "precision": 0.04445479962721342,
+        "recall": 0.2,
+        "f1-score": 0.07274113610369806,
+        "support": 2146.0
+      },
+      "weighted avg": {
+        "precision": 0.049405730247392365,
+        "recall": 0.2222739981360671,
+        "f1-score": 0.08084231575364392,
+        "support": 2146.0
+      }
+    }
+  }
+}

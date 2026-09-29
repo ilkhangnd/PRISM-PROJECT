@@ -1,0 +1,25 @@
+{
+  "project": "PRISM",
+  "task": "top5_vulnerability_classification",
+  "num_classes": 5,
+  "labels": {
+    "0": "reentrancy",
+    "1": "integer_overflow",
+    "2": "access_control",
+    "3": "unchecked_return",
+    "4": "front_running"
+  },
+  "swc_mapping": {
+    "reentrancy": "SWC-107",
+    "integer_overflow": "SWC-101",
+    "access_control": "SWC-105",
+    "unchecked_return": "SWC-104",
+    "front_running": "SWC-114"
+  },
+  "minimum_nodes": 3,
+  "feature_version": "V2",
+  "feature_dimensions": {
+    "node_features": 32,
+    "edge_attributes": 4
+  }
+}

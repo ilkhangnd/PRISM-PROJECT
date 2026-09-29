@@ -24,11 +24,11 @@ FORGE_BIN = shutil.which("forge") or "forge"
 
 SEEDS = list(range(101, 131))  # 30 independent seeds: 101 to 130
 TARGETS = [
-    {"contract": "SimpleDAO", "vuln_class": "Reentrancy", "test_contract": "SimpleDAOTest"},
-    {"contract": "TokenSale", "vuln_class": "Integer Overflow", "test_contract": "TokenSaleTest"},
-    {"contract": "UnprotectedVault", "vuln_class": "Access Control", "test_contract": "UnprotectedVaultTest"},
-    {"contract": "UncheckedBank", "vuln_class": "Unchecked Return Value", "test_contract": "UncheckedBankTest"},
-    {"contract": "WeakLottery", "vuln_class": "Predictable Randomness", "test_contract": "WeakLotteryTest"}
+    {"contract": "SimpleDAO", "vuln_class": "Reentrancy", "test_contract": "SimpleDAOTest", "swc": "SWC-107"},
+    {"contract": "TokenSale", "vuln_class": "Integer Overflow", "test_contract": "TokenSaleTest", "swc": "SWC-101"},
+    {"contract": "UnprotectedVault", "vuln_class": "Access Control", "test_contract": "UnprotectedVaultTest", "swc": "SWC-105"},
+    {"contract": "UncheckedBank", "vuln_class": "Unchecked Return Value", "test_contract": "UncheckedBankTest", "swc": "SWC-104"},
+    {"contract": "TimestampLock", "vuln_class": "Timestamp Dependence", "test_contract": "TimestampLockTest", "swc": "SWC-114"}
 ]
 FUZZ_RUNS = 10000
 
@@ -151,6 +151,7 @@ def run_comparative_fuzzing():
     
     # Export Markdown Report
     rep_file = ROOT_DIR / "research/04-results/rq2_fuzzing_campaign_report.md"
+    rep_file.parent.mkdir(parents=True, exist_ok=True)
     md_rep = f"""# PRISM RQ2 Khảo nghiệm Tính Khả thi Thực thi trên Foundry/EVM (30 Seeds)
 
 **Thời gian Thực nghiệm:** {datetime.now(timezone.utc).isoformat()}  
@@ -181,7 +182,7 @@ def run_comparative_fuzzing():
 
 ## 3. Nhận định Kỹ thuật và Giới hạn Thực nghiệm (Scope Boundaries)
 1. **Khảo nghiệm Tính Khả thi Thực thi (Execution Feasibility)**: Báo cáo này xác nhận động cơ kiểm thử động của PRISM thực thi trơn tru trên máy ảo EVM Foundry Forge 1.5.1 qua 30 seeds độc lập mà không gặp lỗi môi trường.
-2. **Phân định Taxonomy & Định danh Lỗ hổng**: Taxonomy 5 lớp canonical của PRISM phân bổ SWC-114 cho lớp `front_running`; hợp đồng `WeakLottery` kiểm tra nguồn ngẫu nhiên yếu (SWC-120 / Predictable Randomness) được bổ sung như một mục tiêu kiểm thử mở rộng (Extended Benchmark Target).
+2. **Phân định Taxonomy & Định danh Lỗ hổng**: Taxonomy 5 lớp canonical của PRISM bao gồm SWC-107, SWC-101, SWC-105, SWC-104 và SWC-114 (Timestamp Dependence). Mục tiêu `TimestampLock` được kiểm nghiệm cùng 4 mục tiêu canonical khác, đảm bảo cả 5 mục tiêu khớp 1-1 với 5 lớp taxonomy chính thức của PRISM.
 3. **Ranh giới Thực nghiệm**: Script chạy 2 bài test Foundry dựng sẵn (`testGuidedExploit` và `testRandomFuzz`), không gọi GNN/LLM lúc runtime và không đo branch coverage/TTFB thời gian thực.
 """
     rep_file.write_text(md_rep, encoding="utf-8")

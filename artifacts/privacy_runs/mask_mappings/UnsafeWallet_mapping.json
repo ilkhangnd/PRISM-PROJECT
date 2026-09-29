@@ -1,0 +1,26 @@
+{
+  "forward": {
+    "getUserDeposit": "prism_v_0000",
+    "UnsafeWallet": "prism_Type_0001",
+    "changeOwner": "prism_v_0002",
+    "withdrawAll": "prism_v_0003",
+    "deposits": "prism_v_0004",
+    "newOwner": "prism_v_0005",
+    "deposit": "prism_v_0006",
+    "success": "prism_v_0007",
+    "owner": "prism_v_0008",
+    "user": "prism_v_0009"
+  },
+  "reverse": {
+    "prism_v_0000": "getUserDeposit",
+    "prism_Type_0001": "UnsafeWallet",
+    "prism_v_0002": "changeOwner",
+    "prism_v_0003": "withdrawAll",
+    "prism_v_0004": "deposits",
+    "prism_v_0005": "newOwner",
+    "prism_v_0006": "deposit",
+    "prism_v_0007": "success",
+    "prism_v_0008": "owner",
+    "prism_v_0009": "user"
+  }
+}

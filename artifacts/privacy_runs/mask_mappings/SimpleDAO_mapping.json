@@ -1,0 +1,22 @@
+{
+  "forward": {
+    "queryCredit": "prism_v_0000",
+    "SimpleDAO": "prism_Type_0001",
+    "withdraw": "prism_v_0002",
+    "success": "prism_v_0003",
+    "credit": "prism_v_0004",
+    "amount": "prism_v_0005",
+    "donate": "prism_v_0006",
+    "to": "prism_v_0007"
+  },
+  "reverse": {
+    "prism_v_0000": "queryCredit",
+    "prism_Type_0001": "SimpleDAO",
+    "prism_v_0002": "withdraw",
+    "prism_v_0003": "success",
+    "prism_v_0004": "credit",
+    "prism_v_0005": "amount",
+    "prism_v_0006": "donate",
+    "prism_v_0007": "to"
+  }
+}

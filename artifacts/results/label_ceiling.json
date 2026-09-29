@@ -1,7 +1,8 @@
 {
-  "created_utc": "2026-09-26T17:21:05.056498+00:00",
-  "protocol": "Canonical graph hashing and empirical Bayes label ceiling analysis",
-  "description": "Examines graph structure hash collisions between train and test sets to establish the upper bound on classification accuracy imposed by contract-derived weak labels.",
+  "created_utc": "2026-09-29T15:25:55.674110+00:00",
+  "protocol": "Canonical graph hashing and structural-label-conflict diagnostic",
+  "description": "Examines graph structure hash collisions between train and test sets to diagnose label noise and structural conflicts arising from contract-derived weak labels. Reports coverage statistics of non-conflicting structural matches and novel graphs.",
+  "coverage_statistic_note": "nonconflicting_structural_match_or_novel_pct measures test graphs that either match a training graph with agreeing majority label or are structurally novel. It is a diagnostic coverage metric for label conflicts, not a theoretical upper bound.",
   "splits": {
     "random_stratified": {
       "total_test_graphs": 1949,
@@ -13,7 +14,7 @@
       "identical_train_conflicting_label_pct": 6.21,
       "novel_test_graphs": 44,
       "novel_test_graphs_pct": 2.26,
-      "bayes_accuracy_ceiling_pct": 72.96,
+      "nonconflicting_structural_match_or_novel_pct": 73.11,
       "conflict_free_test_count": 1828,
       "conflicting_test_count": 121,
       "gnnmhav2_accuracy_overall": {
@@ -39,7 +40,7 @@
       "identical_train_conflicting_label_pct": 0.51,
       "novel_test_graphs": 84,
       "novel_test_graphs_pct": 3.91,
-      "bayes_accuracy_ceiling_pct": 76.56,
+      "nonconflicting_structural_match_or_novel_pct": 76.42,
       "conflict_free_test_count": 2135,
       "conflicting_test_count": 11,
       "gnnmhav2_accuracy_overall": {

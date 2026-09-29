@@ -1,0 +1,30 @@
+{
+  "function": "prism_Type_0000.constructor",
+  "num_nodes": 2,
+  "num_edges": 1,
+  "nodes": [
+    {
+      "id": 0,
+      "label": "ENTRY_POINT",
+      "node_type": "NodeType.ENTRYPOINT",
+      "expression": "",
+      "irs": []
+    },
+    {
+      "id": 1,
+      "label": "EXPRESSION prism_v_0006 = msg.sender",
+      "node_type": "NodeType.EXPRESSION",
+      "expression": "prism_v_0006 = msg.sender",
+      "irs": [
+        "prism_v_0006(address) := msg.sender(address)"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": 0,
+      "target": 1,
+      "edge_type": "sequential"
+    }
+  ]
+}

@@ -17,7 +17,7 @@ solidity:
   solc_version: "0.8.30"
   solc: /opt/homebrew/bin/solc
 gnn:
-  stage_a_model_path: artifacts/nss2026/stage_a/seed_42/best_model.pt
+  stage_a_model_path: artifacts/nss2026/stage_a_fresh/seed_42/best_model.pt
   model_path: artifacts/nss2026/runs/random/gnnmhav2/seed_42/best_model.pt
   threshold: 0.3
 llm:

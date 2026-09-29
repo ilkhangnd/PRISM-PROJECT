@@ -1,0 +1,105 @@
+{
+  "target": "UncheckedBank",
+  "source": "artifacts/fuzzing_runs/benchmark_workspace/src/UncheckedBank.sol",
+  "source_sha256": "fde391c7c7b047e912e1b36001c68e6fa3413c848ea8a2fd43b4e95d8ae60bba",
+  "vulnerability_class": "Unchecked Return Value",
+  "swc": "SWC-104",
+  "harness_kind": "pre-authored Foundry reference harness",
+  "gnn": {
+    "status": "completed",
+    "checkpoint": "artifacts/nss2026/runs/random/gnnmhav2/seed_42/best_model.pt",
+    "checkpoint_sha256": "3fc2937a90bf9081fa08e0c93d46ed2761977f9a19bff59af4702b1dc50f2f08",
+    "masked_identifier_count": 7,
+    "graphs_built": 4,
+    "hotspot_count": 2,
+    "hotspots": [
+      {
+        "function_name": "prism_v_0000",
+        "contract_name": "prism_Type_0001",
+        "full_name": "prism_Type_0001.prism_v_0000",
+        "risk_score": 0.8378,
+        "vulnerability_hint": "integer_overflow",
+        "predicted_class": 1,
+        "detection_source": "GNN"
+      },
+      {
+        "function_name": "prism_v_0005",
+        "contract_name": "prism_Type_0001",
+        "full_name": "prism_Type_0001.prism_v_0005",
+        "risk_score": 0.591,
+        "vulnerability_hint": "access_control",
+        "predicted_class": 2,
+        "detection_source": "GNN"
+      }
+    ]
+  },
+  "llm": {
+    "status": "completed",
+    "model": "deepseek-coder-v2:latest",
+    "finding_count": 2,
+    "findings": [
+      {
+        "vulnerability_type": "integer_overflow",
+        "function_name": "prism_v_0000",
+        "evidence": "Potential integer overflow in balance check."
+      },
+      {
+        "vulnerability_type": "access_control",
+        "function_name": "prism_v_0005",
+        "evidence": "Directly sends Ether without checking the contract's balance."
+      }
+    ],
+    "duration_ms": 9940.4
+  },
+  "routing": {
+    "policy": "any_gnn_hotspot",
+    "routed_to_foundry": true,
+    "hotspot_count": 2
+  },
+  "foundry": {
+    "guided_reference_test": {
+      "command": [
+        "/Users/nguyendinhkhang/.foundry/bin/forge",
+        "test",
+        "--fuzz-seed",
+        "42",
+        "--match-contract",
+        "UncheckedBankTest",
+        "--match-test",
+        "testGuidedExploit",
+        "-vvv"
+      ],
+      "return_code": 0,
+      "timed_out": false,
+      "passed": true,
+      "duration_ms": 953.66,
+      "stdout_sha256": "5655d80bf804eb0691da07e0097950e1bcc831a4eae12ebf5ac957fc38ab575f",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_tail": "No files changed, compilation skipped\n2026-09-28T05:25:31.810677Z  WARN evm::traces::external: etherscan config not found\n\nRan 1 test for test/UncheckedBank.t.sol:UncheckedBankTest\n[PASS] testGuidedExploit() (gas: 27202)\nSuite result: ok. 1 passed; 0 failed; 0 skipped; finished in 13.94ms (1.34ms CPU time)\n\nRan 1 test suite in 270.56ms (13.94ms CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)\n",
+      "stderr_tail": ""
+    },
+    "parameterized_reference_fuzz": {
+      "command": [
+        "/Users/nguyendinhkhang/.foundry/bin/forge",
+        "test",
+        "--fuzz-seed",
+        "42",
+        "--match-contract",
+        "UncheckedBankTest",
+        "--match-test",
+        "testRandomFuzz",
+        "--fuzz-runs",
+        "10000",
+        "-vvv"
+      ],
+      "return_code": 0,
+      "timed_out": false,
+      "passed": true,
+      "duration_ms": 661.62,
+      "stdout_sha256": "b9ada5d5352cfcb26ce7dc0cf6aa04b7425428aced5f5db90ae09969d4e603f6",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_tail": "No files changed, compilation skipped\n2026-09-28T05:25:32.312215Z  WARN evm::traces::external: etherscan config not found\n\nRan 1 test for test/UncheckedBank.t.sol:UncheckedBankTest\n[PASS] testRandomFuzz(uint256) (runs: 10000, \u03bc: 50029, ~: 50029)\nSuite result: ok. 1 passed; 0 failed; 0 skipped; finished in 427.99ms (427.65ms CPU time)\n\nRan 1 test suite in 428.68ms (427.99ms CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)\n",
+      "stderr_tail": ""
+    }
+  }
+}

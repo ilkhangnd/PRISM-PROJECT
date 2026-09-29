@@ -1,0 +1,4 @@
+dataset_name,relative_path,num_graphs,feature_dim,edge_dim,sha256
+smartbugs,data/smartbugs/processed_v2/data_list.pt,1179,32,4,1fed1812d061bb9ce8987f552dc4fd4489c53bbe3eca9d5b7e2076db77022ae9
+solidifi,data/solidifi/processed_v2/data_list.pt,19568,32,4,e90f1b9375e39cefdc6cb3d8176a9cf2e0595acb3cda5f8b53c27e301e3fa9b2
+lisa,data/lisa/processed_v2/data_list.pt,3707,32,4,6ad8a05767a7a35c4968fe2b5499225f7c0d40ab118ec3db911e2b26e0f3ee12

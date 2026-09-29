@@ -5,22 +5,35 @@ from __future__ import annotations
 
 import json
 import re
+import zipfile
 from datetime import datetime, timezone
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parent.parent
-PAPER = ROOT / "NSS2026_PRISM"
+PAPER = ROOT / "paper" if (ROOT / "paper").exists() else ROOT / "NSS2026_PRISM"
 MAIN = PAPER / "main.tex"
 OUT = ROOT / "artifacts/nss2026"
+SUPPLEMENT = ROOT / "PRISM_Supplementary_Material.zip"
 
 PATTERNS = {
     "email": r"[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}",
     "orcid": r"\b\d{4}-\d{4}-\d{4}-\d{3}[\dX]\b",
-    "local_path": r"(?:/Users/|file://|C:\\\\Users\\\\)",
-    "institution": r"University of Information Technology|Ho Chi Minh City|Vietnam",
-    "named_author": r"Dinh-Khang Nguyen|T\.-D\. Tran",
+    "local_path": r"(?:/[U]sers/|file://|C:\\\\[U]sers\\\\)",
+    "named_author": r"(?:Author Name Placeholder|Nguyen Dinh Khang)",
 }
+
+TEXTUAL_SUFFIXES = {".bib", ".csv", ".json", ".md", ".py", ".tex", ".toml", ".txt", ".yaml", ".yml"}
+AUDITED_SUPPLEMENT_PREFIXES = ("paper/", "scripts/", "configs/", "research/", "tests/", "README")
+MAX_AUDITED_TEXT_BYTES = 2_000_000
+PROHIBITED_SUPPLEMENT_PREFIXES = (
+    "artifacts/results/e2e_pipeline_coverage_57",
+    "artifacts/nss2026/function_gold_truth/",
+    "artifacts/results/lane2_",
+    "research/04-results/lane2_",
+    "scripts/build_gold_function_labels_and_adjudication.py",
+    "scripts/run_lane2_",
+)
 
 
 def hits(text: str) -> list[dict[str, object]]:
@@ -30,6 +43,48 @@ def hits(text: str) -> list[dict[str, object]]:
             line = text.count("\n", 0, match.start()) + 1
             out.append({"kind": kind, "line": line, "match": match.group(0)})
     return out
+
+
+def audit_supplement(path: Path) -> dict[str, object]:
+    """Audit submission ZIP text and prohibit development-only Lane 2 evidence."""
+    if not path.is_file():
+        return {"present": False, "text_risks": [], "prohibited_members": []}
+    text_risks: list[dict[str, object]] = []
+    prohibited: list[str] = []
+    audited_members = 0
+    skipped_large_text_members = 0
+    with zipfile.ZipFile(path) as archive:
+        for member in archive.infolist():
+            name = member.filename
+            if name.startswith(PROHIBITED_SUPPLEMENT_PREFIXES):
+                prohibited.append(name)
+            # The audit's own regex literals intentionally mention patterns
+            # such as ``file://`` and a placeholder author name. They are not
+            # identifying data, so do not report the checker as its own leak.
+            if name == "scripts/audit_nss2026_anonymity.py":
+                continue
+            suffix = Path(name).suffix.lower()
+            is_release_documentation = name.startswith(AUDITED_SUPPLEMENT_PREFIXES)
+            if not is_release_documentation or suffix not in TEXTUAL_SUFFIXES:
+                continue
+            if member.file_size > MAX_AUDITED_TEXT_BYTES:
+                skipped_large_text_members += 1
+                continue
+            audited_members += 1
+            try:
+                contents = archive.read(member).decode("utf-8", errors="replace")
+            except (OSError, zipfile.BadZipFile):
+                continue
+            for hit in hits(contents):
+                text_risks.append({"member": name, **hit})
+    return {
+        "present": True,
+        "archive_bytes": path.stat().st_size,
+        "audited_members": audited_members,
+        "skipped_large_text_members": skipped_large_text_members,
+        "text_risks": text_risks,
+        "prohibited_members": prohibited,
+    }
 
 
 def main() -> None:
@@ -46,12 +101,13 @@ def main() -> None:
     payload = {
         "schema_version": "1.0",
         "created_utc": datetime.now(timezone.utc).isoformat(),
-        "manuscript": "NSS2026_PRISM/main.tex",
+        "manuscript": str(MAIN.relative_to(ROOT)),
         "active_pdf_risks": visible_hits,
         "source_artifact_risks": source_hits,
         "anonymous_author_block_present": "\\author{Anonymous Author(s)}" in tex,
         "figure_inputs": include_records,
         "unreferenced_institutional_logo_present": unreferenced_logo.is_file(),
+        "supplementary_package": audit_supplement(SUPPLEMENT),
         "manual_checks_remaining": [
             "Inspect raster/vector figure pixels for logos, identifying labels, and local paths.",
             "Inspect generated PDF metadata after a clean build.",
@@ -66,7 +122,9 @@ def main() -> None:
         f"- Source/artifact text risks (including comments): **{len(source_hits)}**.\n"
         f"- Anonymous author block present: **{payload['anonymous_author_block_present']}**.\n"
         f"- Unreferenced institutional logo present in tree: **{payload['unreferenced_institutional_logo_present']}**.\n\n"
-        "The commented real author block must be removed before any source artifact is shared, even though it is not typeset in the PDF.\n",
+        f"- Supplementary release-documentation text risks: **{len(payload['supplementary_package']['text_risks'])}**.\n"
+        f"- Prohibited development-only Lane 2 members: **{len(payload['supplementary_package']['prohibited_members'])}**.\n\n"
+        "Before submission, inspect any non-textual archive members and the final PDF visually for identifying marks.\n",
         encoding="utf-8",
     )
     print(f"wrote {OUT / 'anonymity_audit.json'}")

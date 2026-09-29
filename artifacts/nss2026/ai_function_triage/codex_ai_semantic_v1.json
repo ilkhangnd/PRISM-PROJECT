@@ -1,0 +1,9 @@
+{
+  "provenance": "AI-assisted semantic triage by Codex; not independent human annotation or final ground truth.",
+  "input_packet": "/Users/nguyendinhkhang/khangnd/PRISM/PRISM-PROJECT/artifacts/nss2026/function_annotation_packet_v2",
+  "row_count": 97,
+  "vulnerable_rows": 33,
+  "safe_rows": 64,
+  "unresolved_rows": 0,
+  "final_metrics_eligible": false
+}

@@ -1,0 +1,16 @@
+--- a/SimpleDAO.sol
++++ b/SimpleDAO.sol
+@@ -11,10 +11,11 @@
+     function withdraw() public {
+         uint256 bal = balances[msg.sender];
+         require(bal > 0, "No balance");
++        balances[msg.sender] = 0; // PRISM FIX: CEI Pattern
+         (bool sent, ) = msg.sender.call{value: bal}("");
+         require(sent, "Failed to send Ether");
+-        balances[msg.sender] = 0;
+-    }
++        }
++
+ 
+     receive() external payable {}
+ }

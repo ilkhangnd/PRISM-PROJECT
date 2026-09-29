@@ -1,0 +1,17 @@
+{
+  "function": "prism_Type_0003.slitherConstructorConstantVariables",
+  "num_nodes": 1,
+  "num_edges": 0,
+  "nodes": [
+    {
+      "id": 0,
+      "label": "OTHER_ENTRYPOINT prism_Type_0000 = 1000000000000000000",
+      "node_type": "NodeType.OTHER_ENTRYPOINT",
+      "expression": "prism_Type_0000 = 1000000000000000000",
+      "irs": [
+        "prism_Type_0000(uint256) := 1000000000000000000(uint256)"
+      ]
+    }
+  ],
+  "edges": []
+}

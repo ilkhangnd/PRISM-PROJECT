@@ -1,0 +1,61 @@
+{
+  "function": "prism_Type_0001.prism_v_0005",
+  "num_nodes": 4,
+  "num_edges": 3,
+  "nodes": [
+    {
+      "id": 0,
+      "label": "ENTRY_POINT",
+      "node_type": "NodeType.ENTRYPOINT",
+      "expression": "",
+      "irs": []
+    },
+    {
+      "id": 1,
+      "label": "NEW VARIABLE prism_v_0003 = prism_v_0002 * prism_Type_0000",
+      "node_type": "NodeType.VARIABLE",
+      "expression": "prism_v_0003 = prism_v_0002 * prism_Type_0000",
+      "irs": [
+        "TMP_0(uint256) = prism_v_0002 * prism_Type_0000",
+        "prism_v_0003(uint256) := TMP_0(uint256)"
+      ]
+    },
+    {
+      "id": 2,
+      "label": "EXPRESSION require(bool,string)(msg.value == prism_v_0003,Incorrect value)",
+      "node_type": "NodeType.EXPRESSION",
+      "expression": "require(bool,string)(msg.value == prism_v_0003,Incorrect value)",
+      "irs": [
+        "TMP_1(bool) = msg.value == prism_v_0003",
+        "TMP_2(None) = SOLIDITY_CALL require(bool,string)(TMP_1,Incorrect value)"
+      ]
+    },
+    {
+      "id": 3,
+      "label": "EXPRESSION balanceOf[msg.sender] += prism_v_0002",
+      "node_type": "NodeType.EXPRESSION",
+      "expression": "balanceOf[msg.sender] += prism_v_0002",
+      "irs": [
+        "REF_0(uint256) -> balanceOf[msg.sender]",
+        "REF_0(-> balanceOf) = REF_0 (c)+ prism_v_0002"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": 0,
+      "target": 1,
+      "edge_type": "sequential"
+    },
+    {
+      "source": 1,
+      "target": 2,
+      "edge_type": "sequential"
+    },
+    {
+      "source": 2,
+      "target": 3,
+      "edge_type": "sequential"
+    }
+  ]
+}

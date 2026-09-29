@@ -1,0 +1,77 @@
+{
+  "function": "prism_Type_0001.prism_v_0000",
+  "num_nodes": 5,
+  "num_edges": 4,
+  "nodes": [
+    {
+      "id": 0,
+      "label": "ENTRY_POINT",
+      "node_type": "NodeType.ENTRYPOINT",
+      "expression": "",
+      "irs": []
+    },
+    {
+      "id": 1,
+      "label": "EXPRESSION require(bool,string)(! prism_v_0003,Already unlocked)",
+      "node_type": "NodeType.EXPRESSION",
+      "expression": "require(bool,string)(! prism_v_0003,Already unlocked)",
+      "irs": [
+        "TMP_1 = UnaryType.BANG prism_v_0003 ",
+        "TMP_2(None) = SOLIDITY_CALL require(bool,string)(TMP_1,Already unlocked)"
+      ]
+    },
+    {
+      "id": 2,
+      "label": "EXPRESSION require(bool,string)(block.timestamp >= prism_v_0002,Lock period active)",
+      "node_type": "NodeType.EXPRESSION",
+      "expression": "require(bool,string)(block.timestamp >= prism_v_0002,Lock period active)",
+      "irs": [
+        "TMP_3(bool) = block.timestamp >= prism_v_0002",
+        "TMP_4(None) = SOLIDITY_CALL require(bool,string)(TMP_3,Lock period active)"
+      ]
+    },
+    {
+      "id": 3,
+      "label": "EXPRESSION prism_v_0003 = true",
+      "node_type": "NodeType.EXPRESSION",
+      "expression": "prism_v_0003 = true",
+      "irs": [
+        "prism_v_0003(bool) := True(bool)"
+      ]
+    },
+    {
+      "id": 4,
+      "label": "EXPRESSION address(msg.sender).transfer(address(this).balance)",
+      "node_type": "NodeType.EXPRESSION",
+      "expression": "address(msg.sender).transfer(address(this).balance)",
+      "irs": [
+        "TMP_5 = CONVERT msg.sender to address",
+        "TMP_6 = CONVERT this to address",
+        "TMP_7(uint256) = SOLIDITY_CALL balance(address)(TMP_6)",
+        "Transfer dest:TMP_5 value:TMP_7"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": 0,
+      "target": 1,
+      "edge_type": "sequential"
+    },
+    {
+      "source": 1,
+      "target": 2,
+      "edge_type": "sequential"
+    },
+    {
+      "source": 2,
+      "target": 3,
+      "edge_type": "sequential"
+    },
+    {
+      "source": 3,
+      "target": 4,
+      "edge_type": "sequential"
+    }
+  ]
+}

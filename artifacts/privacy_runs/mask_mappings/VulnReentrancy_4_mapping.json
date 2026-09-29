@@ -1,0 +1,16 @@
+{
+  "forward": {
+    "VulnReentrancy_4": "prism_Type_0000",
+    "balances": "prism_v_0001",
+    "withdraw": "prism_v_0002",
+    "success": "prism_v_0003",
+    "amount": "prism_v_0004"
+  },
+  "reverse": {
+    "prism_Type_0000": "VulnReentrancy_4",
+    "prism_v_0001": "balances",
+    "prism_v_0002": "withdraw",
+    "prism_v_0003": "success",
+    "prism_v_0004": "amount"
+  }
+}

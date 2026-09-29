@@ -1,0 +1,16 @@
+{
+  "forward": {
+    "SafeAccessControl_1": "prism_Type_0000",
+    "onlyOwner": "prism_v_0001",
+    "setOwner": "prism_v_0002",
+    "newOwner": "prism_v_0003",
+    "owner": "prism_v_0004"
+  },
+  "reverse": {
+    "prism_Type_0000": "SafeAccessControl_1",
+    "prism_v_0001": "onlyOwner",
+    "prism_v_0002": "setOwner",
+    "prism_v_0003": "newOwner",
+    "prism_v_0004": "owner"
+  }
+}

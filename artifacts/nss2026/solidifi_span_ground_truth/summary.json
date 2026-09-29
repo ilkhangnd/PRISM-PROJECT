@@ -1,0 +1,50 @@
+{
+  "created_utc": "2026-09-28T05:37:49.047072+00:00",
+  "purpose": "SolidiFI source-span to function-body mapping for a provenance-preserving reliability subset",
+  "scope": "Positive examples only; no negative-label or five-class completeness claim.",
+  "source_root": "data/solidifi/buggy_contracts",
+  "summary": {
+    "bug_spans_total": 9369,
+    "unmapped_spans": 4422,
+    "uniquely_mapped_spans": 4947
+  },
+  "per_source_category": {
+    "Overflow-Underflow": {
+      "bug_spans_total": 1333,
+      "unmapped_spans": 591,
+      "uniquely_mapped_spans": 742
+    },
+    "Re-entrancy": {
+      "bug_spans_total": 1343,
+      "unmapped_spans": 1341,
+      "uniquely_mapped_spans": 2
+    },
+    "TOD": {
+      "bug_spans_total": 1336,
+      "unmapped_spans": 1334,
+      "uniquely_mapped_spans": 2
+    },
+    "Timestamp-Dependency": {
+      "bug_spans_total": 1381,
+      "unmapped_spans": 835,
+      "uniquely_mapped_spans": 546
+    },
+    "Unchecked-Send": {
+      "bug_spans_total": 1266,
+      "uniquely_mapped_spans": 1264,
+      "unmapped_spans": 2
+    },
+    "Unhandled-Exceptions": {
+      "bug_spans_total": 1374,
+      "uniquely_mapped_spans": 1057,
+      "unmapped_spans": 317
+    },
+    "tx.origin": {
+      "bug_spans_total": 1336,
+      "uniquely_mapped_spans": 1334,
+      "unmapped_spans": 2
+    }
+  },
+  "row_count": 4947,
+  "parser": "comment-stripping brace-region extractor; records only uniquely mapped spans"
+}

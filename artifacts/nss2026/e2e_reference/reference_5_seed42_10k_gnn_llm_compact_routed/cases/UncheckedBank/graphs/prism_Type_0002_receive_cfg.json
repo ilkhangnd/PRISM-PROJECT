@@ -1,0 +1,30 @@
+{
+  "function": "prism_Type_0002.receive",
+  "num_nodes": 2,
+  "num_edges": 1,
+  "nodes": [
+    {
+      "id": 0,
+      "label": "ENTRY_POINT",
+      "node_type": "NodeType.ENTRYPOINT",
+      "expression": "",
+      "irs": []
+    },
+    {
+      "id": 1,
+      "label": "EXPRESSION revert(string)(Rejecting Ether)",
+      "node_type": "NodeType.EXPRESSION",
+      "expression": "revert(string)(Rejecting Ether)",
+      "irs": [
+        "TMP_3(None) = SOLIDITY_CALL revert(string)(Rejecting Ether)"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": 0,
+      "target": 1,
+      "edge_type": "sequential"
+    }
+  ]
+}

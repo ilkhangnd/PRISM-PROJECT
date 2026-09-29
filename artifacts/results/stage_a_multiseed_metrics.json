@@ -1,0 +1,31 @@
+{
+  "schema_version": "2.0",
+  "created_utc": "2026-09-27T18:36:33Z",
+  "task": "stage_a_binary_gate",
+  "description": "Fresh five-seed execution of the Stage-A binary screening gate on a frozen held-out split.",
+  "provenance": {
+    "type": "fresh_execution",
+    "manifest": "artifacts/nss2026/stage_a_manifest.json",
+    "manifest_sha256": "5c98067bbadcdb3158e6a29ac8092c1a587c2ac1a9362e0847638005a184c500",
+    "evaluation_split": "held-out binary test split (n=3,669: 3,132 vulnerable, 537 safe)",
+    "seeds": [42, 43, 44, 45, 46],
+    "raw_run_root": "artifacts/nss2026/stage_a_fresh",
+    "note": "Each raw run contains best_model.pt, metrics.json, test_predictions.jsonl, and sha256sums.txt."
+  },
+  "total_test_samples": 3669,
+  "vulnerable_samples": 3132,
+  "safe_samples": 537,
+  "per_seed_runs": [
+    {"seed": 42, "accuracy": 0.8874352684655219, "vulnerable_recall": 0.8786717752234994, "safe_specificity": 0.9385474860335196, "macro_f1": 0.8197803606707234, "elapsed_seconds": 434.59722900390625},
+    {"seed": 43, "accuracy": 0.8863450531479967, "vulnerable_recall": 0.879948914431673, "safe_specificity": 0.9236499068901304, "macro_f1": 0.8168565785739244, "elapsed_seconds": 431.9626121520996},
+    {"seed": 44, "accuracy": 0.8877078222949032, "vulnerable_recall": 0.8796296296296297, "safe_specificity": 0.9348230912476723, "macro_f1": 0.819734228587456, "elapsed_seconds": 439.419481754303},
+    {"seed": 45, "accuracy": 0.8874352684655219, "vulnerable_recall": 0.8802681992337165, "safe_specificity": 0.9292364990689013, "macro_f1": 0.8188093335439437, "elapsed_seconds": 474.69600081443787},
+    {"seed": 46, "accuracy": 0.8819841918778959, "vulnerable_recall": 0.8726053639846744, "safe_specificity": 0.9366852886405959, "macro_f1": 0.8128471616430436, "elapsed_seconds": 453.64846682548523}
+  ],
+  "aggregate_metrics": {
+    "accuracy": {"mean": 0.8861815208503679, "sample_std": 0.0024040421990950914, "reported_in_paper": "88.62 +/- 0.24%"},
+    "vulnerable_recall": {"mean": 0.8782247765006386, "sample_std": 0.003197633705888684, "reported_in_paper": "87.82 +/- 0.32%"},
+    "safe_specificity": {"mean": 0.9325884543761639, "sample_std": 0.006091406790985514, "reported_in_paper": "93.26 +/- 0.61%"},
+    "macro_f1": {"mean": 0.8176055326038182, "sample_std": 0.002911760067126002}
+  }
+}

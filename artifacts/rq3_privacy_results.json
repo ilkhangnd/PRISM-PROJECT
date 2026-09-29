@@ -1,0 +1,17 @@
+{
+  "timestamp_utc": "2026-09-26T20:36:52.749432+00:00",
+  "execution_mode": "REAL_PHYSICAL_PROCESS_EXECUTION",
+  "contracts_evaluated": 57,
+  "total_custom_identifiers": 286,
+  "bijective_mappings_verified": 286,
+  "metrics": {
+    "compilation_validity_rate_cvr_pct": 100.0,
+    "masking_consistency_rate_mcr_pct": 100.0,
+    "dictionary_attack_ilr_pct": 30.42,
+    "frequency_rank_attack_ilr_pct": 89.51,
+    "slither_utility_retention_pct": 100.0
+  },
+  "raw_warnings_count": 229,
+  "masked_warnings_count": 235,
+  "matched_warnings_count": 229
+}

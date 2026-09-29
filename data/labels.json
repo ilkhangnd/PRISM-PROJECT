@@ -1,0 +1,7 @@
+{
+    "VulnerableBank": "reentrancy",
+    "SimpleDAO": "reentrancy",
+    "TokenSale": "integer_overflow",
+    "UnsafeWallet": "access_control",
+    "WeakRandom": "timestamp_dependence"
+}

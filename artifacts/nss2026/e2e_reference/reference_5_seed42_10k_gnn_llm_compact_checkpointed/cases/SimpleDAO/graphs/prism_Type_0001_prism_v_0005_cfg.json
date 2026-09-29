@@ -1,0 +1,31 @@
+{
+  "function": "prism_Type_0001.prism_v_0005",
+  "num_nodes": 2,
+  "num_edges": 1,
+  "nodes": [
+    {
+      "id": 0,
+      "label": "ENTRY_POINT",
+      "node_type": "NodeType.ENTRYPOINT",
+      "expression": "",
+      "irs": []
+    },
+    {
+      "id": 1,
+      "label": "EXPRESSION prism_v_0003[msg.sender] += msg.value",
+      "node_type": "NodeType.EXPRESSION",
+      "expression": "prism_v_0003[msg.sender] += msg.value",
+      "irs": [
+        "REF_0(uint256) -> prism_v_0003[msg.sender]",
+        "REF_0(-> prism_v_0003) = REF_0 (c)+ msg.value"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": 0,
+      "target": 1,
+      "edge_type": "sequential"
+    }
+  ]
+}

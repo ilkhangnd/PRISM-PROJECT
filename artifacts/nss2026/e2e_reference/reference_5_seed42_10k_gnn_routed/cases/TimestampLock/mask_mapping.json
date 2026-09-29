@@ -1,0 +1,17 @@
+{
+  "original_to_masked": {
+    "claimEarlyReward": "prism_v_0000",
+    "TimestampLock": "prism_Type_0001",
+    "unlockTime": "prism_v_0002",
+    "unlocked": "prism_v_0003",
+    "owner": "prism_v_0004"
+  },
+  "masked_to_original": {
+    "prism_v_0000": "claimEarlyReward",
+    "prism_Type_0001": "TimestampLock",
+    "prism_v_0002": "unlockTime",
+    "prism_v_0003": "unlocked",
+    "prism_v_0004": "owner"
+  },
+  "counter": 5
+}

@@ -1,0 +1,515 @@
+[
+  {
+    "file_name": "SafeAccessControl_0.sol",
+    "relative_path": "data/raw_50/SafeAccessControl_0.sol",
+    "is_vulnerable": false,
+    "swc_id": null,
+    "category": "safe",
+    "class_index": -1,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "SafeAccessControl_1.sol",
+    "relative_path": "data/raw_50/SafeAccessControl_1.sol",
+    "is_vulnerable": false,
+    "swc_id": null,
+    "category": "safe",
+    "class_index": -1,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "SafeAccessControl_2.sol",
+    "relative_path": "data/raw_50/SafeAccessControl_2.sol",
+    "is_vulnerable": false,
+    "swc_id": null,
+    "category": "safe",
+    "class_index": -1,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "SafeAccessControl_3.sol",
+    "relative_path": "data/raw_50/SafeAccessControl_3.sol",
+    "is_vulnerable": false,
+    "swc_id": null,
+    "category": "safe",
+    "class_index": -1,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "SafeAccessControl_4.sol",
+    "relative_path": "data/raw_50/SafeAccessControl_4.sol",
+    "is_vulnerable": false,
+    "swc_id": null,
+    "category": "safe",
+    "class_index": -1,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "SafeOverflow_0.sol",
+    "relative_path": "data/raw_50/SafeOverflow_0.sol",
+    "is_vulnerable": false,
+    "swc_id": null,
+    "category": "safe",
+    "class_index": -1,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "SafeOverflow_1.sol",
+    "relative_path": "data/raw_50/SafeOverflow_1.sol",
+    "is_vulnerable": false,
+    "swc_id": null,
+    "category": "safe",
+    "class_index": -1,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "SafeOverflow_2.sol",
+    "relative_path": "data/raw_50/SafeOverflow_2.sol",
+    "is_vulnerable": false,
+    "swc_id": null,
+    "category": "safe",
+    "class_index": -1,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "SafeOverflow_3.sol",
+    "relative_path": "data/raw_50/SafeOverflow_3.sol",
+    "is_vulnerable": false,
+    "swc_id": null,
+    "category": "safe",
+    "class_index": -1,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "SafeOverflow_4.sol",
+    "relative_path": "data/raw_50/SafeOverflow_4.sol",
+    "is_vulnerable": false,
+    "swc_id": null,
+    "category": "safe",
+    "class_index": -1,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "SafeReentrancy_0.sol",
+    "relative_path": "data/raw_50/SafeReentrancy_0.sol",
+    "is_vulnerable": false,
+    "swc_id": null,
+    "category": "safe",
+    "class_index": -1,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "SafeReentrancy_1.sol",
+    "relative_path": "data/raw_50/SafeReentrancy_1.sol",
+    "is_vulnerable": false,
+    "swc_id": null,
+    "category": "safe",
+    "class_index": -1,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "SafeReentrancy_2.sol",
+    "relative_path": "data/raw_50/SafeReentrancy_2.sol",
+    "is_vulnerable": false,
+    "swc_id": null,
+    "category": "safe",
+    "class_index": -1,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "SafeReentrancy_3.sol",
+    "relative_path": "data/raw_50/SafeReentrancy_3.sol",
+    "is_vulnerable": false,
+    "swc_id": null,
+    "category": "safe",
+    "class_index": -1,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "SafeReentrancy_4.sol",
+    "relative_path": "data/raw_50/SafeReentrancy_4.sol",
+    "is_vulnerable": false,
+    "swc_id": null,
+    "category": "safe",
+    "class_index": -1,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "SafeTimestamp_0.sol",
+    "relative_path": "data/raw_50/SafeTimestamp_0.sol",
+    "is_vulnerable": false,
+    "swc_id": null,
+    "category": "safe",
+    "class_index": -1,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "SafeTimestamp_1.sol",
+    "relative_path": "data/raw_50/SafeTimestamp_1.sol",
+    "is_vulnerable": false,
+    "swc_id": null,
+    "category": "safe",
+    "class_index": -1,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "SafeTimestamp_2.sol",
+    "relative_path": "data/raw_50/SafeTimestamp_2.sol",
+    "is_vulnerable": false,
+    "swc_id": null,
+    "category": "safe",
+    "class_index": -1,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "SafeTimestamp_3.sol",
+    "relative_path": "data/raw_50/SafeTimestamp_3.sol",
+    "is_vulnerable": false,
+    "swc_id": null,
+    "category": "safe",
+    "class_index": -1,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "SafeTimestamp_4.sol",
+    "relative_path": "data/raw_50/SafeTimestamp_4.sol",
+    "is_vulnerable": false,
+    "swc_id": null,
+    "category": "safe",
+    "class_index": -1,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "SafeUncheckedReturn_0.sol",
+    "relative_path": "data/raw_50/SafeUncheckedReturn_0.sol",
+    "is_vulnerable": false,
+    "swc_id": null,
+    "category": "safe",
+    "class_index": -1,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "SafeUncheckedReturn_1.sol",
+    "relative_path": "data/raw_50/SafeUncheckedReturn_1.sol",
+    "is_vulnerable": false,
+    "swc_id": null,
+    "category": "safe",
+    "class_index": -1,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "SafeUncheckedReturn_2.sol",
+    "relative_path": "data/raw_50/SafeUncheckedReturn_2.sol",
+    "is_vulnerable": false,
+    "swc_id": null,
+    "category": "safe",
+    "class_index": -1,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "SafeUncheckedReturn_3.sol",
+    "relative_path": "data/raw_50/SafeUncheckedReturn_3.sol",
+    "is_vulnerable": false,
+    "swc_id": null,
+    "category": "safe",
+    "class_index": -1,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "SafeUncheckedReturn_4.sol",
+    "relative_path": "data/raw_50/SafeUncheckedReturn_4.sol",
+    "is_vulnerable": false,
+    "swc_id": null,
+    "category": "safe",
+    "class_index": -1,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "VulnAccessControl_0.sol",
+    "relative_path": "data/raw_50/VulnAccessControl_0.sol",
+    "is_vulnerable": true,
+    "swc_id": "SWC-105",
+    "category": "access_control",
+    "class_index": 2,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "VulnAccessControl_1.sol",
+    "relative_path": "data/raw_50/VulnAccessControl_1.sol",
+    "is_vulnerable": true,
+    "swc_id": "SWC-105",
+    "category": "access_control",
+    "class_index": 2,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "VulnAccessControl_2.sol",
+    "relative_path": "data/raw_50/VulnAccessControl_2.sol",
+    "is_vulnerable": true,
+    "swc_id": "SWC-105",
+    "category": "access_control",
+    "class_index": 2,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "VulnAccessControl_3.sol",
+    "relative_path": "data/raw_50/VulnAccessControl_3.sol",
+    "is_vulnerable": true,
+    "swc_id": "SWC-105",
+    "category": "access_control",
+    "class_index": 2,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "VulnAccessControl_4.sol",
+    "relative_path": "data/raw_50/VulnAccessControl_4.sol",
+    "is_vulnerable": true,
+    "swc_id": "SWC-105",
+    "category": "access_control",
+    "class_index": 2,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "VulnOverflow_0.sol",
+    "relative_path": "data/raw_50/VulnOverflow_0.sol",
+    "is_vulnerable": true,
+    "swc_id": "SWC-101",
+    "category": "integer_overflow",
+    "class_index": 1,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "VulnOverflow_1.sol",
+    "relative_path": "data/raw_50/VulnOverflow_1.sol",
+    "is_vulnerable": true,
+    "swc_id": "SWC-101",
+    "category": "integer_overflow",
+    "class_index": 1,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "VulnOverflow_2.sol",
+    "relative_path": "data/raw_50/VulnOverflow_2.sol",
+    "is_vulnerable": true,
+    "swc_id": "SWC-101",
+    "category": "integer_overflow",
+    "class_index": 1,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "VulnOverflow_3.sol",
+    "relative_path": "data/raw_50/VulnOverflow_3.sol",
+    "is_vulnerable": true,
+    "swc_id": "SWC-101",
+    "category": "integer_overflow",
+    "class_index": 1,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "VulnOverflow_4.sol",
+    "relative_path": "data/raw_50/VulnOverflow_4.sol",
+    "is_vulnerable": true,
+    "swc_id": "SWC-101",
+    "category": "integer_overflow",
+    "class_index": 1,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "VulnReentrancy_0.sol",
+    "relative_path": "data/raw_50/VulnReentrancy_0.sol",
+    "is_vulnerable": true,
+    "swc_id": "SWC-107",
+    "category": "reentrancy",
+    "class_index": 0,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "VulnReentrancy_1.sol",
+    "relative_path": "data/raw_50/VulnReentrancy_1.sol",
+    "is_vulnerable": true,
+    "swc_id": "SWC-107",
+    "category": "reentrancy",
+    "class_index": 0,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "VulnReentrancy_2.sol",
+    "relative_path": "data/raw_50/VulnReentrancy_2.sol",
+    "is_vulnerable": true,
+    "swc_id": "SWC-107",
+    "category": "reentrancy",
+    "class_index": 0,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "VulnReentrancy_3.sol",
+    "relative_path": "data/raw_50/VulnReentrancy_3.sol",
+    "is_vulnerable": true,
+    "swc_id": "SWC-107",
+    "category": "reentrancy",
+    "class_index": 0,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "VulnReentrancy_4.sol",
+    "relative_path": "data/raw_50/VulnReentrancy_4.sol",
+    "is_vulnerable": true,
+    "swc_id": "SWC-107",
+    "category": "reentrancy",
+    "class_index": 0,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "VulnTimestamp_0.sol",
+    "relative_path": "data/raw_50/VulnTimestamp_0.sol",
+    "is_vulnerable": true,
+    "swc_id": "SWC-114",
+    "category": "front_running",
+    "class_index": 4,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "VulnTimestamp_1.sol",
+    "relative_path": "data/raw_50/VulnTimestamp_1.sol",
+    "is_vulnerable": true,
+    "swc_id": "SWC-114",
+    "category": "front_running",
+    "class_index": 4,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "VulnTimestamp_2.sol",
+    "relative_path": "data/raw_50/VulnTimestamp_2.sol",
+    "is_vulnerable": true,
+    "swc_id": "SWC-114",
+    "category": "front_running",
+    "class_index": 4,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "VulnTimestamp_3.sol",
+    "relative_path": "data/raw_50/VulnTimestamp_3.sol",
+    "is_vulnerable": true,
+    "swc_id": "SWC-114",
+    "category": "front_running",
+    "class_index": 4,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "VulnTimestamp_4.sol",
+    "relative_path": "data/raw_50/VulnTimestamp_4.sol",
+    "is_vulnerable": true,
+    "swc_id": "SWC-114",
+    "category": "front_running",
+    "class_index": 4,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "VulnUncheckedReturn_0.sol",
+    "relative_path": "data/raw_50/VulnUncheckedReturn_0.sol",
+    "is_vulnerable": true,
+    "swc_id": "SWC-104",
+    "category": "unchecked_return",
+    "class_index": 3,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "VulnUncheckedReturn_1.sol",
+    "relative_path": "data/raw_50/VulnUncheckedReturn_1.sol",
+    "is_vulnerable": true,
+    "swc_id": "SWC-104",
+    "category": "unchecked_return",
+    "class_index": 3,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "VulnUncheckedReturn_2.sol",
+    "relative_path": "data/raw_50/VulnUncheckedReturn_2.sol",
+    "is_vulnerable": true,
+    "swc_id": "SWC-104",
+    "category": "unchecked_return",
+    "class_index": 3,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "VulnUncheckedReturn_3.sol",
+    "relative_path": "data/raw_50/VulnUncheckedReturn_3.sol",
+    "is_vulnerable": true,
+    "swc_id": "SWC-104",
+    "category": "unchecked_return",
+    "class_index": 3,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "VulnUncheckedReturn_4.sol",
+    "relative_path": "data/raw_50/VulnUncheckedReturn_4.sol",
+    "is_vulnerable": true,
+    "swc_id": "SWC-104",
+    "category": "unchecked_return",
+    "class_index": 3,
+    "dataset_origin": "Solidifi_Bench_50"
+  },
+  {
+    "file_name": "SafeBank.sol",
+    "relative_path": "data/raw/SafeBank.sol",
+    "is_vulnerable": false,
+    "swc_id": null,
+    "category": "safe",
+    "class_index": -1,
+    "dataset_origin": "Handcrafted_Canonical_7"
+  },
+  {
+    "file_name": "SafeMathContract.sol",
+    "relative_path": "data/raw/SafeMathContract.sol",
+    "is_vulnerable": false,
+    "swc_id": null,
+    "category": "safe",
+    "class_index": -1,
+    "dataset_origin": "Handcrafted_Canonical_7"
+  },
+  {
+    "file_name": "SimpleDAO.sol",
+    "relative_path": "data/raw/SimpleDAO.sol",
+    "is_vulnerable": true,
+    "swc_id": "SWC-107",
+    "category": "reentrancy",
+    "class_index": 0,
+    "dataset_origin": "Handcrafted_Canonical_7"
+  },
+  {
+    "file_name": "TokenSale.sol",
+    "relative_path": "data/raw/TokenSale.sol",
+    "is_vulnerable": true,
+    "swc_id": "SWC-101",
+    "category": "integer_overflow",
+    "class_index": 1,
+    "dataset_origin": "Handcrafted_Canonical_7"
+  },
+  {
+    "file_name": "UnsafeWallet.sol",
+    "relative_path": "data/raw/UnsafeWallet.sol",
+    "is_vulnerable": true,
+    "swc_id": "SWC-105",
+    "category": "access_control",
+    "class_index": 2,
+    "dataset_origin": "Handcrafted_Canonical_7"
+  },
+  {
+    "file_name": "VulnerableBank.sol",
+    "relative_path": "data/raw/VulnerableBank.sol",
+    "is_vulnerable": true,
+    "swc_id": "SWC-107",
+    "category": "reentrancy",
+    "class_index": 0,
+    "dataset_origin": "Handcrafted_Canonical_7"
+  },
+  {
+    "file_name": "WeakRandom.sol",
+    "relative_path": "data/raw/WeakRandom.sol",
+    "is_vulnerable": true,
+    "swc_id": "SWC-114",
+    "category": "front_running",
+    "class_index": 4,
+    "dataset_origin": "Handcrafted_Canonical_7"
+  }
+]

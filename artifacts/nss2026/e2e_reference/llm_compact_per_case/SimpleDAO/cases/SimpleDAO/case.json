@@ -1,0 +1,123 @@
+{
+  "target": "SimpleDAO",
+  "source": "artifacts/fuzzing_runs/benchmark_workspace/src/SimpleDAO.sol",
+  "source_sha256": "f79ccd9f18992054df942073952f3b62bbf710016510f311545ab7003d6e6e4b",
+  "vulnerability_class": "Reentrancy",
+  "swc": "SWC-107",
+  "harness_kind": "pre-authored Foundry reference harness",
+  "gnn": {
+    "status": "completed",
+    "checkpoint": "artifacts/nss2026/runs/random/gnnmhav2/seed_42/best_model.pt",
+    "checkpoint_sha256": "3fc2937a90bf9081fa08e0c93d46ed2761977f9a19bff59af4702b1dc50f2f08",
+    "masked_identifier_count": 11,
+    "graphs_built": 7,
+    "hotspot_count": 4,
+    "hotspots": [
+      {
+        "function_name": "prism_v_0008",
+        "contract_name": "prism_Type_0001",
+        "full_name": "prism_Type_0001.prism_v_0008",
+        "risk_score": 0.959,
+        "vulnerability_hint": "unchecked_return",
+        "predicted_class": 3,
+        "detection_source": "GNN"
+      },
+      {
+        "function_name": "prism_v_0004",
+        "contract_name": "prism_Type_0002",
+        "full_name": "prism_Type_0002.prism_v_0004",
+        "risk_score": 0.7317,
+        "vulnerability_hint": "reentrancy",
+        "predicted_class": 0,
+        "detection_source": "GNN"
+      },
+      {
+        "function_name": "prism_v_0006",
+        "contract_name": "prism_Type_0002",
+        "full_name": "prism_Type_0002.prism_v_0006",
+        "risk_score": 0.591,
+        "vulnerability_hint": "access_control",
+        "predicted_class": 2,
+        "detection_source": "GNN"
+      },
+      {
+        "function_name": "receive",
+        "contract_name": "prism_Type_0001",
+        "full_name": "prism_Type_0001.receive",
+        "risk_score": 0.3613,
+        "vulnerability_hint": "unchecked_return",
+        "predicted_class": 3,
+        "detection_source": "GNN"
+      }
+    ]
+  },
+  "llm": {
+    "status": "completed",
+    "model": "deepseek-coder-v2:latest",
+    "finding_count": 2,
+    "findings": [
+      {
+        "vulnerability_type": "reentrancy",
+        "function_name": "prism_v_0004",
+        "evidence": "Function can be reentered before updating balance."
+      },
+      {
+        "vulnerability_type": "unchecked_return",
+        "function_name": "receive",
+        "evidence": "Receive function does not check the return value of prism_v_0004."
+      }
+    ],
+    "duration_ms": 13997.46
+  },
+  "routing": {
+    "policy": "any_gnn_hotspot",
+    "routed_to_foundry": true,
+    "hotspot_count": 4
+  },
+  "foundry": {
+    "guided_reference_test": {
+      "command": [
+        "/Users/nguyendinhkhang/.foundry/bin/forge",
+        "test",
+        "--fuzz-seed",
+        "42",
+        "--match-contract",
+        "SimpleDAOTest",
+        "--match-test",
+        "testGuidedExploit",
+        "-vvv"
+      ],
+      "return_code": 0,
+      "timed_out": false,
+      "passed": true,
+      "duration_ms": 2855.44,
+      "stdout_sha256": "7f61d845bc95e6c1904f604a69d56f49b857804e9e1caa99958f12464dcc9251",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_tail": "No files changed, compilation skipped\n2026-09-28T05:25:49.312175Z  WARN evm::traces::external: etherscan config not found\n\nRan 1 test for test/SimpleDAO.t.sol:SimpleDAOTest\n[PASS] testGuidedExploit() (gas: 77558)\nSuite result: ok. 1 passed; 0 failed; 0 skipped; finished in 18.04ms (866.96\u00b5s CPU time)\n\nRan 1 test suite in 603.87ms (18.04ms CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)\n",
+      "stderr_tail": ""
+    },
+    "parameterized_reference_fuzz": {
+      "command": [
+        "/Users/nguyendinhkhang/.foundry/bin/forge",
+        "test",
+        "--fuzz-seed",
+        "42",
+        "--match-contract",
+        "SimpleDAOTest",
+        "--match-test",
+        "testRandomFuzz",
+        "--fuzz-runs",
+        "10000",
+        "-vvv"
+      ],
+      "return_code": 0,
+      "timed_out": false,
+      "passed": true,
+      "duration_ms": 1344.11,
+      "stdout_sha256": "5d81d33f6068c45538fcc628f69a82ced51193da75355538ec9aeae0c4132306",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_tail": "No files changed, compilation skipped\n2026-09-28T05:25:50.320085Z  WARN evm::traces::external: etherscan config not found\n\nRan 1 test for test/SimpleDAO.t.sol:SimpleDAOTest\n[PASS] testRandomFuzz(uint256,uint8) (runs: 10000, \u03bc: 50478, ~: 54228)\nSuite result: ok. 1 passed; 0 failed; 0 skipped; finished in 941.33ms (939.14ms CPU time)\n\nRan 1 test suite in 945.59ms (941.33ms CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)\n",
+      "stderr_tail": ""
+    }
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "function": "prism_Type_0002.prism_v_0003",
+  "num_nodes": 7,
+  "num_edges": 6,
+  "nodes": [
+    {
+      "id": 0,
+      "label": "ENTRY_POINT",
+      "node_type": "NodeType.ENTRYPOINT",
+      "expression": "",
+      "irs": []
+    },
+    {
+      "id": 1,
+      "label": "NEW VARIABLE prism_v_0010 = prism_v_0004[msg.sender]",
+      "node_type": "NodeType.VARIABLE",
+      "expression": "prism_v_0010 = prism_v_0004[msg.sender]",
+      "irs": [
+        "REF_1(uint256) -> prism_v_0004[msg.sender]",
+        "prism_v_0010(uint256) := REF_1(uint256)"
+      ]
+    },
+    {
+      "id": 2,
+      "label": "EXPRESSION require(bool,string)(prism_v_0010 > 0,No balance)",
+      "node_type": "NodeType.EXPRESSION",
+      "expression": "require(bool,string)(prism_v_0010 > 0,No balance)",
+      "irs": [
+        "TMP_0(bool) = prism_v_0010 > 0",
+        "TMP_1(None) = SOLIDITY_CALL require(bool,string)(TMP_0,No balance)"
+      ]
+    },
+    {
+      "id": 3,
+      "label": "NEW VARIABLE prism_v_0009",
+      "node_type": "NodeType.VARIABLE",
+      "expression": "",
+      "irs": []
+    },
+    {
+      "id": 4,
+      "label": "EXPRESSION (prism_v_0009,None) = msg.sender.call{value: prism_v_0010}()",
+      "node_type": "NodeType.EXPRESSION",
+      "expression": "(prism_v_0009,None) = msg.sender.call{value: prism_v_0010}()",
+      "irs": [
+        "TUPLE_0(bool,bytes) = LOW_LEVEL_CALL, dest:msg.sender, function:call, arguments:[''] value:prism_v_0010 ",
+        "prism_v_0009(bool)= UNPACK TUPLE_0 index: 0 "
+      ]
+    },
+    {
+      "id": 5,
+      "label": "EXPRESSION require(bool,string)(prism_v_0009,Failed to send Ether)",
+      "node_type": "NodeType.EXPRESSION",
+      "expression": "require(bool,string)(prism_v_0009,Failed to send Ether)",
+      "irs": [
+        "TMP_2(None) = SOLIDITY_CALL require(bool,string)(prism_v_0009,Failed to send Ether)"
+      ]
+    },
+    {
+      "id": 6,
+      "label": "EXPRESSION prism_v_0004[msg.sender] = 0",
+      "node_type": "NodeType.EXPRESSION",
+      "expression": "prism_v_0004[msg.sender] = 0",
+      "irs": [
+        "REF_3(uint256) -> prism_v_0004[msg.sender]",
+        "REF_3(uint256) (->prism_v_0004) := 0(uint256)"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": 0,
+      "target": 1,
+      "edge_type": "sequential"
+    },
+    {
+      "source": 1,
+      "target": 2,
+      "edge_type": "sequential"
+    },
+    {
+      "source": 2,
+      "target": 3,
+      "edge_type": "sequential"
+    },
+    {
+      "source": 3,
+      "target": 4,
+      "edge_type": "sequential"
+    },
+    {
+      "source": 4,
+      "target": 5,
+      "edge_type": "sequential"
+    },
+    {
+      "source": 5,
+      "target": 6,
+      "edge_type": "sequential"
+    }
+  ]
+}

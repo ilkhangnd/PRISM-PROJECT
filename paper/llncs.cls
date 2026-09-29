@@ -1237,16 +1237,6 @@ to0pt{\kern0.55\wd0\vrule height0.45\ht0\hss}\box0}}}}
 \if@runhead\ps@headings\else
 \ps@empty\fi
 
-\setlength\arraycolsep{1.4\p@}
-\setlength\tabcolsep{1.4\p@}
-
-\newwrite\DescriptionTexts%
-\immediate\openout\DescriptionTexts=DescriptionTexts.txt%
-\newcounter{Dfigchecks}%
-
-\def\Description#1{\stepcounter{Dfigchecks}\stepcounter{figure}%
-\immediate\write\DescriptionTexts{\arabic{Dfigchecks} (Fig. \thefigure) - \detokenize{#1}}%
-\addtocounter{figure}{-1}}%
-
 \endinput
 %end of file llncs.cls
+

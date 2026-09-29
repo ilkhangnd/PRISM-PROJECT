@@ -1,0 +1,53 @@
+{
+  "timestamp_utc": "2026-09-27T16:28:34.917794+00:00",
+  "execution_mode": "REAL_PHYSICAL_PROCESS_EXECUTION",
+  "benchmark_type": "CALIBRATED_CASCADE_FILTERING",
+  "analyzer_version": "Slither 0.11.5",
+  "contracts_evaluated": 57,
+  "clean_contracts_count": 27,
+  "vulnerable_contracts_count": 30,
+  "slither_baseline_metrics": {
+    "total_warnings": 230,
+    "tp": 30,
+    "fp": 27,
+    "tn": 0,
+    "fn": 0,
+    "precision": 0.5263,
+    "recall": 1.0,
+    "f1_score": 0.6897
+  },
+  "cascade_funnel": [
+    {
+      "stage": 0,
+      "name": "Stage 0: Slither Static Analysis (Raw Heuristics)",
+      "alarms_retained": 230,
+      "clean_contracts_flagged": "27/27 (100.0%)",
+      "vuln_contracts_flagged": "30/30 (100.0%)",
+      "description": "Baseline heuristic scan on 57 benchmark contracts; flags 27/27 (100.0%) clean contracts due to style, naming, and dead-code rules."
+    },
+    {
+      "stage": 1,
+      "name": "Stage 1: Taxonomy & Detector Relevance Filtering",
+      "alarms_retained": 41,
+      "clean_contracts_flagged": "6/27 (22.2%)",
+      "vuln_contracts_flagged": "18/30 (60.0%)",
+      "description": "Filters detectors by 5 target vulnerability taxonomy classes (alarms reduced to 41, clean flagged reduced to 6/27)."
+    },
+    {
+      "stage": 2,
+      "name": "Stage 2: Contextual Impact & Confidence Verification",
+      "alarms_retained": 33,
+      "clean_contracts_flagged": "6/27 (22.2%)",
+      "vuln_contracts_flagged": "18/30 (60.0%)",
+      "description": "Filters for High/Medium impact and confidence detectors (alarms reduced to 33)."
+    },
+    {
+      "stage": 3,
+      "name": "Stage 3: Foundry Dynamic Invariant Replay",
+      "alarms_retained": 27,
+      "clean_contracts_flagged": "0/27 (0.0%)",
+      "vuln_contracts_flagged": "18/30 (60.0%)",
+      "description": "Dynamic EVM execution in Foundry on contracts with test harnesses; refutes all 6 false alarms with mutex locks."
+    }
+  ]
+}

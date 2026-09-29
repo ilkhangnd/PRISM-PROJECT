@@ -46,7 +46,7 @@ CHECK_TO_CLASS = {
     "unchecked-transfer": 3,
     "unused-return": 3,
     "low-level-calls": 3,
-    # 4: Front-running / Timestamp dependence
+    # 4: Timestamp dependence
     "timestamp": 4,
     "block-timestamp": 4,
     "weak-prng": 4,

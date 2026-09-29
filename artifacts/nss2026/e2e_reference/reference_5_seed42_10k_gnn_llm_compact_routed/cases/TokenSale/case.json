@@ -1,0 +1,98 @@
+{
+  "target": "TokenSale",
+  "source": "artifacts/fuzzing_runs/benchmark_workspace/src/TokenSale.sol",
+  "source_sha256": "5207e3f2fca8659415da121884f9a06a120d776bb6a1b608310377fe2f222612",
+  "vulnerability_class": "Integer Overflow",
+  "swc": "SWC-101",
+  "harness_kind": "pre-authored Foundry reference harness",
+  "gnn": {
+    "status": "completed",
+    "checkpoint": "artifacts/nss2026/runs/random/gnnmhav2/seed_42/best_model.pt",
+    "checkpoint_sha256": "3fc2937a90bf9081fa08e0c93d46ed2761977f9a19bff59af4702b1dc50f2f08",
+    "masked_identifier_count": 6,
+    "graphs_built": 4,
+    "hotspot_count": 2,
+    "hotspots": [
+      {
+        "function_name": "prism_v_0004",
+        "contract_name": "prism_Type_0002",
+        "full_name": "prism_Type_0002.prism_v_0004",
+        "risk_score": 0.4788,
+        "vulnerability_hint": "access_control",
+        "predicted_class": 2,
+        "detection_source": "GNN"
+      },
+      {
+        "function_name": "prism_v_0005",
+        "contract_name": "prism_Type_0002",
+        "full_name": "prism_Type_0002.prism_v_0005",
+        "risk_score": 0.3139,
+        "vulnerability_hint": "unchecked_return",
+        "predicted_class": 3,
+        "detection_source": "GNN"
+      }
+    ]
+  },
+  "llm": {
+    "status": "completed",
+    "model": "deepseek-coder-v2:latest",
+    "finding_count": 1,
+    "findings": [
+      {
+        "raw_response": " ```json\n[\n    {\n        \"vulnerability_type\": \"unchecked_return\",\n        \"function_name\": \"prism_v_0005\",\n        \"evidence\": \"Function uses unchecked arithmetic which can lead to underflow or overflow without checking.\"\n    },\n    {\n        \"vulnerability_type\": \"access_control\",\n        \"function_name\": \"prism_v_0004\",\n        \"evidence\": \"The function transfers all contract balance to the caller without any access control, potentially allowing unauthorized withdrawals.\"\n    }\n"
+      }
+    ],
+    "duration_ms": 8425.04
+  },
+  "routing": {
+    "policy": "any_gnn_hotspot",
+    "routed_to_foundry": true,
+    "hotspot_count": 2
+  },
+  "foundry": {
+    "guided_reference_test": {
+      "command": [
+        "/Users/nguyendinhkhang/.foundry/bin/forge",
+        "test",
+        "--fuzz-seed",
+        "42",
+        "--match-contract",
+        "TokenSaleTest",
+        "--match-test",
+        "testGuidedExploit",
+        "-vvv"
+      ],
+      "return_code": 0,
+      "timed_out": false,
+      "passed": true,
+      "duration_ms": 1642.34,
+      "stdout_sha256": "3777bcd2a396927582e2eab1ea036f8b01e4708bc0d2e18f1f343ddd9f1116b3",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_tail": "No files changed, compilation skipped\n2026-09-28T05:25:16.177285Z  WARN evm::traces::external: etherscan config not found\n\nRan 1 test for test/TokenSale.t.sol:TokenSaleTest\n[PASS] testGuidedExploit() (gas: 39648)\nSuite result: ok. 1 passed; 0 failed; 0 skipped; finished in 11.48ms (1.57ms CPU time)\n\nRan 1 test suite in 270.18ms (11.48ms CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)\n",
+      "stderr_tail": ""
+    },
+    "parameterized_reference_fuzz": {
+      "command": [
+        "/Users/nguyendinhkhang/.foundry/bin/forge",
+        "test",
+        "--fuzz-seed",
+        "42",
+        "--match-contract",
+        "TokenSaleTest",
+        "--match-test",
+        "testRandomFuzz",
+        "--fuzz-runs",
+        "10000",
+        "-vvv"
+      ],
+      "return_code": 0,
+      "timed_out": false,
+      "passed": true,
+      "duration_ms": 460.55,
+      "stdout_sha256": "6ddb8dc180047915ab341d6ca29dc09739aedc7b87d3b3f0f3988d96088e8c24",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_tail": "No files changed, compilation skipped\n2026-09-28T05:25:16.660451Z  WARN evm::traces::external: etherscan config not found\n\nRan 1 test for test/TokenSale.t.sol:TokenSaleTest\n[PASS] testRandomFuzz(uint256) (runs: 10000, \u03bc: 36436, ~: 40338)\nSuite result: ok. 1 passed; 0 failed; 0 skipped; finished in 259.11ms (258.84ms CPU time)\n\nRan 1 test suite in 259.69ms (259.11ms CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)\n",
+      "stderr_tail": ""
+    }
+  }
+}

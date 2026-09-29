@@ -1,0 +1,14 @@
+{
+  "forward": {
+    "VulnOverflow_1": "prism_Type_0000",
+    "balances": "prism_v_0001",
+    "amount": "prism_v_0002",
+    "to": "prism_v_0003"
+  },
+  "reverse": {
+    "prism_Type_0000": "VulnOverflow_1",
+    "prism_v_0001": "balances",
+    "prism_v_0002": "amount",
+    "prism_v_0003": "to"
+  }
+}

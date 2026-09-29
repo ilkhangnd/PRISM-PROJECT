@@ -263,6 +263,7 @@ def run_patch_ladder():
     (ROOT_DIR / "artifacts/rq5_patch_results.json").write_text(json.dumps(payload, indent=2), encoding="utf-8")
     
     rep_file = ROOT_DIR / "research/04-results/rq5_patch_campaign_report.md"
+    rep_file.parent.mkdir(parents=True, exist_ok=True)
     md_report = f"""# PRISM RQ5 5-Stage Deep Patch Verification Ladder Report (5 Canonical Case Studies)
 
 **Thời gian Thực nghiệm:** {datetime.now(timezone.utc).isoformat()}  
@@ -297,14 +298,14 @@ def run_patch_ladder():
 ## 3. Nhận định Kỹ thuật và Giới hạn Thực nghiệm (Scope Boundaries)
 1. **Cơ chế Sinh Bản vá**: Mô-đun `AutoRepair` trong lượt chạy này vận hành theo cơ chế biến đổi mã nguồn theo luật/regex (regex/rule-based source transformation), do bộ điều phối khởi tạo `AutoRepair()` không truyền tham số `llm_auditor`. Bước 2 kiểm tra tính hợp lệ cú pháp qua biên dịch `solc` và tỷ lệ dòng sửa đổi tối thiểu (line-diff $\\le 25\\%$).
 2. **Khảo nghiệm 5 Case Studies Canonical**: Toàn bộ 5 bản vá trên 5 hợp đồng canonical tiêu biểu (`SimpleDAO`, `TokenSale`, `UnprotectedVault`, `UncheckedBank`, `WeakLottery`) đều vượt qua 100% cả 5 bước kiểm tra thực thi vật lý.
-3. **Khảo nghiệm Tính Khả thi trên Toàn bộ Corpus 57 Hợp đồng**: Trên toàn bộ 57 hợp đồng thực tế, mô-đun sinh thành công bản vá cho **5/57 hợp đồng (8.77%)** và đạt **100% (5/5)** biên dịch sạch qua `solc 0.8.30`; 52 hợp đồng còn lại không khớp mẫu cú pháp regex và được ghi nhận minh bạch là `NO_VULNERABILITY_PATTERN_MATCHED` (chi tiết tại [`research/04-results/rq5_patch_verification_report.md`](file://{ROOT_DIR / 'research/04-results/rq5_patch_verification_report.md'})).
+3. **Phạm vi bằng chứng**: Kết quả thực thi trong báo cáo này chỉ áp dụng cho năm case study canonical có harness tham chiếu. Báo cáo không đo độ bao phủ sửa chữa, độ chính xác, hoặc tổng quát hóa trên 57 hợp đồng.
 
 ---
 
 ## 4. Artifact Directory & Verification
-- Patched Contracts: [`artifacts/patch_runs/patched_contracts/`](file://{patches_dir})
-- Unified Diffs: [`artifacts/patch_runs/patch_diffs/`](file://{diffs_dir})
-- Structured JSON: [`artifacts/patch_runs/patch_verification_ladder_results.json`](file://{out_dir / "patch_verification_ladder_results.json"})
+- Patched contracts: `artifacts/patch_runs/patched_contracts/`
+- Unified diffs: `artifacts/patch_runs/patch_diffs/`
+- Structured JSON: `artifacts/patch_runs/patch_verification_ladder_results.json`
 """
     rep_file.write_text(md_report, encoding="utf-8")
     print(f"\n✅ Successfully exported real RQ5 patch ladder report: {rep_file}")

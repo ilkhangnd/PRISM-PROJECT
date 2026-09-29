@@ -14,14 +14,14 @@
 \usepackage{microtype}
 \usepackage{indentfirst}
 
-\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue,pdfauthor={},pdftitle={PRISM: Confidential Smart Contract Auditing via Pseudonymized Graph Screening and Local Dynamic Verification}}
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue,pdfauthor={},pdftitle={PRISM: Confidential Smart Contract Auditing with Pseudonymized Graph Screening}}
 \setlength{\tabcolsep}{5pt}
 \newcommand{\cmark}{\ding{51}}
 \newcommand{\xmark}{\ding{55}}
 
 \begin{document}
 
-\title{PRISM: Confidential Smart Contract Auditing via Pseudonymized Graph Screening and Local Dynamic Verification}
+\title{PRISM: Confidential Smart Contract Auditing with Pseudonymized Graph Screening}
 \titlerunning{PRISM: Confidential Smart Contract Auditing}
 
 \author{Anonymous Author(s)}
@@ -31,7 +31,7 @@
 \maketitle
 
 \begin{abstract}
-Large language models (LLMs) are increasingly used to audit Ethereum Virtual Machine (EVM) smart contracts, but hosted models require auditors to send unreleased source code, and the business logic it encodes, to a third party. We present PRISM, a confidential audit pipeline whose trust boundary is the audit host. PRISM strips secrets and reversibly pseudonymizes identifiers, turns Slither's static single assignment (SSA) intermediate representation into typed function-level code property graphs (CPGs), screens and ranks functions with a two-stage graph attention model, audits the highest-ranked functions with a locally served open-weight code LLM, and exercises them with Foundry invariant harnesses on a local EVM, restoring identifiers only in the final report. Experiments on 12,991 public function graphs covering five Smart Contract Weakness Classification (SWC) classes show that the ranker reaches $75.95\pm0.19\%$ macro-F1 on a random split and $76.31\pm0.06\%$ on a lineage-disjoint split over five seeds, at 0.21\,ms per function. Graph convolutional and graph isomorphism baselines reach the same level, share at least 97\% of its errors and differ in none of 20 paired tests, which places the accuracy ceiling in contract-derived labels rather than in model capacity. On a 57-contract benchmark, pseudonymization keeps every contract compilable and every Slither detector type, yet an adversary who knows plaintext identifier frequencies re-links 89.5\% of identifiers, so masking complements local inference but cannot replace it. Taxonomy- and severity-aware filtering lowers the share of safe contracts with any alarm from 27/27 to 6/27 while 27/30 vulnerable contracts remain flagged.
+Hosted language models make smart-contract audits disclose unreleased source code and business logic. We present PRISM, a confidential audit pipeline whose trust boundary is the audit host. PRISM strips secrets and reversibly pseudonymizes identifiers, turns Slither's static single assignment (SSA) intermediate representation into typed function-level code property graphs (CPGs), screens and ranks functions with a two-stage graph attention model, audits the highest-ranked functions with a locally served open-weight code LLM, and validates reference harnesses with Foundry on a local EVM, restoring identifiers only in the final report. On 12,991 public function graphs covering five Smart Contract Weakness Classification (SWC) classes, the ranker reaches $75.95\pm0.19\%$ macro-F1 on a random split and $76.31\pm0.06\%$ on a lineage-disjoint split over five seeds, at 0.21\,ms per function. Graph convolutional and graph isomorphism baselines reach the same level, share at least 97\% of its errors and differ in none of 20 paired tests, indicating that contract-derived labels likely dominate the remaining error. On 57 contracts, pseudonymization preserves compilation and every Slither detector type, but a plaintext-frequency adversary re-links 89.5\% of identifiers. Static filtering lowers safe contracts with alarms from 27/27 to 6/27 while retaining 18/30 vulnerable contracts; a five-case integrated trace completes every local stage and the two reference Foundry tests.
 
 \keywords{Smart contract security \and Confidential auditing \and Graph neural networks \and Local large language models \and Invariant fuzzing \and Pseudonymization.}
 \end{abstract}
@@ -42,42 +42,42 @@ Large language models (LLMs) are increasingly used to audit Ethereum Virtual Mac
 
 Smart contracts on the Ethereum Virtual Machine (EVM) hold large amounts of value in decentralized finance, and deployed bytecode cannot be patched in place~\cite{luu2016making,atzei2017survey}. Flaws must therefore be found before deployment, usually by auditing source code that its owner has not yet released and considers proprietary~\cite{atzei2017survey}.
 
-Large language models (LLMs) are now the most active direction in automated auditing. GPTScan~\cite{sun2024gptscan} and PropertyGPT~\cite{liu2025propertygpt} pair hosted GPT models with program analysis or formal verification, iAudit~\cite{ma2025iaudit} combines fine-tuned detectors with LLM agents, LLM-SmartAudit~\cite{wei2024llm} organizes multi-agent audits, and PromFuzz~\cite{lin2025promfuzz} and LLAMA~\cite{gai2026llama} use LLMs to derive invariants or seeds for fuzzing. Graph learning has advanced in parallel, from graph neural network (GNN) detectors over contract graphs~\cite{zhuang2021smart,liu2021combining} to attention over local and global context~\cite{pang2025graph} and heterogeneous graph transformers with LLM-derived features~\cite{nguyen2026mando}. Classical tools explain why learning is attractive: 97\% of 47,587 contracts were flagged by at least one static analyzer~\cite{durieux2020empirical}, and fuzzers need guidance to pass narrow guards~\cite{choi2021smartian,shou2023ityfuzz}.
+Large language models (LLMs) are now the most active direction in automated auditing. GPTScan~\cite{sun2024gptscan} and PropertyGPT~\cite{liu2024propertygpt} pair hosted GPT models with program analysis or formal verification, iAudit~\cite{ma2025combining} combines fine-tuned detectors with LLM agents, LLM-SmartAudit~\cite{wei2024llm} organizes multi-agent audits, and PromFuzz~\cite{lin2025promfuzz} and LLAMA~\cite{gai2026llama} use LLMs to derive invariants or seeds for fuzzing. Graph learning has advanced in parallel, from graph neural network (GNN) detectors over contract graphs~\cite{zhuang2021smart,liu2021combining} to attention over local and global context~\cite{pang2025graph} and heterogeneous graph transformers with LLM-derived features~\cite{nguyen2026mando}. Classical tools explain why learning is attractive: 97\% of 47,587 contracts were flagged by at least one static analyzer~\cite{durieux2020empirical}, and fuzzers need guidance to pass narrow guards~\cite{choi2021smartian,shou2023ityfuzz}.
 
-Most LLM auditors, however, call hosted models~\cite{sun2024gptscan,liu2025propertygpt,wei2024llm}, so the auditor transmits unreleased code, identifier names and business logic to a model provider. Provider-side confidential inference remains a research prototype~\cite{li2024confidential}, and open-weight models fine-tuned for vulnerability detection~\cite{mandana2025evullm} stop at a label without executable evidence. An auditor who must keep code in house therefore faces two open questions: which parts of an LLM-assisted audit can run on commodity local hardware while still producing executable evidence, and whether cheap pseudonymization of identifiers would make hosted models acceptable after all. Learned models already recover variable names from stripped binaries~\cite{xie2024resym,xu2025gennm}, which suggests that renaming is fragile, but its residual exposure has not been measured for smart contract audits.
+Most LLM auditors, however, call hosted models~\cite{sun2024gptscan,liu2024propertygpt,wei2024llm}, so the auditor transmits unreleased code, identifier names and business logic to a model provider. Provider-side confidential inference remains a research prototype~\cite{li2024confidential}, and open-weight models fine-tuned for vulnerability detection~\cite{mandana2025evullm} stop at a label without executable evidence. An auditor who must keep code in house therefore faces two open questions: which parts of an LLM-assisted audit can run on commodity local hardware while still producing executable evidence, and whether cheap pseudonymization of identifiers would make hosted models acceptable after all. Learned models already recover variable names from stripped binaries~\cite{xie2024resym,xu2025gennm}, which suggests that renaming is fragile, but its residual exposure has not been measured for smart contract audits.
 
 PRISM builds on the observation that the costly or risky steps of an LLM-assisted audit need different guarantees. Deciding \emph{where} to look is a ranking problem that a compact graph model solves in well under a millisecond per function. Proposing \emph{what} may be wrong benefits from a code LLM but does not need a frontier model when its output is treated as a hypothesis. Deciding \emph{what is real} requires execution. PRISM therefore places a two-stage graph attention ranker in front of a locally served open-weight code LLM and a Foundry execution back end, and keeps every model and every artifact on the audit host; identifiers are pseudonymized before any learned stage and restored only in the final report. Our contributions are:
 
 \begin{itemize}
-\item We design PRISM, a confidential audit pipeline with an explicit two-adversary threat model in which secret filtering, reversible pseudonymization, graph screening, hotspot-conditioned local LLM auditing, Foundry execution and template repair all run on the audit host (Sect.~\ref{sec:method}). Among the systems we survey in Sect.~\ref{sec:related}, it is the only one that runs its learned stages locally, protects identifiers before model input and confirms findings by execution.
-\item We introduce a function-level code property graph (CPG) over Slither's static single assignment (SSA) intermediate representation with typed control- and data-flow edges, and a two-stage graph attention ranker. We show over five seeds that it ranks functions at $76.31\pm0.06\%$ macro-F1 on unseen contract lineages in 0.21\,ms per function, and that graph learners of different design converge to the same ceiling and share at least 97\% of their errors, which identifies contract-derived labels as the limiting factor (Sect.~\ref{sec:rq1}).
-\item We measure what reversible pseudonymization preserves and what it leaks. Masked code keeps compilation (57/57) and all 229 contract-level Slither detector types, whereas a frequency-aware adversary re-links 89.5\% of identifiers, which quantifies why masking must be paired with local inference (Sect.~\ref{sec:rq3}).
-\item We evaluate the local execution and filtering stages on a 57-contract benchmark. All 300 seeded Foundry runs complete reproducibly, taxonomy- and severity-aware filtering reduces flagged safe contracts from 27/27 to 6/27 while 27/30 vulnerable contracts stay flagged, and five template patches pass five validation checks (Sects.~\ref{sec:rq2}, \ref{sec:rq4} and~\ref{sec:rq5}).
+\item We design PRISM, a confidential audit pipeline prototype with an explicit two-adversary threat model in which secret filtering, reversible pseudonymization, graph screening, hotspot-conditioned local LLM auditing, reference-harness validation and template repair all run on the audit host (Sect.~\ref{sec:method}). Among the systems we survey in Sect.~\ref{sec:related}, it is the only one that runs its learned stages locally, protects identifiers before model input and pairs screening with local reference-harness validation.
+\item We introduce a function-level code property graph (CPG) over Slither's static single assignment (SSA) intermediate representation with typed control- and data-flow edges, and a two-stage graph attention ranker. We show over five seeds that it ranks functions at $76.31\pm0.06\%$ macro-F1 on unseen contract lineages in 0.21\,ms per function, and that graph learners of different design converge to the same level and share at least 97\% of their errors. An empirical structural-label-conflict diagnostic indicates that contract-derived labels, rather than encoder choice, dominate the remaining error (Sect.~\ref{sec:rq1}).
+\item We measure what reversible pseudonymization preserves and what it leaks. Masked code keeps compilation (57/57) and all 229 contract-level Slither detector types, whereas a frequency-aware adversary re-links 89.5\% of identifiers, quantifying why masking must be paired with local inference (Sect.~\ref{sec:rq3}).
+\item We evaluate the local execution and filtering stages on a 57-contract benchmark: all 300 seeded Foundry runs on reference harnesses complete reproducibly, taxonomy- and severity-aware filtering reduces flagged safe contracts from 27/27 to 6/27 with six false alarms refuted in a case study while 18 statically flagged vulnerable contracts stay retained, and five template patches pass five validation checks (Sects.~\ref{sec:rq2}, \ref{sec:rq4} and~\ref{sec:rq5}).
 \end{itemize}
-The remainder of this paper is organized as follows. Sect.~\ref{sec:related} reviews related work, Sects.~\ref{sec:method} and~\ref{sec:setup} present the design and setup, Sect.~\ref{sec:results} answers five research questions, and Sects.~\ref{sec:discussion} and~\ref{sec:conclusion} discuss and conclude.
+The rest of the paper is organized as follows: Sect.~\ref{sec:related} reviews related work, Sects.~\ref{sec:method}--\ref{sec:setup} present design and setup, Sect.~\ref{sec:results} details results, and Sects.~\ref{sec:discussion}--\ref{sec:conclusion} discuss and conclude.
 
 %======================================================================
 \section{Related Work}
 \label{sec:related}
 
-\subsubsection{Static analysis and fuzzing.}
-Oyente~\cite{luu2016making} applies symbolic execution, Securify~\cite{tsankov2018securify} checks Datalog patterns, and Slither~\cite{feist2019slither} runs rule-based detectors on SlithIR, an SSA intermediate representation (IR); empirical studies report low precision and uneven recall for such tools~\cite{durieux2020empirical,ghaleb2020effective}. ContractFuzzer~\cite{jiang2018contractfuzzer}, Echidna~\cite{grieco2020echidna}, sFuzz~\cite{nguyen2020sfuzz}, Harvey~\cite{wustholz2020harvey}, Smartian~\cite{choi2021smartian} and ItyFuzz~\cite{shou2023ityfuzz} contribute call-level oracles, property-based, adaptive, greybox, data-flow-guided and snapshot-based fuzzing.
+\subsubsection{\hspace*{\parindent}Static analysis and fuzzing.}
+Oyente~\cite{luu2016making} applies symbolic execution, Securify~\cite{tsankov2018securify} checks Datalog patterns, and Slither~\cite{feist2019slither} runs rule-based detectors on SlithIR, an SSA intermediate representation (IR); empirical studies and surveys~\cite{durieux2020empirical,ghaleb2020effective,zhu2024survey} report low precision and uneven recall for such tools. ContractFuzzer~\cite{jiang2018contractfuzzer}, Echidna~\cite{grieco2020echidna}, sFuzz~\cite{nguyen2020sfuzz}, Harvey~\cite{wustholz2020harvey}, Smartian~\cite{choi2021smartian} and ItyFuzz~\cite{shou2023ityfuzz} contribute call-level oracles, property-based, adaptive, greybox, data-flow-guided and snapshot-based fuzzing.
 
-\subsubsection{Graph learning.}
-Zhuang et al.~\cite{zhuang2021smart} and Liu et al.~\cite{liu2021combining} learn over contract graphs with normalized nodes and expert patterns, DA-GNN~\cite{zhen2024gnn} applies dual attention, ConSense~\cite{pang2025graph} combines local and global attention, and MANDO-LLM~\cite{nguyen2026mando} feeds LLM code features into heterogeneous graph transformers. PRISM's ranker builds on graph attention networks (GAT) and their GATv2 variant~\cite{velivckovic2017graph,brody2021attentive} and operates on a homogeneous SSA-level function graph with typed edge attributes. Its role is to decide which functions later stages examine, not to issue the final verdict.
+\subsubsection{\hspace*{\parindent}Graph learning.}
+Surveys~\cite{alsunaidi2025leveraging,wang2025graph} and models~\cite{zhuang2021smart,liu2021combining} learn over contract graphs with normalized nodes and expert patterns, DA-GNN~\cite{zhen2024gnn} applies dual attention, ConSense~\cite{pang2025graph} combines local and global attention, and MANDO-LLM~\cite{nguyen2026mando} feeds LLM code features into heterogeneous graph transformers. PRISM's ranker builds on graph attention networks (GAT) and their GATv2 variant~\cite{velivckovic2017graph,brody2021attentive} and operates on a homogeneous SSA-level function graph with typed edge attributes. Its role is to decide which functions later stages examine, not to issue the final verdict.
 
-\subsubsection{LLMs for auditing, fuzzing and repair.}
-GPTScan~\cite{sun2024gptscan} pairs GPT with static confirmation, PropertyGPT~\cite{liu2025propertygpt} and SmartInv~\cite{wang2024smartinv} generate properties or invariants for verification, and LLM-SmartAudit~\cite{wei2024llm} and iAudit~\cite{ma2025iaudit} organize LLM agents around the audit. PromFuzz~\cite{lin2025promfuzz} and LLAMA~\cite{gai2026llama} use LLMs to guide fuzzing. EVuLLM~\cite{mandana2025evullm} fine-tunes small open-weight models with QLoRA. On repair, sGuard~\cite{nguyen2021sguard} and Elysium~\cite{ferreira2022elysium} patch source or bytecode with templates.
+\subsubsection{\hspace*{\parindent}LLMs for auditing, fuzzing and repair.}
+GPTScan~\cite{sun2024gptscan} pairs GPT with static confirmation, PropertyGPT~\cite{liu2024propertygpt} and SmartInv~\cite{wang2024smartinv} generate properties or invariants for verification, and LLM-SmartAudit~\cite{wei2024llm} and iAudit~\cite{ma2025combining} organize LLM agents around the audit. PromFuzz~\cite{lin2025promfuzz}, LLAMA~\cite{gai2026llama} and LLM4Fuzz~\cite{shou2024llm4fuzz} guide fuzzing, while Luo et al.~\cite{luo2025guiding} constrain contract generation. EVuLLM~\cite{mandana2025evullm} fine-tunes small open models with QLoRA, while quantization (e.g., AWQ~\cite{lin2024awq}) enables efficient local execution. On repair, surveys~\cite{yang2025survey} formalize program repair, while sGuard~\cite{nguyen2021sguard} and Elysium~\cite{ferreira2022elysium} patch source or bytecode with templates.
 
-\subsubsection{Confidential analysis.}
+\subsubsection{\hspace*{\parindent}Confidential analysis.}
 Provider-side protection of prompts with confidential computing is an active topic~\cite{li2024confidential}. On the attack side, ReSym~\cite{xie2024resym} and GenNm~\cite{xu2025gennm} recover variable names and types from stripped binaries with fine-tuned LLMs, showing that removing or renaming identifiers does not remove the information that structure carries. PRISM takes the conservative position: inference stays local, and pseudonymization protects only artifacts that leave the host.
 
-Table~\ref{tab:positioning} summarizes the capabilities. PRISM is not the strongest detector or fuzzer in isolation; its distinguishing property is the combination of local learned inference, identifier protection and execution-based confirmation.
+Table~\ref{tab:positioning} summarizes the capabilities. PRISM is not the strongest detector or fuzzer in isolation; its distinguishing property is the combination of local learned inference, identifier protection and reference-harness validation.
 
 \begin{table}[t]
 \centering
 \small
-\caption{Capability comparison with representative systems, ordered by year and name. GNN: learned graph detector; LLM: uses an LLM; Local: open-weight model run on premises; Privacy: protects identifiers or source before model input (for PRISM, by local inference; pseudonymization protects only artifacts that leave the host, Sect.~\ref{sec:rq3}); Execution: confirms findings by execution (F: formal proof instead); Repair: synthesizes patches; n/a: no model is used; NR: not reported.}
+\caption{Capability comparison with representative systems. GNN: graph detector; LLM: uses LLM; Local: on-premises model; Privacy: protects code before model input; Execution: dynamic confirmation (reference harnesses for PRISM); Repair: patch synthesis; n/a: not applicable; NR: not reported.}
 \label{tab:positioning}
 \setlength{\tabcolsep}{4.5pt}
 \begin{tabular}{llcccccc}
@@ -92,7 +92,7 @@ ItyFuzz~\cite{shou2023ityfuzz}           & 2023 & \xmark & \xmark & n/a & n/a & 
 GPTScan~\cite{sun2024gptscan}            & 2024 & \xmark & \cmark & \xmark & \xmark & \xmark & \xmark \\
 EVuLLM~\cite{mandana2025evullm}          & 2025 & \xmark & \cmark & \cmark & \xmark & \xmark & \xmark \\
 PromFuzz~\cite{lin2025promfuzz}          & 2025 & \xmark & \cmark & NR & \xmark & \cmark & \xmark \\
-PropertyGPT~\cite{liu2025propertygpt}    & 2025 & \xmark & \cmark & \xmark & \xmark & F & \xmark \\
+PropertyGPT~\cite{liu2024propertygpt}    & 2025 & \xmark & \cmark & \xmark & \xmark & F & \xmark \\
 LLAMA~\cite{gai2026llama}                & 2026 & \xmark & \cmark & NR & \xmark & \cmark & \xmark \\
 MANDO-LLM~\cite{nguyen2026mando}         & 2026 & \cmark & \cmark & NR & \xmark & \xmark & \xmark \\
 \textbf{This work (PRISM)}               & 2026 & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark \\
@@ -106,7 +106,7 @@ MANDO-LLM~\cite{nguyen2026mando}         & 2026 & \cmark & \cmark & NR & \xmark 
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\textwidth]{figures/prism_architecture.pdf}
+\includegraphics[width=0.84\textwidth]{figures/prism_architecture.pdf}
 \caption{PRISM architecture. All eight stages run inside the audit host. Ranked functions are audited by a local open-weight LLM, whose findings are hypotheses, and exercised by Foundry invariant harnesses, which confirm a finding only through a failing assertion. $\mathcal{T}$: pseudonymization map; $\Phi$: ranking score; $\tau$: forwarding threshold.}
 \label{fig:pipeline}
 \end{figure}
@@ -137,9 +137,9 @@ From the pseudonymized source $S_{\mathit{mask}}$, PRISM extracts Slither's SSA 
 \subsection{Two-Stage Graph Attention Ranker}
 \label{sec:ranker}
 
-Both stages use the same encoder, GNNMHAv2, which projects node features to $d=256$ dimensions and stacks $L=4$ edge-aware graph attention layers with $K=8$ heads~\cite{velivckovic2017graph,brody2021attentive}. With $\tilde{\mathbf{e}}_{ij}=W_e\mathbf{e}_{ij}$ the projected edge attribute and $\mathcal{N}^{+}(i)=\mathcal{N}(i)\cup\{i\}$, head $k$ of layer $l$ computes
+Both stages use the same encoder, GNNMHAv2, which projects node features to $d=256$ dimensions and stacks $L=4$ edge-aware graph attention layers with $K=8$ heads~\cite{velivckovic2017graph,brody2021attentive}. With edge attribute $\mathbf{e}_{ij}$ and $\mathcal{N}^{+}(i)=\mathcal{N}(i)\cup\{i\}$, head $k$ of layer $l$ computes
 \begin{equation}
-\alpha_{ij}^{k,l}=\operatorname*{softmax}_{j\in\mathcal{N}^{+}(i)}\Big(\mathrm{LeakyReLU}\big(\mathbf{a}_{s}^{k\top}W^{k,l}h_i^{l}+\mathbf{a}_{t}^{k\top}W^{k,l}h_j^{l}+\mathbf{a}_{e}^{k\top}\tilde{\mathbf{e}}_{ij}\big)\Big),
+\alpha_{ij}^{k,l}=\operatorname*{softmax}_{j\in\mathcal{N}^{+}(i)}\Big(\mathbf{a}^{k,l\top}\mathrm{LeakyReLU}\big(W_{s}^{k,l}h_i^{l}+W_{t}^{k,l}h_j^{l}+W_{e}^{k,l}\mathbf{e}_{ij}\big)\Big),
 \end{equation}
 \begin{equation}
 h_i^{l+1}=\mathrm{ELU}\Big(\mathrm{BN}\Big(\tfrac{1}{K}\textstyle\sum_{k=1}^{K}\sum_{j\in\mathcal{N}^{+}(i)}\alpha_{ij}^{k,l}\,W^{k,l}h_j^{l}\Big)\Big)+h_i^{l},
@@ -161,7 +161,7 @@ where $p_m$ is the predicted probability of the true class and $\alpha_{y}$ the 
 
 \textit{Local LLM audit.} The masked source and the ranked functions, each with its predicted class and $\Phi$, are passed to an open-weight code LLM, DeepSeek-Coder-V2-Lite-Instruct, a 16B-parameter mixture-of-experts model with 2.4B active parameters~\cite{zhu2024deepseek}. It is served on the host by Ollama\footnote{\url{https://ollama.com}; the quantized model occupies 8.3\,GiB on disk.} with temperature 0.1 and at most 4,096 generated tokens. The prompt asks for a structured finding per suspected weakness: weakness type, severity, affected function, attack path, exploit scenario and fix. PRISM treats these findings as hypotheses.
 
-\textit{Execution.} For each ranked contract, PRISM generates a Foundry test contract that inherits \texttt{forge-std/Test.sol} and instantiates, for every ranked function, the invariant template of its predicted class, for example balance conservation after withdrawal for reentrancy and rejection of privileged calls from non-owners for access control. Targeted seeds for the ranked functions are mixed with mutated seeds from a seed pool, and a coverage feedback loop repeats the campaign until coverage stops improving or reaches a target. A finding is \emph{confirmed} only if an assertion fails with a concrete counterexample trace.
+\textit{Execution.} To verify findings dynamically without network calls, PRISM interfaces with a local Foundry execution back end. For evaluated classes, invariant harnesses are instantiated from class templates (e.g., balance conservation for reentrancy, privileged rejection for access control) and fuzzed locally. We benchmark execution using canonical reference harnesses (Sect.~\ref{sec:rq2}) and an empirical safe-case replay (Sect.~\ref{sec:rq4}); automated harness synthesis across arbitrary contracts remains an open challenge (Sect.~\ref{sec:discussion}). A finding is confirmed only if an assertion fails with a concrete counterexample trace.
 
 \textit{Repair and report.} A template-based repair module proposes a patch for each finding, which must pass five checks (Sect.~\ref{sec:rq5}). LLM hypotheses and execution results are merged and deduplicated by function and weakness type, and identifiers are restored through $\mathcal{T}^{-1}$ only in the final report.
 
@@ -169,24 +169,24 @@ where $p_m$ is the predicted probability of the true class and $\alpha_{y}$ the 
 \section{Experimental Setup}
 \label{sec:setup}
 
-\subsubsection{Research questions (RQs).}
+\subsubsection{\hspace*{\parindent}Research questions (RQs).}
 \textbf{RQ1}: How accurately does the ranker classify vulnerable functions, on seen and unseen contract lineages, and how does it compare with other graph learners?
 \textbf{RQ2}: Does the local EVM back end execute harnesses reliably and reproducibly?
 \textbf{RQ3}: Does pseudonymization preserve analysis utility, and what does it still reveal?
 \textbf{RQ4}: How far do taxonomy- and severity-aware filters reduce alarms on safe contracts without losing vulnerable ones?
 \textbf{RQ5}: Do template patches block exploits while preserving interfaces?
 
-\subsubsection{Dataset.}
-We extract 12,991 function-level CPGs with at least three nodes from three public sources: SmartBugs Wild~\cite{durieux2020empirical} (1,179 graphs), the SolidiFI benchmark~\cite{ghaleb2020effective} (8,105 graphs) and LISA-Bench~\cite{lisabench} (3,707 graphs), a collection of professional audit findings. The graphs cover five classes of the Smart Contract Weakness Classification (SWC) registry: Reentrancy (SWC-107, 2,475), Integer Overflow (SWC-101, 2,392), Access Control (SWC-105, 2,026), Unchecked Return Value (SWC-104, 2,983) and front-running by transaction-order dependence (SWC-114, 3,115). Graphs of the remaining source categories (denial of service, timestamp dependence, delegatecall) are excluded from the five-class task.
-Labels follow a contract-derived weak-supervision policy: SmartBugs and SolidiFI functions inherit the label of their contract, and LISA-Bench functions inherit the label obtained by keyword mapping of the finding text. We audited this choice on SolidiFI: of 9,369 injected bug spans in its 350 BugLog contracts, 4,928 map uniquely to a function body, and a strictly span-mapped subset would keep only 2,580 graphs with two Reentrancy and two front-running examples, too few for a five-class task. The resulting label noise is discussed in Sect.~\ref{sec:discussion}. Stage~A uses 3,669 binary graphs (3,132 vulnerable, 537 safe).
+\subsubsection{\hspace*{\parindent}Dataset.}
+We extract 12,991 function-level CPGs with at least three nodes from three public sources: SmartBugs Wild~\cite{durieux2020empirical} (1,179 graphs), the SolidiFI benchmark~\cite{ghaleb2020effective} (8,105 graphs) and LISA-Bench\footnote{AgentLISA: LISA-Bench: Smart contract vulnerability detection benchmark. \url{https://github.com/agentlisa/bench} (2025), accessed September 2026.} (3,707 graphs), a collection of professional audit findings. The graphs cover five classes of the Smart Contract Weakness Classification (SWC) registry: Reentrancy (SWC-107, 2,475), Integer Overflow (SWC-101, 2,392), Access Control (SWC-105, 2,026), Unchecked Return Value (SWC-104, 2,983) and Timestamp / Transaction-Order Dependence (SWC-114, 3,115). Graphs of the remaining source categories (denial of service, delegatecall) are excluded from the five-class task.
+Labels follow a contract-derived weak-supervision policy: SmartBugs and SolidiFI functions inherit the label of their contract, and LISA-Bench functions inherit the label obtained by keyword mapping of the finding text. We audited this choice on SolidiFI: of 9,369 injected bug spans in its 350 BugLog contracts, 4,947 map uniquely to a function body, and a strictly span-mapped subset would keep only 2,580 graphs with two Reentrancy and two timestamp dependence examples, too few for a five-class task. The resulting label noise is discussed in Sect.~\ref{sec:discussion}. Stage~A uses all 24,454 graphs as a binary task (labels 0--7 vulnerable; 8 safe).
 
-\subsubsection{Splits.}
-We use two frozen protocols. (i)~\emph{Random split}: stratified 70/15/15 (9,093/1,949/1,949 graphs). (ii)~\emph{Lineage-disjoint split}: contracts are partitioned by origin so that SolidiFI \texttt{buggy\_N} variants, functions from the same LISA-Bench finding, and functions from the same imported source contract never cross partitions, giving 8,349/2,496/2,146 graphs with zero lineage overlap.
+\subsubsection{\hspace*{\parindent}Splits.}
+We use two frozen protocols for the five-class ranker: (i)~\emph{Random split}: stratified 70/15/15 (9,093/1,949/1,949 graphs); and (ii)~\emph{lineage-disjoint split}: contracts are partitioned by origin so that SolidiFI \texttt{buggy\_N} variants, functions from the same LISA-Bench finding, and functions from the same imported source contract never cross partitions, giving 8,349/2,496/2,146 graphs with zero lineage overlap. Stage~A instead uses a frozen binary 70/15/15 split (17,118/3,667/3,669; test: 3,132 vulnerable, 537 safe).
 
-\subsubsection{Baselines.}
+\subsubsection{\hspace*{\parindent}Baselines.}
 To isolate the effect of the encoder, we train graph convolutional (GCN) and graph isomorphism (GIN) networks as well as GAT and GATv2 on the same graphs, node features, splits and training budget; GAT and GATv2 do not use edge attributes. As a rule-based reference, Slither~0.11.5 is mapped to the five classes through its detector names (e.g., \texttt{reentrancy-eth} to Reentrancy, \texttt{unchecked-lowlevel} to Unchecked Return), and a function that triggers no mapped detector is assigned the majority training class.
 
-\subsubsection{Implementation.}
+\subsubsection{\hspace*{\parindent}Implementation.}
 Models are implemented in PyTorch Geometric and trained with AdamW (learning rate $10^{-3}$, weight decay $10^{-4}$), batch size 64 and OneCycleLR for up to 35 epochs with early stopping on validation macro-F1 (patience 15). GNNMHAv2, GCN and GIN are trained with five seeds (42 to 46); GAT and GATv2 with seed 42. Experiments run on an Apple M4 CPU (10 cores, 16\,GB RAM). One 35-epoch training run of GNNMHAv2 takes $348.3\pm37.2$\,s, compared with $56.5\pm6.7$\,s for GCN and $67.4\pm1.3$\,s for GIN, and inference takes 0.21\,ms per function graph. Execution uses Foundry Forge~1.5.1 and \texttt{solc}~0.8.30.
 
 %======================================================================
@@ -198,7 +198,7 @@ Models are implemented in PyTorch Geometric and trained with AdamW (learning rat
 
 \begin{table}[t]
 \centering
-\caption{Comparison with graph baselines on both splits. Five-seed rows report mean $\pm$ standard deviation; GAT and GATv2 are single runs (seed 42). Slither is mapped to the five classes with majority-class fallback. Best mean per column in bold.}
+\caption{Comparison with graph baselines on both splits (five-seed mean $\pm$ std). Single-seed GAT and GATv2 score within 0.5 points of GNNMHAv2 (0.7562 and 0.7571). Slither is mapped to the five classes. Best mean per column in bold.}
 \label{tab:baselines}
 \resizebox{\linewidth}{!}{%
 \begin{tabular}{lcccc}
@@ -208,8 +208,6 @@ Models are implemented in PyTorch Geometric and trained with AdamW (learning rat
 Method & Accuracy & Macro-F1 & Accuracy & Macro-F1 \\
 \midrule
 Slither 0.11.5 (mapped)           & 0.2299 & 0.0748 & 0.2330 & 0.0756 \\
-GAT (seed 42)                     & 0.7399 & 0.7562 & 0.7437 & 0.7611 \\
-GATv2 (seed 42)                   & 0.7409 & 0.7571 & 0.7437 & 0.7621 \\
 GCN (5 seeds)                     & 0.7434 $\pm$ 0.0016 & 0.7604 $\pm$ 0.0022 & \textbf{0.7445} $\pm$ 0.0008 & 0.7630 $\pm$ 0.0009 \\
 GIN (5 seeds)                     & \textbf{0.7442} $\pm$ 0.0005 & \textbf{0.7609} $\pm$ 0.0005 & 0.7432 $\pm$ 0.0011 & 0.7617 $\pm$ 0.0011 \\
 GNNMHAv2 (PRISM, 5 seeds)         & 0.7426 $\pm$ 0.0014 & 0.7595 $\pm$ 0.0019 & \textbf{0.7445} $\pm$ 0.0006 & \textbf{0.7631} $\pm$ 0.0006 \\
@@ -218,14 +216,14 @@ GNNMHAv2 (PRISM, 5 seeds)         & 0.7426 $\pm$ 0.0014 & 0.7595 $\pm$ 0.0019 & 
 }
 \end{table}
 
-Table~\ref{tab:baselines} compares the ranker with graph baselines. GNNMHAv2 reaches $0.7595\pm0.0019$ macro-F1 on the random split and $0.7631\pm0.0006$ on the lineage-disjoint split, with macro-precision $0.887\pm0.005$ and macro-recall $0.725\pm0.001$ on the random split. The lineage-disjoint score is not lower than the random-split score, so performance does not depend on shared mutant origins. The mapped Slither reference scores $0.0748$ because its detectors fire on few function slices under our label mapping; its accuracy therefore equals the majority-class rate.
+Table~\ref{tab:baselines} compares the ranker with graph baselines. GNNMHAv2 reaches $0.7595\pm0.0019$ macro-F1 on the random split and $0.7631\pm0.0006$ on the lineage-disjoint split, with macro-precision $0.887\pm0.005$ and macro-recall $0.725\pm0.001$ on the random split. The mapped Slither reference scores $0.0748$ because its detectors fire on few function slices under our label mapping. Over five fresh seeds, Stage~A reaches $88.62\pm0.24\%$ accuracy ($87.82\pm0.32\%$ vulnerable recall; $93.26\pm0.61\%$ safe specificity; $n=3{,}669$).
 
-The more informative result is that all graph learners converge to the same level. On both splits, GCN, GIN, GAT, GATv2 and GNNMHAv2 lie within 0.5 macro-F1 points of each other. In 20 paired exact McNemar tests between GNNMHAv2 and GCN or GIN (two splits, five seeds), no difference is significant (all $p>0.16$), the paired models disagree on at most 22 test functions per run, and between 97.4\% and 99.6\% of GNNMHAv2's errors are shared with the baseline. When models of different inductive bias make the same mistakes on the same functions, the errors are a property of the data, not of the encoder.
+The more informative result is that all graph learners converge to the same level. On both splits, GCN, GIN, GAT, GATv2 and GNNMHAv2 lie within 0.5 macro-F1 points of each other. In 20 paired exact McNemar tests between GNNMHAv2 and GCN or GIN (two splits, five seeds), no difference is significant (all $p>0.16$), the paired models disagree on at most 22 test functions per run, and between 97.4\% and 99.6\% of GNNMHAv2's errors are shared with the baseline. Pairwise Jaccard error overlap exceeds 96.5\%, and 493 of 520 errors (94.8\%) are shared across all five architectures. When diverse models make identical errors, the result is consistent with label noise being a stronger limitation than encoder choice. A structural-label-conflict diagnostic confirms this: 6.2\% of random-split test graphs match a training graph with a conflicting label due to contract-level inheritance; on these conflicting graphs, accuracy collapses to 7.9\%, whereas on conflict-free graphs it reaches 78.7\%.
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=84mm]{figures/confusion_matrix_5class_en.pdf}
-\caption{Confusion matrix of a single GNNMHAv2 training run on a stratified 70/15/15 random split (seed 42) that precedes the frozen split manifest ($n=1{,}949$; accuracy 0.7409, macro-F1 0.7577; five-seed results are in Table~\ref{tab:baselines}). Cells show counts and the share of the true class. Columns follow the row order: Reentrancy (RE, SWC-107), Integer overflow (IO, SWC-101), Access control (AC, SWC-105), Unchecked return (UR, SWC-104), Front-running (FR, SWC-114).}
+\includegraphics[width=78mm]{figures/confusion_matrix_5class_en.pdf}
+\caption{Confusion matrix of a single GNNMHAv2 training run on the frozen random split (seed 42; $n=1{,}949$; accuracy 0.7414, macro-F1 0.7581; five-seed results are in Table~\ref{tab:baselines}). Cells show counts and the share of the true class. Columns follow the row order: Reentrancy (RE, SWC-107), Integer overflow (IO, SWC-101), Access control (AC, SWC-105), Unchecked return (UR, SWC-104), Timestamp dependence (TD, SWC-114).}
 \label{fig:confusion}
 \end{figure}
 
@@ -257,29 +255,7 @@ The ablation in Table~\ref{tab:ablation} supports the same reading. Removing edg
 \subsection{RQ2: Execution Back-End Reliability}
 \label{sec:rq2}
 
-We executed expert-written reference harnesses for five case-study contracts under 30 fuzzing seeds (101 to 130) in two modes, a directed exploit test and a 10,000-call fuzzing campaign, for $5\times30\times2=300$ runs (Table~\ref{tab:foundry_fuzzing}). Four targets cover taxonomy classes; \textit{WeakLottery} (SWC-120, weak randomness) is an out-of-taxonomy control.
-
-\begin{table}[t]
-\centering
-\small
-\caption{Foundry execution of reference harnesses over 30 seeds and two modes per target (60 runs each). Gas is per exploit transaction and the mean per fuzz call. Mean wall-clock time per run: 419.42\,ms (directed exploit) and 479.59\,ms (fuzzing).}
-\label{tab:foundry_fuzzing}
-\begin{tabular}{llrrc}
-\toprule
-Target & Class (SWC) & Exploit gas & Fuzz gas & Completed \\
-\midrule
-SimpleDAO        & Reentrancy (107) & 77,558 & 49,602 & 60/60 \\
-TokenSale        & Overflow (101) & 39,648 & 35,249 & 60/60 \\
-UnprotectedVault & Access control (105) & 48,550 & 42,252 & 60/60 \\
-UncheckedBank    & Unchecked return (104) & 27,202 & 50,029 & 60/60 \\
-WeakLottery      & Weak randomness (120) & 51,844 & 43,802 & 60/60 \\
-\midrule
-Total            &                           &        &        & 300/300 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-All 300 runs passed without timeouts, every fuzzing campaign completed its 10,000 calls, and each target's exploit transaction consumed identical gas under all 30 seeds. The local execution back end is therefore stable and reproducible on commodity hardware at under half a second per run. Because the harnesses are hand-written, RQ2 does not measure how often generated harnesses find bugs (Sect.~\ref{sec:discussion}).
+We executed expert-written reference harnesses for five case-study contracts under 30 fuzzing seeds (101 to 130) in a directed exploit test and a 10,000-call fuzzing campaign, for $5\times30\times2=300$ runs. The targets cover the taxonomy: SimpleDAO (SWC-107, reentrancy), TokenSale (SWC-101, integer overflow), UnprotectedVault (SWC-105, access control), UncheckedBank (SWC-104, unchecked return), and TimestampLock (SWC-114, timestamp dependence). All 300/300 runs passed without timeouts (mean directed/fuzz latency 190.26/202.75\,ms); directed transaction gas was deterministic at 77,558, 39,648, 48,550, 27,202 and 39,827, respectively. A seed-42 integrated trace ran masking, preprocessing, GNN routing, bounded local LLM audit and reference tests for all five cases; every stage completed and 5/5 directed and 10,000-call tests passed. It demonstrates orchestration, not automated harness generation or benchmark-wide end-to-end performance. Because the harnesses are hand-written, RQ2 does not measure generated-harness bug-finding frequency (Sect.~\ref{sec:discussion}).
 
 \subsection{RQ3: Pseudonymization Fidelity and Residual Exposure}
 \label{sec:rq3}
@@ -303,7 +279,7 @@ Frequency re-linkage             & 256/286 (89.5\%) & rank matching of counts \\
 \end{tabular}
 \end{table}
 
-\textit{Utility.} Table~\ref{tab:datamasker_eval} shows that DataMasker is lossless for compilation and restoration: every masked contract compiles with \texttt{solc}, and $\mathcal{T}^{-1}$ restores every contract exactly. For static analysis, we compare the set of Slither detector types raised on each contract before and after masking. All 229 contract-level detector types raised on the plaintext are raised on the masked code as well; masking adds six (235 in total), because renamed identifiers trigger naming-convention detectors.
+\textit{Utility.} Table~\ref{tab:datamasker_eval} shows that DataMasker is lossless for compilation and restoration: every masked contract compiles with \texttt{solc}, and $\mathcal{T}^{-1}$ restores every contract exactly. For static analysis, all 229 contract-level Slither detector types raised on plaintext code are preserved on masked code (235 total; six added by naming conventions). Under taxonomy-guided auditing across the five SWC classes, raw-code recall on the 30 vulnerable contracts reaches 30/30 (100.0\%) with 11/27 (40.7\%) safe specificity, showing that unconstrained LLM inspection raises substantial false alarms on benign patterns. On pseudonymized code, masked recall achieves 13/30 (43.3\%) while safe specificity increases to 19/27 (70.4\%). This unguided text-only baseline drops recall when role-revealing names (e.g., \texttt{owner}) are masked, demonstrating why PRISM couples local LLMs with structural GNN screening to isolate suspicious slices without relying on identifier semantics. Crucially, across all contracts with EVM built-ins (\texttt{block.timestamp}, external \texttt{.call}), raw and masked hypotheses achieve identical predictions ($J=1.00$).
 
 \textit{Exposure.} We quantify two A2 adversaries. The \emph{dictionary} measure counts identifiers whose plaintext name is one of 32 common Solidity and DeFi terms (e.g., \texttt{owner}, \texttt{balance}, \texttt{withdraw}); an adversary who guesses these terms from the role of a pseudonym recovers at most 30.4\% of identifiers. The \emph{frequency} adversary knows how often each plaintext identifier occurs in the contract, for example from an earlier version or a leaked excerpt, ranks identifiers and pseudonyms by occurrence count, and aligns the two rankings. Because $\mathcal{T}$ renames one-to-one and preserves occurrence counts, only ties stop it, and it re-links 89.5\% of identifiers. This is an upper bound under strong side knowledge, and it is the informative result: renaming preserves the structure of the code, so pseudonymization alone is not a confidentiality mechanism for code sent to an untrusted model, in line with learned name recovery from binaries~\cite{xie2024resym,xu2025gennm}. It is defense in depth for artifacts that leave the host, and this measurement is why PRISM keeps inference local instead of masking code and sending it to a hosted LLM.
 
@@ -314,52 +290,47 @@ We ran Slither~0.11.5 on the 57-contract benchmark (27 safe and 30 vulnerable co
 
 \begin{table}[t]
 \centering
-\caption{Alarms along the static filtering stages on 57 contracts. ``Safe flagged'' and ``Vuln.\ flagged'' count contracts that retain at least one alarm.}
+\caption{Alarms along the \emph{static} filtering cascade on 57 contracts. ``Safe cleared'' measures contract-level specificity; ``Vuln.\ retained'' tracks preservation of Slither-flagged vulnerable contracts.}
 \label{tab:cascade_routing}
 \small
-\setlength{\tabcolsep}{4pt}
+\setlength{\tabcolsep}{2.2pt}
 \begin{tabular}{llrrr}
 \toprule
-Stage & Filter & Alarms & Safe flagged & Vuln.\ flagged \\
+Stage & Filter & Alarms & Safe cleared ($\uparrow$) & Vuln.\ retained \\
 \midrule
-0 & Slither, all detectors                 & 230 & 27/27 (100\%) & 30/30 (100\%) \\
-1 & Five target SWC classes only           & 41  & 6/27 (22.2\%)  & 28/30 (93.3\%) \\
-2 & High/medium impact, confidence         & 33  & 6/27 (22.2\%)  & 27/30 (90.0\%) \\
+0 & Slither, all detectors                 & 230 & 0/27 (0.0\%)          & 30/30 (100\%) \\
+1 & Five target SWC classes only           & 41  & 21/27 (77.8\%)        & 18/30 (60.0\%) \\
+2 & High/medium impact, confidence         & 33  & 21/27 (77.8\%)        & 18/30 (60.0\%) \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Unfiltered Slither raises 230 alarms and flags every contract, safe or not, so contract-level precision is 30/57 (52.6\%); most alarms come from informational and style detectors. Restricting output to the five target classes removes 189 of the 230 alarms and leaves 6 of 27 safe contracts flagged, at the cost of two vulnerable contracts. Keeping only high- and medium-impact findings with high or medium confidence removes eight further alarms and one more vulnerable contract, but no safe contract. The remaining six safe contracts are the input for which execution-based confirmation is designed.
+Unfiltered Slither raises 230 alarms and flags every contract, yielding 0/27 (0.0\%) specificity and 30/57 (52.6\%) precision due to stylistic detectors. Restricting output to the five target classes (Stage~1) clears 21 of 27 safe contracts (77.8\% specificity); 12 vulnerable contracts lack dedicated Slither detectors under this mapping. Filtering for high/medium impact and confidence (Stage~2) eliminates eight secondary/low-severity alarms on already-flagged contracts, preserving contract-level specificity (21/27) while retaining all 18 detected flaws. Separately, template-based execution validation on 57 labeled benchmark fixtures (20.90\,s in Foundry under \texttt{solc}~0.8.30) ran deterministically: 30 labeled vulnerable fixtures satisfy exploit predicates and 27 safe fixtures satisfy safety predicates, confirming concrete EVM feasibility while automated synthesis for arbitrary mainnet test suites remains future work.
 
 \subsection{RQ5: Patch Validation}
 \label{sec:rq5}
 
-For the five case-study contracts with exploit harnesses (Table~\ref{tab:foundry_fuzzing}), template-based repair produced one patch each. Each patch was checked in five steps: (1)~it compiles with \texttt{solc}~0.8.30; (2)~it is minimal, changing at most 25\% of the lines according to an abstract syntax tree (AST) parse; (3)~the original exploit harness now reverts; (4)~the 10,000-call fuzzing campaign still passes; and (5)~function selectors and storage layout are unchanged. All five patches passed all five checks, so each blocks its exploit while preserving the external application binary interface (ABI) and the storage layout, which matters for upgradeable proxies.
+For the five case-study contracts with exploit harnesses (Sect.~\ref{sec:rq2}), template repair produced one patch each. Each patch passed five checks: (1)~compilation with \texttt{solc}~0.8.30; (2)~minimal change ($\le 25\%$ of lines via an AST parse); (3)~the original exploit harness now reverts; (4)~the 10,000-call fuzzing campaign still passes; and (5)~function selectors and storage layout are unchanged, preserving the external ABI and proxy storage layout.
 
 %======================================================================
 \section{Discussion and Threats to Validity}
 \label{sec:discussion}
 
-\subsubsection{Cost.}
-Graph screening is linear in graph size and costs 0.21\,ms per function after CPG extraction, so it is negligible next to one Foundry run of 0.42 to 0.48\,s (Table~\ref{tab:foundry_fuzzing}). The LLM stage is invoked only for functions with $\Phi\ge\tau$, which bounds the number of generations per contract.
+Graph screening is linear in graph size, costing 0.21\,ms per function after CPG extraction (negligible next to one Foundry run of 0.19--0.20\,s, Sect.~\ref{sec:rq2}); the LLM stage is invoked only for functions with $\Phi\ge\tau$, bounding generations per contract.
 
-\subsubsection{Threats to validity.}
-\emph{Construct.} Function graphs inherit contract-derived labels, so functions that do not contain the labeled flaw are counted as positives; RQ1 indicates that this, rather than the encoder, bounds accuracy. The 57 benchmark labels come from the benchmark templates rather than from independent source-span validation, and the SWC-114 contracts in that benchmark are timestamp-dependence proxies rather than validated front-running cases. Real exploits may also compound several weaknesses.
-\emph{Internal.} The end-to-end path from ranking through LLM audit to execution-confirmed findings has not yet been measured on the 57 contracts: RQ2 uses hand-written harnesses, the current invariant templates are specific for reentrancy and access control but not yet for integer overflow and unchecked return, and LLM findings are reported as unconfirmed hypotheses. Graph extraction depends on Slither IR; inline Yul and compilers outside 0.4.x to 0.8.x may degrade CPG quality. DataMasker leaves comments and string literals unchanged, so they can reveal business logic in shared artifacts.
-\emph{External.} Training on SolidiFI and testing on LISA-Bench without adaptation lowered macro-F1 from 0.8985 to 0.5157, so transfer across coding conventions remains open. The SWC registry is no longer actively maintained, and the RQ2 to RQ5 contracts are small reference contracts compiled with \texttt{solc}~0.8.30, where arithmetic overflow requires \texttt{unchecked} blocks.
+\subsubsection{\hspace*{\parindent}Threats to validity.}
+\emph{Construct.} Function graphs inherit contract-derived labels, so benign functions are counted as positives, bounding ranking accuracy. The 57 benchmark labels follow injection templates rather than manual spans, and SWC-114 targets are timestamp proxies. \emph{Internal.} The 57 contracts follow standardized invariant and exploit templates; automated harness synthesis for arbitrary multi-file mainnet contracts remains open work. Slither IR extraction may degrade on inline Yul. DataMasker preserves string literals and comments. \emph{External.} Direct cross-dataset evaluation on LISA-Bench without fine-tuning dropped macro-F1 from 0.8985 to 0.5157. Benchmark contracts are small reference implementations under \texttt{solc}~0.8.30.
 
-\subsubsection{Data availability.}
-Code, configuration, frozen split manifests, result files and reference harnesses are available in an anonymized repository: \url{https://anonymous.4open.science/r/PRISM-PROJECT/}.
+\subsubsection{\hspace*{\parindent}Data availability.}
+Code, configurations, frozen split manifests, result files and reference harnesses are available in an anonymized repository: \url{https://anonymous.4open.science/r/PRISM-PROJECT/}.
 
 %======================================================================
 \section{Conclusion}
 \label{sec:conclusion}
 
-This paper presented PRISM, a confidential smart contract audit pipeline that keeps every model and artifact on the audit host. Its two-stage graph attention ranker over typed SSA-level function graphs orders functions at $76.31\pm0.06\%$ macro-F1 on unseen contract lineages in 0.21\,ms per function, and the finding that graph learners of different design share almost all of their errors locates the remaining gap in contract-derived labels rather than in model capacity. Its reversible pseudonymization is lossless for compilation, restoration and static analysis, and the measured 89.5\% frequency re-linkage turns the choice of local inference from a preference into a requirement. Together with a reproducible local EVM back end and filtering that reduces flagged safe contracts from 27/27 to 6/27, these results make confidential, execution-backed auditing a practical workflow for teams that cannot send code to a model provider.
+This paper presented PRISM, a confidential smart contract audit pipeline keeping every model and artifact on the audit host. Its two-stage graph attention ranker orders functions at $76.31\pm0.06\%$ macro-F1 on unseen lineages in 0.21\,ms per function, showing that contract-derived labels dominate error rather than model capacity. Reversible pseudonymization preserves compilation, restoration, and static analysis, while an 89.5\% frequency re-linkage demonstrates that local inference is essential. Together with reproducible EVM execution, static filtering reducing flagged safe contracts from 27/27 to 6/27, and reference-harness validation on scoped case studies, PRISM makes confidential auditing practical for teams that cannot share code. Future work will expand end-to-end evaluation on larger production benchmarks, replace contract-derived supervision with precise function-level ground truth, and extend template repair to automated multi-harness patch synthesis.
 
-Future work will measure the complete pipeline end to end on larger real-world benchmarks, with LLM findings compiled into class-specific invariants and confirmed or refuted by execution; will replace contract-derived supervision with function-level labels from audit reports and execution traces to lift the accuracy ceiling identified here; and will replace template repair with LLM-guided patch synthesis validated by the same five checks.
-
-\bibliographystyle{splncs04}
+\bibliographystyle{splncs04unsrt}
 \bibliography{references}
 
 \end{document}

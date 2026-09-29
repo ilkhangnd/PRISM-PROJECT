@@ -1,0 +1,59 @@
+{
+  "function": "prism_Type_0002.prism_v_0007",
+  "num_nodes": 4,
+  "num_edges": 3,
+  "nodes": [
+    {
+      "id": 0,
+      "label": "ENTRY_POINT",
+      "node_type": "NodeType.ENTRYPOINT",
+      "expression": "",
+      "irs": []
+    },
+    {
+      "id": 1,
+      "label": "EXPRESSION require(bool,string)(msg.value >= 1000000000000000000,Need 1 ether)",
+      "node_type": "NodeType.EXPRESSION",
+      "expression": "require(bool,string)(msg.value >= 1000000000000000000,Need 1 ether)",
+      "irs": [
+        "TMP_5(bool) = msg.value >= 1000000000000000000",
+        "TMP_6(None) = SOLIDITY_CALL require(bool,string)(TMP_5,Need 1 ether)"
+      ]
+    },
+    {
+      "id": 2,
+      "label": "EXPRESSION prism_v_0008.prism_v_0005{value: 1000000000000000000}()",
+      "node_type": "NodeType.EXPRESSION",
+      "expression": "prism_v_0008.prism_v_0005{value: 1000000000000000000}()",
+      "irs": [
+        "HIGH_LEVEL_CALL, dest:prism_v_0008(prism_Type_0001), function:prism_v_0005, arguments:[] value:1000000000000000000 "
+      ]
+    },
+    {
+      "id": 3,
+      "label": "EXPRESSION prism_v_0008.prism_v_0004()",
+      "node_type": "NodeType.EXPRESSION",
+      "expression": "prism_v_0008.prism_v_0004()",
+      "irs": [
+        "HIGH_LEVEL_CALL, dest:prism_v_0008(prism_Type_0001), function:prism_v_0004, arguments:[]  "
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": 0,
+      "target": 1,
+      "edge_type": "sequential"
+    },
+    {
+      "source": 1,
+      "target": 2,
+      "edge_type": "sequential"
+    },
+    {
+      "source": 2,
+      "target": 3,
+      "edge_type": "sequential"
+    }
+  ]
+}

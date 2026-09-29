@@ -1,0 +1,13 @@
+{
+  "mut_0000_use_timestamp_SimpleDAO": "timestamp_dependence",
+  "mut_0001_ignore_return_SimpleDAO": "unchecked_return",
+  "mut_0002_use_timestamp_TokenSale": "timestamp_dependence",
+  "mut_0003_ignore_return_TokenSale": "unchecked_return",
+  "mut_0004_reentrancy_TokenSale": "reentrancy",
+  "mut_0005_use_timestamp_UnsafeWallet": "timestamp_dependence",
+  "mut_0006_reentrancy_UnsafeWallet": "reentrancy",
+  "mut_0007_remove_access_control_VulnerableBank": "access_control",
+  "mut_0008_ignore_return_VulnerableBank": "unchecked_return",
+  "mut_0009_reentrancy_VulnerableBank": "reentrancy",
+  "mut_0010_ignore_return_WeakRandom": "unchecked_return"
+}

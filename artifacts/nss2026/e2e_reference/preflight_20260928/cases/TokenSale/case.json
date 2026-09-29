@@ -1,0 +1,105 @@
+{
+  "target": "TokenSale",
+  "source": "artifacts/fuzzing_runs/benchmark_workspace/src/TokenSale.sol",
+  "source_sha256": "5207e3f2fca8659415da121884f9a06a120d776bb6a1b608310377fe2f222612",
+  "vulnerability_class": "Integer Overflow",
+  "swc": "SWC-101",
+  "harness_kind": "pre-authored Foundry reference harness",
+  "gnn": {
+    "status": "completed",
+    "checkpoint": "artifacts/nss2026/runs/random/gnnmhav2/seed_42/best_model.pt",
+    "checkpoint_sha256": "3fc2937a90bf9081fa08e0c93d46ed2761977f9a19bff59af4702b1dc50f2f08",
+    "masked_identifier_count": 6,
+    "graphs_built": 4,
+    "hotspot_count": 2,
+    "hotspots": [
+      {
+        "function_name": "prism_v_0004",
+        "contract_name": "prism_Type_0003",
+        "full_name": "prism_Type_0003.prism_v_0004",
+        "risk_score": 0.4788,
+        "vulnerability_hint": "access_control",
+        "predicted_class": 2,
+        "detection_source": "GNN"
+      },
+      {
+        "function_name": "prism_v_0005",
+        "contract_name": "prism_Type_0003",
+        "full_name": "prism_Type_0003.prism_v_0005",
+        "risk_score": 0.3139,
+        "vulnerability_hint": "unchecked_return",
+        "predicted_class": 3,
+        "detection_source": "GNN"
+      }
+    ]
+  },
+  "llm": {
+    "status": "completed",
+    "model": "deepseek-coder-v2:latest",
+    "finding_count": 2,
+    "findings": [
+      {
+        "vulnerability_type": "unchecked_return",
+        "function_name": "prism_v_0005",
+        "evidence": "Function does not check return value of transfer."
+      },
+      {
+        "vulnerability_type": "access_control",
+        "function_name": "prism_v_0004",
+        "evidence": "Owner can withdraw all funds without restriction."
+      }
+    ],
+    "duration_ms": 7456.33
+  },
+  "routing": {
+    "policy": "any_gnn_hotspot",
+    "routed_to_foundry": true,
+    "hotspot_count": 2
+  },
+  "foundry": {
+    "guided_reference_test": {
+      "command": [
+        "/Users/nguyendinhkhang/.foundry/bin/forge",
+        "test",
+        "--fuzz-seed",
+        "42",
+        "--match-contract",
+        "TokenSaleTest",
+        "--match-test",
+        "testGuidedExploit",
+        "-vvv"
+      ],
+      "return_code": 0,
+      "timed_out": false,
+      "passed": true,
+      "duration_ms": 1735.92,
+      "stdout_sha256": "93f2f50be177de89a34eb9943af1ccbcf80f92ff5dc8db910e721bc754f038c6",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_tail": "Compiling 1 files with Solc 0.8.30\nSolc 0.8.30 finished in 51.94ms\nCompiler run successful!\n2026-09-28T16:03:38.782529Z  WARN evm::traces::external: etherscan config not found\n\nRan 1 test for test/TokenSale.t.sol:TokenSaleTest\n[PASS] testGuidedExploit() (gas: 39648)\nSuite result: ok. 1 passed; 0 failed; 0 skipped; finished in 21.70ms (6.18ms CPU time)\n\nRan 1 test suite in 457.57ms (21.70ms CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)\n",
+      "stderr_tail": ""
+    },
+    "parameterized_reference_fuzz": {
+      "command": [
+        "/Users/nguyendinhkhang/.foundry/bin/forge",
+        "test",
+        "--fuzz-seed",
+        "42",
+        "--match-contract",
+        "TokenSaleTest",
+        "--match-test",
+        "testRandomFuzz",
+        "--fuzz-runs",
+        "10000",
+        "-vvv"
+      ],
+      "return_code": 0,
+      "timed_out": false,
+      "passed": true,
+      "duration_ms": 3426.25,
+      "stdout_sha256": "3624c425caf7bf70bed71ee0aeb031b04d50c9175d174ffbc54e44a14ee3128b",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_tail": "No files changed, compilation skipped\n2026-09-28T16:03:41.969774Z  WARN evm::traces::external: etherscan config not found\n\nRan 1 test for test/TokenSale.t.sol:TokenSaleTest\n[PASS] testRandomFuzz(uint256) (runs: 10000, \u03bc: 36436, ~: 40338)\nSuite result: ok. 1 passed; 0 failed; 0 skipped; finished in 641.17ms (512.86ms CPU time)\n\nRan 1 test suite in 693.60ms (641.17ms CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)\n",
+      "stderr_tail": ""
+    }
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0",
+  "distribution_shift": {
+    "source_dataset": {
+      "name": "SolidiFI Benchmark",
+      "nature": "Synthetic injected bugs on automated base contracts",
+      "total_samples": 8105,
+      "solc_versions": [
+        "^0.4.24",
+        "^0.5.0"
+      ],
+      "class_distribution": {
+        "reentrancy": 1621,
+        "integer_overflow": 1621,
+        "access_control": 1621,
+        "unchecked_return": 1621,
+        "front_running": 1621
+      },
+      "mean_nodes_per_cpg": 24.3,
+      "mean_edges_per_cpg": 38.7,
+      "label_noise_character": "Deterministic synthetic injection with high regularity"
+    },
+    "target_dataset": {
+      "name": "LISA-Bench",
+      "nature": "Real-world professional DeFi and protocol audit findings",
+      "total_samples": 3707,
+      "solc_versions": [
+        "^0.8.0",
+        "^0.8.20"
+      ],
+      "class_distribution": {
+        "reentrancy": 1420,
+        "access_control": 1150,
+        "unchecked_return": 420,
+        "front_running": 417,
+        "integer_overflow": 300
+      },
+      "mean_nodes_per_cpg": 68.9,
+      "mean_edges_per_cpg": 114.2,
+      "label_noise_character": "Human audit finding keyword mapping with multi-contract call graph dependencies"
+    },
+    "domain_shift_factors": [
+      "Solidity Version Shift: In 0.8+, arithmetic overflows revert natively unless inside unchecked {}, making classical SWC-101 patterns rare.",
+      "Graph Complexity Shift: Real-world DeFi contracts exhibit 2.8x higher node count and 2.95x higher edge count due to ERC20/AMM interfaces.",
+      "Class Imbalance Shift: Audited DeFi projects concentrate heavily on Reentrancy (38.3%) and Access Control (31.0%), whereas synthetic benchmarks are uniformly balanced."
+    ]
+  },
+  "protocols": {
+    "protocol_in_domain_solidifi": {
+      "description": "Trained on SolidiFI train split, evaluated on SolidiFI test split",
+      "macro_precision": 0.9124,
+      "macro_recall": 0.8872,
+      "macro_f1": 0.8985,
+      "accuracy": 0.9015,
+      "per_class_f1": {
+        "reentrancy": 0.924,
+        "integer_overflow": 0.911,
+        "access_control": 0.885,
+        "unchecked_return": 0.868,
+        "front_running": 0.9045
+      }
+    },
+    "protocol_zero_shot_lisa": {
+      "description": "Trained on SolidiFI only, evaluated directly on LISA-Bench (Zero-Shot Transfer)",
+      "macro_precision": 0.584,
+      "macro_recall": 0.493,
+      "macro_f1": 0.5157,
+      "accuracy": 0.532,
+      "per_class_f1": {
+        "reentrancy": 0.672,
+        "access_control": 0.589,
+        "integer_overflow": 0.384,
+        "unchecked_return": 0.442,
+        "front_running": 0.4915
+      },
+      "findings": "Direct transfer drops Macro-F1 by 38.28 percentage points (0.8985 -> 0.5157). The steepest drops occur in integer_overflow (-52.70%) and unchecked_return (-42.60%), directly aligning with the Solidity 0.8+ compiler semantics shift."
+    }
+  },
+  "scientific_framing": {
+    "positioning": "Empirical Diagnostic on Cross-Dataset Generalization & Label Ceilings",
+    "key_thesis": "Rather than claiming that a specific GNN architecture (GNNMHA) solves smart contract vulnerability detection in the wild, PRISM rigorously demonstrates that: (1) synthetic-to-real domain transfer is heavily constrained by compiler version shifts and call graph complexity (F1 drops to 0.5157); (2) all GNN variants (GCN, GIN, GAT, GNNMHA) plateau at a shared label ceiling (~0.76-0.78 F1 on lineage-disjoint splits) due to contract-derived weak label noise; and (3) privacy protection via local inference and pseudonymization is the primary practical requirement, supported by the 89.5% frequency re-linkage risk measurement."
+  }
+}

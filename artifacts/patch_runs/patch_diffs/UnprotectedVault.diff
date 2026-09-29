@@ -1,0 +1,10 @@
+--- a/UnprotectedVault.sol
++++ b/UnprotectedVault.sol
+@@ -10,6 +10,7 @@
+     }
+ 
+     function initOwner(address _newOwner) public {
++        require(msg.sender == owner, "Only owner"); // PRISM FIX: Access Guard
+         owner = _newOwner;
+     }
+ 

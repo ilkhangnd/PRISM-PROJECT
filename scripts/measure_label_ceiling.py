@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Measure label ceiling and empirical accuracy on conflict-free vs. conflicting test subsets.
+Measure structural graph label conflicts and empirical accuracy on conflict-free vs. conflicting test subsets.
 Analyzes canonical graph structural hashes from corpus_manifest.json against frozen splits.
 """
 
@@ -31,8 +31,9 @@ def main():
 
     results = {
         "created_utc": datetime.now(timezone.utc).isoformat(),
-        "protocol": "Canonical graph hashing and empirical Bayes label ceiling analysis",
-        "description": "Examines graph structure hash collisions between train and test sets to establish the upper bound on classification accuracy imposed by contract-derived weak labels.",
+        "protocol": "Canonical graph hashing and structural-label-conflict diagnostic",
+        "description": "Examines graph structure hash collisions between train and test sets to diagnose label noise and structural conflicts arising from contract-derived weak labels. Reports coverage statistics of non-conflicting structural matches and novel graphs.",
+        "coverage_statistic_note": "nonconflicting_structural_match_or_novel_pct measures test graphs that either match a training graph with agreeing majority label or are structurally novel. It is a diagnostic coverage metric for label conflicts, not a theoretical upper bound.",
         "splits": {}
     }
 
@@ -58,7 +59,7 @@ def main():
         identical_agree = 0
         identical_conflict = 0
         novel_graphs = 0
-        bayes_correct = 0
+        nonconflicting_count = 0
 
         for sid in test_ids:
             r = records[sid]
@@ -70,7 +71,7 @@ def main():
                 train_labels = train_hash_labels[h]
                 maj_train_label = Counter(train_labels).most_common(1)[0][0]
                 if maj_train_label == test_y:
-                    bayes_correct += 1
+                    nonconflicting_count += 1
 
                 if test_y in train_labels:
                     identical_agree += 1
@@ -80,7 +81,7 @@ def main():
                     conflicting_ids.append(sid)
             else:
                 novel_graphs += 1
-                bayes_correct += 1
+                nonconflicting_count += 1
                 conflict_free_ids.append(sid)
 
         # Multi-seed GNNMHAv2 evaluation on subsets
@@ -112,7 +113,7 @@ def main():
             "identical_train_conflicting_label_pct": round(identical_conflict / n_test * 100, 2),
             "novel_test_graphs": novel_graphs,
             "novel_test_graphs_pct": round(novel_graphs / n_test * 100, 2),
-            "bayes_accuracy_ceiling_pct": round(bayes_correct / n_test * 100, 2),
+            "nonconflicting_structural_match_or_novel_pct": round(nonconflicting_count / n_test * 100, 2),
             "conflict_free_test_count": len(conflict_free_ids),
             "conflicting_test_count": len(conflicting_ids),
             "gnnmhav2_accuracy_overall": {

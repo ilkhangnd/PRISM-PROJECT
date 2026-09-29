@@ -1,0 +1,13 @@
+{
+  "timestamp_utc": "2026-08-31T02:00:44.368198+00:00",
+  "execution_mode": "REAL_PHYSICAL_PROCESS_EXECUTION",
+  "foundry_version": "Foundry 1.5.1 / forge",
+  "elapsed_seconds": 0.424,
+  "return_code": 0,
+  "passed_tests_count": 2,
+  "passed_tests": [
+    "[PASS] testFuzzDepositWithdraw(uint96) (runs: 256, \u03bc: 27260, ~: 35280)",
+    "[PASS] testReentrancyExploitTriggers() (gas: 77602)"
+  ],
+  "raw_stdout_snippet": "Compiling 2 files with Solc 0.8.30\nSolc 0.8.30 finished in 46.32ms\nCompiler run successful!\n\nRan 2 tests for test/SimpleDAO.t.sol:SimpleDAOTest\n[PASS] testFuzzDepositWithdraw(uint96) (runs: 256, \u03bc: 27260, ~: 35280)\n[PASS] testReentrancyExploitTriggers() (gas: 77602)\nSuite result: ok. 2 passed; 0 failed; 0 skipped; finished in 27.74ms (11.13ms CPU time)\n\nRan 1 test suite in 150.62ms (27.74ms CPU time): 2 tests passed, 0 failed, 0 skipped (2 total tests)\n"
+}

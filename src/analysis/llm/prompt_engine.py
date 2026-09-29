@@ -35,6 +35,12 @@ DEFAULT_SYSTEM_PROMPTS = {
         "3. If identifiers appear anonymized (e.g., func_a3x9), focus on the logic flow.\n"
         "4. Respond ONLY in valid JSON format."
     ),
+    "security_auditor_compact": (
+        "Audit only the supplied Solidity. Return only a valid JSON array, never Markdown. "
+        "Emit at most three objects with exactly these keys: vulnerability_type, function_name, evidence. "
+        "Use one of: reentrancy, integer_overflow, access_control, unchecked_return, timestamp_dependence. "
+        "If no supported issue is present, return []. Keep each evidence field under 20 words."
+    ),
     "seed_generator": (
         "You are a smart contract fuzzing expert. Your task is to generate test inputs "
         "(seeds) that will maximize code coverage in the target contract.\n\n"
@@ -74,6 +80,14 @@ DEFAULT_TEMPLATES = {
         "{% endif %}\n\n"
         "Respond with a JSON array of vulnerabilities found. Each object should have: "
         "vulnerability_type, severity, function_name, description, recommendation."
+    ),
+    "vulnerability_scan_compact": (
+        "Audit this Solidity code only for reentrancy, integer overflow, access control, unchecked return, "
+        "or timestamp dependence.\n\n```solidity\n{{ source_code }}\n```\n\n"
+        "{% if hotspots %}GNN candidates (hints are not ground truth):\n"
+        "{% for h in hotspots %}- {{ h.function_name }} ({{ h.vulnerability_hint }})\n{% endfor %}{% endif %}\n"
+        "Return only a JSON array with at most three objects; each object has exactly "
+        "vulnerability_type, function_name, evidence. Return [] if none."
     ),
     "seed_mutation": (
         "The following smart contract has uncovered code branches that need fuzzing:\n\n"

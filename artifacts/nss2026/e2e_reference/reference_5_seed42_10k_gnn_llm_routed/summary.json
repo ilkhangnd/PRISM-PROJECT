@@ -1,0 +1,555 @@
+{
+  "schema_version": "1.0",
+  "timestamp_utc": "2026-09-28T05:11:48.952729+00:00",
+  "evidence_scope": {
+    "claimed": "PRISM masking/preprocessing/GNN trace coupled with real execution of pre-authored Foundry reference harnesses.",
+    "not_claimed": [
+      "General-purpose harness synthesis",
+      "Benchmark-wide end-to-end recall or specificity",
+      "LLM-stage performance when --with-llm is absent",
+      "Causal attribution from a GNN hotspot to a Foundry test outcome"
+    ]
+  },
+  "configuration": {
+    "config_file": "configs/nss2026_execution.yaml",
+    "config_sha256": "9ae26f0dfcfd70479a8577c2ef485cd51f9e53a0c60fef199077e6a5dbf9c436",
+    "seed": 42,
+    "fuzz_runs": 10000,
+    "with_llm": true,
+    "llm_timeout_seconds": 105,
+    "llm_max_tokens": 128,
+    "llm_request_timeout_seconds": 90,
+    "route_via_gnn": true,
+    "forge": {
+      "command": [
+        "/Users/nguyendinhkhang/.foundry/bin/forge",
+        "--version"
+      ],
+      "return_code": 0,
+      "timed_out": false,
+      "passed": false,
+      "duration_ms": 1247.05,
+      "stdout_sha256": "1d3c37da35d686f115ce0766dd41b62f52266e211a25812fd578db153573a48c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_tail": "forge Version: 1.5.1-stable\nCommit SHA: b0a9dd9ceda36f63e2326ce530c10e6916f4b8a2\nBuild Timestamp: 2025-12-22T11:41:09.812070000Z (1766403669)\nBuild Profile: maxperf\n",
+      "stderr_tail": ""
+    }
+  },
+  "cases": [
+    {
+      "target": "SimpleDAO",
+      "source": "artifacts/fuzzing_runs/benchmark_workspace/src/SimpleDAO.sol",
+      "source_sha256": "f79ccd9f18992054df942073952f3b62bbf710016510f311545ab7003d6e6e4b",
+      "vulnerability_class": "Reentrancy",
+      "swc": "SWC-107",
+      "harness_kind": "pre-authored Foundry reference harness",
+      "gnn": {
+        "status": "completed",
+        "checkpoint": "artifacts/nss2026/runs/random/gnnmhav2/seed_42/best_model.pt",
+        "checkpoint_sha256": "3fc2937a90bf9081fa08e0c93d46ed2761977f9a19bff59af4702b1dc50f2f08",
+        "masked_identifier_count": 11,
+        "graphs_built": 7,
+        "hotspot_count": 4,
+        "hotspots": [
+          {
+            "function_name": "prism_v_0008",
+            "contract_name": "prism_Type_0001",
+            "full_name": "prism_Type_0001.prism_v_0008",
+            "risk_score": 0.959,
+            "vulnerability_hint": "unchecked_return",
+            "predicted_class": 3,
+            "detection_source": "GNN"
+          },
+          {
+            "function_name": "prism_v_0003",
+            "contract_name": "prism_Type_0002",
+            "full_name": "prism_Type_0002.prism_v_0003",
+            "risk_score": 0.7317,
+            "vulnerability_hint": "reentrancy",
+            "predicted_class": 0,
+            "detection_source": "GNN"
+          },
+          {
+            "function_name": "prism_v_0006",
+            "contract_name": "prism_Type_0002",
+            "full_name": "prism_Type_0002.prism_v_0006",
+            "risk_score": 0.591,
+            "vulnerability_hint": "access_control",
+            "predicted_class": 2,
+            "detection_source": "GNN"
+          },
+          {
+            "function_name": "receive",
+            "contract_name": "prism_Type_0001",
+            "full_name": "prism_Type_0001.receive",
+            "risk_score": 0.3613,
+            "vulnerability_hint": "unchecked_return",
+            "predicted_class": 3,
+            "detection_source": "GNN"
+          }
+        ]
+      },
+      "llm": {
+        "status": "completed",
+        "model": "deepseek-coder-v2:latest",
+        "finding_count": 1,
+        "findings": [
+          {
+            "raw_response": " ```json\n[\n    {\n        \"vulnerability\": \"Unchecked Return Value to Call\",\n        \"severity\": \"High\",\n        \"affected_function\": \"prism_v_0008\",\n        \"line_numbers\": [24],\n        \"description\": \"The function `prism_v_0008` does not check the return value of the call to `prism_v_0006`, which could lead to a situation where Ether is sent but the contract's balance remains unchanged due to an error in the called function.\",\n       "
+          }
+        ],
+        "duration_ms": 26306.54
+      },
+      "routing": {
+        "policy": "any_gnn_hotspot",
+        "routed_to_foundry": true,
+        "hotspot_count": 4
+      },
+      "foundry": {
+        "guided_reference_test": {
+          "command": [
+            "/Users/nguyendinhkhang/.foundry/bin/forge",
+            "test",
+            "--fuzz-seed",
+            "42",
+            "--match-contract",
+            "SimpleDAOTest",
+            "--match-test",
+            "testGuidedExploit",
+            "-vvv"
+          ],
+          "return_code": 0,
+          "timed_out": false,
+          "passed": true,
+          "duration_ms": 5294.63,
+          "stdout_sha256": "680693ffb01cf321d0e01075f39ea1e61a679a0850cfc646c261cd54938ef489",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_tail": "No files changed, compilation skipped\n2026-09-28T05:12:53.522231Z  WARN evm::traces::external: etherscan config not found\n\nRan 1 test for test/SimpleDAO.t.sol:SimpleDAOTest\n[PASS] testGuidedExploit() (gas: 77558)\nSuite result: ok. 1 passed; 0 failed; 0 skipped; finished in 74.41ms (10.61ms CPU time)\n\nRan 1 test suite in 795.80ms (74.41ms CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)\n",
+          "stderr_tail": ""
+        },
+        "parameterized_reference_fuzz": {
+          "command": [
+            "/Users/nguyendinhkhang/.foundry/bin/forge",
+            "test",
+            "--fuzz-seed",
+            "42",
+            "--match-contract",
+            "SimpleDAOTest",
+            "--match-test",
+            "testRandomFuzz",
+            "--fuzz-runs",
+            "10000",
+            "-vvv"
+          ],
+          "return_code": 0,
+          "timed_out": false,
+          "passed": true,
+          "duration_ms": 2003.24,
+          "stdout_sha256": "63418d57d1233d8e2e9442acb2815945508420cfe1c8f7fe3aedae0b00e4bcc1",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_tail": "No files changed, compilation skipped\n2026-09-28T05:12:55.863877Z  WARN evm::traces::external: etherscan config not found\n\nRan 1 test for test/SimpleDAO.t.sol:SimpleDAOTest\n[PASS] testRandomFuzz(uint256,uint8) (runs: 10000, \u03bc: 50478, ~: 54228)\nSuite result: ok. 1 passed; 0 failed; 0 skipped; finished in 493.69ms (460.32ms CPU time)\n\nRan 1 test suite in 547.74ms (493.69ms CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)\n",
+          "stderr_tail": ""
+        }
+      }
+    },
+    {
+      "target": "TimestampLock",
+      "source": "artifacts/fuzzing_runs/benchmark_workspace/src/TimestampLock.sol",
+      "source_sha256": "8f1134e46370644c2878b5fa564cea04d1f6d4d521126453ab63867a024d082f",
+      "vulnerability_class": "Timestamp Dependence",
+      "swc": "SWC-114",
+      "harness_kind": "pre-authored Foundry reference harness",
+      "gnn": {
+        "status": "completed",
+        "checkpoint": "artifacts/nss2026/runs/random/gnnmhav2/seed_42/best_model.pt",
+        "checkpoint_sha256": "3fc2937a90bf9081fa08e0c93d46ed2761977f9a19bff59af4702b1dc50f2f08",
+        "masked_identifier_count": 5,
+        "graphs_built": 3,
+        "hotspot_count": 1,
+        "hotspots": [
+          {
+            "function_name": "prism_v_0000",
+            "contract_name": "prism_Type_0001",
+            "full_name": "prism_Type_0001.prism_v_0000",
+            "risk_score": 0.3707,
+            "vulnerability_hint": "integer_overflow",
+            "predicted_class": 1,
+            "detection_source": "GNN"
+          }
+        ]
+      },
+      "llm": {
+        "status": "completed",
+        "model": "deepseek-coder-v2:latest",
+        "finding_count": 1,
+        "findings": [
+          {
+            "raw_response": " ```json\n[\n    {\n        \"Vulnerability type\": \"SWC-114\",\n        \"Severity\": \"High\",\n        \"Affected function and line numbers\": \"prism_v_0000 (line 23)\",\n        \"Description of the attack vector\": \"The contract relies on block.timestamp for state transitions, which can be manipulated by miners or attackers to bypass the intended time-based conditions. If an attacker can manipulate block.timestamp in a way that makes it appear as if more time has passed than actually has, they could potentially unlock the contract before"
+          }
+        ],
+        "duration_ms": 10122.2
+      },
+      "routing": {
+        "policy": "any_gnn_hotspot",
+        "routed_to_foundry": true,
+        "hotspot_count": 1
+      },
+      "foundry": {
+        "guided_reference_test": {
+          "command": [
+            "/Users/nguyendinhkhang/.foundry/bin/forge",
+            "test",
+            "--fuzz-seed",
+            "42",
+            "--match-contract",
+            "TimestampLockTest",
+            "--match-test",
+            "testGuidedExploit",
+            "-vvv"
+          ],
+          "return_code": 0,
+          "timed_out": false,
+          "passed": true,
+          "duration_ms": 6632.73,
+          "stdout_sha256": "9db4e97173e1b774df45b0792f24e6bf2569b5f3bcf9f172020aeb24d11d21de",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_tail": "No files changed, compilation skipped\n2026-09-28T05:13:40.829958Z  WARN evm::traces::external: etherscan config not found\n\nRan 1 test for test/TimestampLock.t.sol:TimestampLockTest\n[PASS] testGuidedExploit() (gas: 39827)\nSuite result: ok. 1 passed; 0 failed; 0 skipped; finished in 135.39ms (17.28ms CPU time)\n\nRan 1 test suite in 1.88s (135.39ms CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)\n",
+          "stderr_tail": ""
+        },
+        "parameterized_reference_fuzz": {
+          "command": [
+            "/Users/nguyendinhkhang/.foundry/bin/forge",
+            "test",
+            "--fuzz-seed",
+            "42",
+            "--match-contract",
+            "TimestampLockTest",
+            "--match-test",
+            "testRandomFuzz",
+            "--fuzz-runs",
+            "10000",
+            "-vvv"
+          ],
+          "return_code": 0,
+          "timed_out": false,
+          "passed": true,
+          "duration_ms": 2595.28,
+          "stdout_sha256": "e4dfe72d4431438aa0bf9c7024a65707f8f538a4a739912b27deb29139918742",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_tail": "No files changed, compilation skipped\n2026-09-28T05:13:45.166225Z  WARN evm::traces::external: etherscan config not found\n\nRan 1 test for test/TimestampLock.t.sol:TimestampLockTest\n[PASS] testRandomFuzz(uint256) (runs: 10000, \u03bc: 13180, ~: 13518)\nSuite result: ok. 1 passed; 0 failed; 0 skipped; finished in 224.45ms (196.69ms CPU time)\n\nRan 1 test suite in 337.84ms (224.45ms CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)\n",
+          "stderr_tail": ""
+        }
+      }
+    },
+    {
+      "target": "TokenSale",
+      "source": "artifacts/fuzzing_runs/benchmark_workspace/src/TokenSale.sol",
+      "source_sha256": "5207e3f2fca8659415da121884f9a06a120d776bb6a1b608310377fe2f222612",
+      "vulnerability_class": "Integer Overflow",
+      "swc": "SWC-101",
+      "harness_kind": "pre-authored Foundry reference harness",
+      "gnn": {
+        "status": "completed",
+        "checkpoint": "artifacts/nss2026/runs/random/gnnmhav2/seed_42/best_model.pt",
+        "checkpoint_sha256": "3fc2937a90bf9081fa08e0c93d46ed2761977f9a19bff59af4702b1dc50f2f08",
+        "masked_identifier_count": 6,
+        "graphs_built": 4,
+        "hotspot_count": 2,
+        "hotspots": [
+          {
+            "function_name": "prism_v_0004",
+            "contract_name": "prism_Type_0001",
+            "full_name": "prism_Type_0001.prism_v_0004",
+            "risk_score": 0.4788,
+            "vulnerability_hint": "access_control",
+            "predicted_class": 2,
+            "detection_source": "GNN"
+          },
+          {
+            "function_name": "prism_v_0005",
+            "contract_name": "prism_Type_0001",
+            "full_name": "prism_Type_0001.prism_v_0005",
+            "risk_score": 0.3139,
+            "vulnerability_hint": "unchecked_return",
+            "predicted_class": 3,
+            "detection_source": "GNN"
+          }
+        ]
+      },
+      "llm": {
+        "status": "completed",
+        "model": "deepseek-coder-v2:latest",
+        "finding_count": 1,
+        "findings": [
+          {
+            "raw_response": " ```json\n[\n    {\n        \"vulnerability\": {\n            \"type\": \"SWC-128\",\n            \"severity\": \"High\",\n            \"function\": \"prism_v_0004\",\n            \"lineNumbers\": [7],\n            \"description\": \"The function `prism_v_0004` allows the contract owner to withdraw all Ether from the contract, which could be risky if there are any remaining funds or if the contract is supposed to maintain a certain balance.\",\n            \"exploitScenario\": \"An attacker can exploit this"
+          }
+        ],
+        "duration_ms": 9607.38
+      },
+      "routing": {
+        "policy": "any_gnn_hotspot",
+        "routed_to_foundry": true,
+        "hotspot_count": 2
+      },
+      "foundry": {
+        "guided_reference_test": {
+          "command": [
+            "/Users/nguyendinhkhang/.foundry/bin/forge",
+            "test",
+            "--fuzz-seed",
+            "42",
+            "--match-contract",
+            "TokenSaleTest",
+            "--match-test",
+            "testGuidedExploit",
+            "-vvv"
+          ],
+          "return_code": 0,
+          "timed_out": false,
+          "passed": true,
+          "duration_ms": 6073.06,
+          "stdout_sha256": "13635bed36f2661dba15d73956f17326e36ca631132afa396e91681bd99b3ab2",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_tail": "No files changed, compilation skipped\n2026-09-28T05:14:14.739137Z  WARN evm::traces::external: etherscan config not found\n\nRan 1 test for test/TokenSale.t.sol:TokenSaleTest\n[PASS] testGuidedExploit() (gas: 39648)\nSuite result: ok. 1 passed; 0 failed; 0 skipped; finished in 35.19ms (8.12ms CPU time)\n\nRan 1 test suite in 974.67ms (35.19ms CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)\n",
+          "stderr_tail": ""
+        },
+        "parameterized_reference_fuzz": {
+          "command": [
+            "/Users/nguyendinhkhang/.foundry/bin/forge",
+            "test",
+            "--fuzz-seed",
+            "42",
+            "--match-contract",
+            "TokenSaleTest",
+            "--match-test",
+            "testRandomFuzz",
+            "--fuzz-runs",
+            "10000",
+            "-vvv"
+          ],
+          "return_code": 0,
+          "timed_out": false,
+          "passed": true,
+          "duration_ms": 5627.26,
+          "stdout_sha256": "5e61b6e454a2f7921d0f1d86ce4dbd99feefb195424b74176c542afcc775493c",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_tail": "No files changed, compilation skipped\n2026-09-28T05:14:20.987026Z  WARN evm::traces::external: etherscan config not found\n\nRan 1 test for test/TokenSale.t.sol:TokenSaleTest\n[PASS] testRandomFuzz(uint256) (runs: 10000, \u03bc: 36436, ~: 40338)\nSuite result: ok. 1 passed; 0 failed; 0 skipped; finished in 509.95ms (462.93ms CPU time)\n\nRan 1 test suite in 614.78ms (509.95ms CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)\n",
+          "stderr_tail": ""
+        }
+      }
+    },
+    {
+      "target": "UncheckedBank",
+      "source": "artifacts/fuzzing_runs/benchmark_workspace/src/UncheckedBank.sol",
+      "source_sha256": "fde391c7c7b047e912e1b36001c68e6fa3413c848ea8a2fd43b4e95d8ae60bba",
+      "vulnerability_class": "Unchecked Return Value",
+      "swc": "SWC-104",
+      "harness_kind": "pre-authored Foundry reference harness",
+      "gnn": {
+        "status": "completed",
+        "checkpoint": "artifacts/nss2026/runs/random/gnnmhav2/seed_42/best_model.pt",
+        "checkpoint_sha256": "3fc2937a90bf9081fa08e0c93d46ed2761977f9a19bff59af4702b1dc50f2f08",
+        "masked_identifier_count": 7,
+        "graphs_built": 4,
+        "hotspot_count": 2,
+        "hotspots": [
+          {
+            "function_name": "prism_v_0000",
+            "contract_name": "prism_Type_0001",
+            "full_name": "prism_Type_0001.prism_v_0000",
+            "risk_score": 0.8378,
+            "vulnerability_hint": "integer_overflow",
+            "predicted_class": 1,
+            "detection_source": "GNN"
+          },
+          {
+            "function_name": "prism_v_0005",
+            "contract_name": "prism_Type_0001",
+            "full_name": "prism_Type_0001.prism_v_0005",
+            "risk_score": 0.591,
+            "vulnerability_hint": "access_control",
+            "predicted_class": 2,
+            "detection_source": "GNN"
+          }
+        ]
+      },
+      "llm": {
+        "status": "completed",
+        "model": "deepseek-coder-v2:latest",
+        "finding_count": 1,
+        "findings": [
+          {
+            "raw_response": " ```json\n[\n    {\n        \"vulnerability\": \"Integer Overflow\",\n        \"severity\": \"High\",\n        \"affected_function\": \"prism_v_0000\",\n        \"lines\": [21],\n        \"description\": \"The function `prism_v_0000` allows a user to withdraw funds that might not be present in the contract, leading to an integer overflow. This can be exploited by setting a high value for `prism_v_0006`, which would result in a negative balance being subtracted from the sender'"
+          }
+        ],
+        "duration_ms": 6953.91
+      },
+      "routing": {
+        "policy": "any_gnn_hotspot",
+        "routed_to_foundry": true,
+        "hotspot_count": 2
+      },
+      "foundry": {
+        "guided_reference_test": {
+          "command": [
+            "/Users/nguyendinhkhang/.foundry/bin/forge",
+            "test",
+            "--fuzz-seed",
+            "42",
+            "--match-contract",
+            "UncheckedBankTest",
+            "--match-test",
+            "testGuidedExploit",
+            "-vvv"
+          ],
+          "return_code": 0,
+          "timed_out": false,
+          "passed": true,
+          "duration_ms": 3309.34,
+          "stdout_sha256": "ed61a87cc384f9b1da033db89a191822e64b0a42c73f98f2437544bf667bb598",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_tail": "No files changed, compilation skipped\n2026-09-28T05:14:38.443575Z  WARN evm::traces::external: etherscan config not found\n\nRan 1 test for test/UncheckedBank.t.sol:UncheckedBankTest\n[PASS] testGuidedExploit() (gas: 27202)\nSuite result: ok. 1 passed; 0 failed; 0 skipped; finished in 54.44ms (3.14ms CPU time)\n\nRan 1 test suite in 686.97ms (54.44ms CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)\n",
+          "stderr_tail": ""
+        },
+        "parameterized_reference_fuzz": {
+          "command": [
+            "/Users/nguyendinhkhang/.foundry/bin/forge",
+            "test",
+            "--fuzz-seed",
+            "42",
+            "--match-contract",
+            "UncheckedBankTest",
+            "--match-test",
+            "testRandomFuzz",
+            "--fuzz-runs",
+            "10000",
+            "-vvv"
+          ],
+          "return_code": 0,
+          "timed_out": false,
+          "passed": true,
+          "duration_ms": 6634.82,
+          "stdout_sha256": "600c8f218fa863aa3a00e7584b132d407718962c6e850a6538890f809f4310e4",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_tail": "No files changed, compilation skipped\n2026-09-28T05:14:42.823693Z  WARN evm::traces::external: etherscan config not found\n\nRan 1 test for test/UncheckedBank.t.sol:UncheckedBankTest\n[PASS] testRandomFuzz(uint256) (runs: 10000, \u03bc: 50029, ~: 50029)\nSuite result: ok. 1 passed; 0 failed; 0 skipped; finished in 707.19ms (565.38ms CPU time)\n\nRan 1 test suite in 2.73s (707.19ms CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)\n",
+          "stderr_tail": ""
+        }
+      }
+    },
+    {
+      "target": "UnprotectedVault",
+      "source": "artifacts/fuzzing_runs/benchmark_workspace/src/UnprotectedVault.sol",
+      "source_sha256": "e500b0ca9ad05e5653f457675f8ab8e2818b6bd654ad323289d8559de94abf3d",
+      "vulnerability_class": "Access Control",
+      "swc": "SWC-105",
+      "harness_kind": "pre-authored Foundry reference harness",
+      "gnn": {
+        "status": "completed",
+        "checkpoint": "artifacts/nss2026/runs/random/gnnmhav2/seed_42/best_model.pt",
+        "checkpoint_sha256": "3fc2937a90bf9081fa08e0c93d46ed2761977f9a19bff59af4702b1dc50f2f08",
+        "masked_identifier_count": 7,
+        "graphs_built": 5,
+        "hotspot_count": 3,
+        "hotspots": [
+          {
+            "function_name": "prism_v_0001",
+            "contract_name": "prism_Type_0000",
+            "full_name": "prism_Type_0000.prism_v_0001",
+            "risk_score": 0.7727,
+            "vulnerability_hint": "access_control",
+            "predicted_class": 2,
+            "detection_source": "GNN"
+          },
+          {
+            "function_name": "prism_v_0005",
+            "contract_name": "prism_Type_0000",
+            "full_name": "prism_Type_0000.prism_v_0005",
+            "risk_score": 0.591,
+            "vulnerability_hint": "access_control",
+            "predicted_class": 2,
+            "detection_source": "GNN"
+          },
+          {
+            "function_name": "constructor",
+            "contract_name": "prism_Type_0000",
+            "full_name": "prism_Type_0000.constructor",
+            "risk_score": 0.3785,
+            "vulnerability_hint": "access_control",
+            "predicted_class": 2,
+            "detection_source": "GNN"
+          }
+        ]
+      },
+      "llm": {
+        "status": "completed",
+        "model": "deepseek-coder-v2:latest",
+        "finding_count": 1,
+        "findings": [
+          {
+            "raw_response": " ```json\n[\n    {\n        \"vulnerability\": \"Access Control Vulnerability\",\n        \"severity\": \"High\",\n        \"affected_function\": \"prism_v_0001\",\n        \"line_numbers\": [24],\n        \"description\": \"The function `prism_v_0001` allows the owner to withdraw all funds from the contract, but it does not check if the caller is indeed the owner. This could lead to a situation where an attacker can drain the contract's balance by calling this function.\",\n        \"proof_"
+          }
+        ],
+        "duration_ms": 13573.46
+      },
+      "routing": {
+        "policy": "any_gnn_hotspot",
+        "routed_to_foundry": true,
+        "hotspot_count": 3
+      },
+      "foundry": {
+        "guided_reference_test": {
+          "command": [
+            "/Users/nguyendinhkhang/.foundry/bin/forge",
+            "test",
+            "--fuzz-seed",
+            "42",
+            "--match-contract",
+            "UnprotectedVaultTest",
+            "--match-test",
+            "testGuidedExploit",
+            "-vvv"
+          ],
+          "return_code": 0,
+          "timed_out": false,
+          "passed": true,
+          "duration_ms": 4772.25,
+          "stdout_sha256": "b8859aaebbf0710dd6a8174106fe693cfcc7711d95a395931a7aea1e813f1139",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_tail": "No files changed, compilation skipped\n2026-09-28T05:15:30.137581Z  WARN evm::traces::external: etherscan config not found\n\nRan 1 test for test/UnprotectedVault.t.sol:UnprotectedVaultTest\n[PASS] testGuidedExploit() (gas: 48550)\nSuite result: ok. 1 passed; 0 failed; 0 skipped; finished in 82.73ms (3.21ms CPU time)\n\nRan 1 test suite in 830.26ms (82.73ms CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)\n",
+          "stderr_tail": ""
+        },
+        "parameterized_reference_fuzz": {
+          "command": [
+            "/Users/nguyendinhkhang/.foundry/bin/forge",
+            "test",
+            "--fuzz-seed",
+            "42",
+            "--match-contract",
+            "UnprotectedVaultTest",
+            "--match-test",
+            "testRandomFuzz",
+            "--fuzz-runs",
+            "10000",
+            "-vvv"
+          ],
+          "return_code": 0,
+          "timed_out": false,
+          "passed": true,
+          "duration_ms": 2385.61,
+          "stdout_sha256": "066ceb45cc919bcc41cc789db1666264e5e428a5d59504f27f1e4ff4b29025c2",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_tail": "No files changed, compilation skipped\n2026-09-28T05:15:32.704938Z  WARN evm::traces::external: etherscan config not found\n\nRan 1 test for test/UnprotectedVault.t.sol:UnprotectedVaultTest\n[PASS] testRandomFuzz(uint256) (runs: 10000, \u03bc: 42252, ~: 42252)\nSuite result: ok. 1 passed; 0 failed; 0 skipped; finished in 644.69ms (623.99ms CPU time)\n\nRan 1 test suite in 663.19ms (644.69ms CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)\n",
+          "stderr_tail": ""
+        }
+      }
+    }
+  ],
+  "summary": {
+    "case_count": 5,
+    "gnn_completed": 5,
+    "llm_completed": 5,
+    "guided_foundry_passed": 5,
+    "fuzz_foundry_passed": 5
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "original_to_masked": {
+    "transferViaSend": "prism_v_0000",
+    "UncheckedBank": "prism_Type_0001",
+    "RejectEther": "prism_Type_0002",
+    "recipient": "prism_v_0003",
+    "balances": "prism_v_0004",
+    "deposit": "prism_v_0005",
+    "amount": "prism_v_0006"
+  },
+  "masked_to_original": {
+    "prism_v_0000": "transferViaSend",
+    "prism_Type_0001": "UncheckedBank",
+    "prism_Type_0002": "RejectEther",
+    "prism_v_0003": "recipient",
+    "prism_v_0004": "balances",
+    "prism_v_0005": "deposit",
+    "prism_v_0006": "amount"
+  },
+  "counter": 7
+}

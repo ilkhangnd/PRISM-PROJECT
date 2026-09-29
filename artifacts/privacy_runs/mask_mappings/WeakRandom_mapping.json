@@ -1,0 +1,22 @@
+{
+  "forward": {
+    "lastWinner": "prism_v_0000",
+    "WeakRandom": "prism_Type_0001",
+    "getJackpot": "prism_v_0002",
+    "jackpot": "prism_v_0003",
+    "success": "prism_v_0004",
+    "random": "prism_v_0005",
+    "prize": "prism_v_0006",
+    "play": "prism_v_0007"
+  },
+  "reverse": {
+    "prism_v_0000": "lastWinner",
+    "prism_Type_0001": "WeakRandom",
+    "prism_v_0002": "getJackpot",
+    "prism_v_0003": "jackpot",
+    "prism_v_0004": "success",
+    "prism_v_0005": "random",
+    "prism_v_0006": "prize",
+    "prism_v_0007": "play"
+  }
+}

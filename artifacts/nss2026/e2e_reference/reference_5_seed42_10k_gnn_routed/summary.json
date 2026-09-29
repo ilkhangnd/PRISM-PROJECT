@@ -1,0 +1,518 @@
+{
+  "schema_version": "1.0",
+  "timestamp_utc": "2026-09-28T02:21:38.182802+00:00",
+  "evidence_scope": {
+    "claimed": "PRISM masking/preprocessing/GNN trace coupled with real execution of pre-authored Foundry reference harnesses.",
+    "not_claimed": [
+      "General-purpose harness synthesis",
+      "Benchmark-wide end-to-end recall or specificity",
+      "LLM-stage performance when --with-llm is absent",
+      "Causal attribution from a GNN hotspot to a Foundry test outcome"
+    ]
+  },
+  "configuration": {
+    "config_file": "configs/nss2026_execution.yaml",
+    "config_sha256": "9ae26f0dfcfd70479a8577c2ef485cd51f9e53a0c60fef199077e6a5dbf9c436",
+    "seed": 42,
+    "fuzz_runs": 10000,
+    "with_llm": false,
+    "llm_timeout_seconds": 120,
+    "route_via_gnn": true,
+    "forge": {
+      "command": [
+        "/Users/nguyendinhkhang/.foundry/bin/forge",
+        "--version"
+      ],
+      "return_code": 0,
+      "timed_out": false,
+      "passed": false,
+      "duration_ms": 59.9,
+      "stdout_sha256": "1d3c37da35d686f115ce0766dd41b62f52266e211a25812fd578db153573a48c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_tail": "forge Version: 1.5.1-stable\nCommit SHA: b0a9dd9ceda36f63e2326ce530c10e6916f4b8a2\nBuild Timestamp: 2025-12-22T11:41:09.812070000Z (1766403669)\nBuild Profile: maxperf\n",
+      "stderr_tail": ""
+    }
+  },
+  "cases": [
+    {
+      "target": "SimpleDAO",
+      "source": "artifacts/fuzzing_runs/benchmark_workspace/src/SimpleDAO.sol",
+      "source_sha256": "f79ccd9f18992054df942073952f3b62bbf710016510f311545ab7003d6e6e4b",
+      "vulnerability_class": "Reentrancy",
+      "swc": "SWC-107",
+      "harness_kind": "pre-authored Foundry reference harness",
+      "gnn": {
+        "status": "completed",
+        "checkpoint": "artifacts/nss2026/runs/random/gnnmhav2/seed_42/best_model.pt",
+        "checkpoint_sha256": "3fc2937a90bf9081fa08e0c93d46ed2761977f9a19bff59af4702b1dc50f2f08",
+        "masked_identifier_count": 11,
+        "graphs_built": 7,
+        "hotspot_count": 4,
+        "hotspots": [
+          {
+            "function_name": "prism_v_0007",
+            "contract_name": "prism_Type_0001",
+            "full_name": "prism_Type_0001.prism_v_0007",
+            "risk_score": 0.959,
+            "vulnerability_hint": "unchecked_return",
+            "predicted_class": 3,
+            "detection_source": "GNN"
+          },
+          {
+            "function_name": "prism_v_0004",
+            "contract_name": "prism_Type_0002",
+            "full_name": "prism_Type_0002.prism_v_0004",
+            "risk_score": 0.7317,
+            "vulnerability_hint": "reentrancy",
+            "predicted_class": 0,
+            "detection_source": "GNN"
+          },
+          {
+            "function_name": "prism_v_0006",
+            "contract_name": "prism_Type_0002",
+            "full_name": "prism_Type_0002.prism_v_0006",
+            "risk_score": 0.591,
+            "vulnerability_hint": "access_control",
+            "predicted_class": 2,
+            "detection_source": "GNN"
+          },
+          {
+            "function_name": "receive",
+            "contract_name": "prism_Type_0001",
+            "full_name": "prism_Type_0001.receive",
+            "risk_score": 0.3613,
+            "vulnerability_hint": "unchecked_return",
+            "predicted_class": 3,
+            "detection_source": "GNN"
+          }
+        ]
+      },
+      "llm": {
+        "status": "skipped",
+        "reason": "--with-llm was not supplied"
+      },
+      "routing": {
+        "policy": "any_gnn_hotspot",
+        "routed_to_foundry": true,
+        "hotspot_count": 4
+      },
+      "foundry": {
+        "guided_reference_test": {
+          "command": [
+            "/Users/nguyendinhkhang/.foundry/bin/forge",
+            "test",
+            "--fuzz-seed",
+            "42",
+            "--match-contract",
+            "SimpleDAOTest",
+            "--match-test",
+            "testGuidedExploit",
+            "-vvv"
+          ],
+          "return_code": 0,
+          "timed_out": false,
+          "passed": true,
+          "duration_ms": 1307.29,
+          "stdout_sha256": "9dcd36ca98fe9cd09ed4b8d7dcc9a90c1967c746040b3cd0febd7d7f9b736086",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_tail": "No files changed, compilation skipped\n2026-09-28T02:21:47.838638Z  WARN evm::traces::external: etherscan config not found\n\nRan 1 test for test/SimpleDAO.t.sol:SimpleDAOTest\n[PASS] testGuidedExploit() (gas: 77558)\nSuite result: ok. 1 passed; 0 failed; 0 skipped; finished in 10.82ms (2.09ms CPU time)\n\nRan 1 test suite in 298.64ms (10.82ms CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)\n",
+          "stderr_tail": ""
+        },
+        "parameterized_reference_fuzz": {
+          "command": [
+            "/Users/nguyendinhkhang/.foundry/bin/forge",
+            "test",
+            "--fuzz-seed",
+            "42",
+            "--match-contract",
+            "SimpleDAOTest",
+            "--match-test",
+            "testRandomFuzz",
+            "--fuzz-runs",
+            "10000",
+            "-vvv"
+          ],
+          "return_code": 0,
+          "timed_out": false,
+          "passed": true,
+          "duration_ms": 540.58,
+          "stdout_sha256": "dea70a78f3c24ddda966ebe904058cf9db203f42d712fd9482aea3f2599000e4",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_tail": "No files changed, compilation skipped\n2026-09-28T02:21:48.382112Z  WARN evm::traces::external: etherscan config not found\n\nRan 1 test for test/SimpleDAO.t.sol:SimpleDAOTest\n[PASS] testRandomFuzz(uint256,uint8) (runs: 10000, \u03bc: 50478, ~: 54228)\nSuite result: ok. 1 passed; 0 failed; 0 skipped; finished in 299.68ms (299.26ms CPU time)\n\nRan 1 test suite in 300.24ms (299.68ms CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)\n",
+          "stderr_tail": ""
+        }
+      }
+    },
+    {
+      "target": "TimestampLock",
+      "source": "artifacts/fuzzing_runs/benchmark_workspace/src/TimestampLock.sol",
+      "source_sha256": "8f1134e46370644c2878b5fa564cea04d1f6d4d521126453ab63867a024d082f",
+      "vulnerability_class": "Timestamp Dependence",
+      "swc": "SWC-114",
+      "harness_kind": "pre-authored Foundry reference harness",
+      "gnn": {
+        "status": "completed",
+        "checkpoint": "artifacts/nss2026/runs/random/gnnmhav2/seed_42/best_model.pt",
+        "checkpoint_sha256": "3fc2937a90bf9081fa08e0c93d46ed2761977f9a19bff59af4702b1dc50f2f08",
+        "masked_identifier_count": 5,
+        "graphs_built": 3,
+        "hotspot_count": 1,
+        "hotspots": [
+          {
+            "function_name": "prism_v_0000",
+            "contract_name": "prism_Type_0001",
+            "full_name": "prism_Type_0001.prism_v_0000",
+            "risk_score": 0.3707,
+            "vulnerability_hint": "integer_overflow",
+            "predicted_class": 1,
+            "detection_source": "GNN"
+          }
+        ]
+      },
+      "llm": {
+        "status": "skipped",
+        "reason": "--with-llm was not supplied"
+      },
+      "routing": {
+        "policy": "any_gnn_hotspot",
+        "routed_to_foundry": true,
+        "hotspot_count": 1
+      },
+      "foundry": {
+        "guided_reference_test": {
+          "command": [
+            "/Users/nguyendinhkhang/.foundry/bin/forge",
+            "test",
+            "--fuzz-seed",
+            "42",
+            "--match-contract",
+            "TimestampLockTest",
+            "--match-test",
+            "testGuidedExploit",
+            "-vvv"
+          ],
+          "return_code": 0,
+          "timed_out": false,
+          "passed": true,
+          "duration_ms": 861.43,
+          "stdout_sha256": "0a46e920c2527816f229e9cc5bcc27aa86ae569803d4fd818bb7db652f20c9a1",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_tail": "No files changed, compilation skipped\n2026-09-28T02:21:50.076707Z  WARN evm::traces::external: etherscan config not found\n\nRan 1 test for test/TimestampLock.t.sol:TimestampLockTest\n[PASS] testGuidedExploit() (gas: 39827)\nSuite result: ok. 1 passed; 0 failed; 0 skipped; finished in 4.37ms (179.38\u00b5s CPU time)\n\nRan 1 test suite in 397.33ms (4.37ms CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)\n",
+          "stderr_tail": ""
+        },
+        "parameterized_reference_fuzz": {
+          "command": [
+            "/Users/nguyendinhkhang/.foundry/bin/forge",
+            "test",
+            "--fuzz-seed",
+            "42",
+            "--match-contract",
+            "TimestampLockTest",
+            "--match-test",
+            "testRandomFuzz",
+            "--fuzz-runs",
+            "10000",
+            "-vvv"
+          ],
+          "return_code": 0,
+          "timed_out": false,
+          "passed": true,
+          "duration_ms": 377.23,
+          "stdout_sha256": "28130c4607314b67b36db60ae1376cec36c4d04420cba8a56c55499adcccee97",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_tail": "No files changed, compilation skipped\n2026-09-28T02:21:50.664569Z  WARN evm::traces::external: etherscan config not found\n\nRan 1 test for test/TimestampLock.t.sol:TimestampLockTest\n[PASS] testRandomFuzz(uint256) (runs: 10000, \u03bc: 13180, ~: 13518)\nSuite result: ok. 1 passed; 0 failed; 0 skipped; finished in 150.85ms (150.51ms CPU time)\n\nRan 1 test suite in 190.21ms (150.85ms CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)\n",
+          "stderr_tail": ""
+        }
+      }
+    },
+    {
+      "target": "TokenSale",
+      "source": "artifacts/fuzzing_runs/benchmark_workspace/src/TokenSale.sol",
+      "source_sha256": "5207e3f2fca8659415da121884f9a06a120d776bb6a1b608310377fe2f222612",
+      "vulnerability_class": "Integer Overflow",
+      "swc": "SWC-101",
+      "harness_kind": "pre-authored Foundry reference harness",
+      "gnn": {
+        "status": "completed",
+        "checkpoint": "artifacts/nss2026/runs/random/gnnmhav2/seed_42/best_model.pt",
+        "checkpoint_sha256": "3fc2937a90bf9081fa08e0c93d46ed2761977f9a19bff59af4702b1dc50f2f08",
+        "masked_identifier_count": 6,
+        "graphs_built": 4,
+        "hotspot_count": 2,
+        "hotspots": [
+          {
+            "function_name": "prism_v_0004",
+            "contract_name": "prism_Type_0001",
+            "full_name": "prism_Type_0001.prism_v_0004",
+            "risk_score": 0.4788,
+            "vulnerability_hint": "access_control",
+            "predicted_class": 2,
+            "detection_source": "GNN"
+          },
+          {
+            "function_name": "prism_v_0005",
+            "contract_name": "prism_Type_0001",
+            "full_name": "prism_Type_0001.prism_v_0005",
+            "risk_score": 0.3139,
+            "vulnerability_hint": "unchecked_return",
+            "predicted_class": 3,
+            "detection_source": "GNN"
+          }
+        ]
+      },
+      "llm": {
+        "status": "skipped",
+        "reason": "--with-llm was not supplied"
+      },
+      "routing": {
+        "policy": "any_gnn_hotspot",
+        "routed_to_foundry": true,
+        "hotspot_count": 2
+      },
+      "foundry": {
+        "guided_reference_test": {
+          "command": [
+            "/Users/nguyendinhkhang/.foundry/bin/forge",
+            "test",
+            "--fuzz-seed",
+            "42",
+            "--match-contract",
+            "TokenSaleTest",
+            "--match-test",
+            "testGuidedExploit",
+            "-vvv"
+          ],
+          "return_code": 0,
+          "timed_out": false,
+          "passed": true,
+          "duration_ms": 495.86,
+          "stdout_sha256": "f77a377d7b9e2ef10065aea304f58d5420dcb24e95565159aeeecfc756dfc734",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_tail": "No files changed, compilation skipped\n2026-09-28T02:21:51.754793Z  WARN evm::traces::external: etherscan config not found\n\nRan 1 test for test/TokenSale.t.sol:TokenSaleTest\n[PASS] testGuidedExploit() (gas: 39648)\nSuite result: ok. 1 passed; 0 failed; 0 skipped; finished in 460.67\u00b5s (170.38\u00b5s CPU time)\n\nRan 1 test suite in 188.65ms (460.67\u00b5s CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)\n",
+          "stderr_tail": ""
+        },
+        "parameterized_reference_fuzz": {
+          "command": [
+            "/Users/nguyendinhkhang/.foundry/bin/forge",
+            "test",
+            "--fuzz-seed",
+            "42",
+            "--match-contract",
+            "TokenSaleTest",
+            "--match-test",
+            "testRandomFuzz",
+            "--fuzz-runs",
+            "10000",
+            "-vvv"
+          ],
+          "return_code": 0,
+          "timed_out": false,
+          "passed": true,
+          "duration_ms": 438.43,
+          "stdout_sha256": "78012e5420c27007a4a8a1925f6098e9a18ba5cad252b148ad967ac1c36cb02e",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_tail": "No files changed, compilation skipped\n2026-09-28T02:21:52.141238Z  WARN evm::traces::external: etherscan config not found\n\nRan 1 test for test/TokenSale.t.sol:TokenSaleTest\n[PASS] testRandomFuzz(uint256) (runs: 10000, \u03bc: 36436, ~: 40338)\nSuite result: ok. 1 passed; 0 failed; 0 skipped; finished in 240.20ms (239.95ms CPU time)\n\nRan 1 test suite in 240.72ms (240.20ms CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)\n",
+          "stderr_tail": ""
+        }
+      }
+    },
+    {
+      "target": "UncheckedBank",
+      "source": "artifacts/fuzzing_runs/benchmark_workspace/src/UncheckedBank.sol",
+      "source_sha256": "fde391c7c7b047e912e1b36001c68e6fa3413c848ea8a2fd43b4e95d8ae60bba",
+      "vulnerability_class": "Unchecked Return Value",
+      "swc": "SWC-104",
+      "harness_kind": "pre-authored Foundry reference harness",
+      "gnn": {
+        "status": "completed",
+        "checkpoint": "artifacts/nss2026/runs/random/gnnmhav2/seed_42/best_model.pt",
+        "checkpoint_sha256": "3fc2937a90bf9081fa08e0c93d46ed2761977f9a19bff59af4702b1dc50f2f08",
+        "masked_identifier_count": 7,
+        "graphs_built": 4,
+        "hotspot_count": 2,
+        "hotspots": [
+          {
+            "function_name": "prism_v_0000",
+            "contract_name": "prism_Type_0001",
+            "full_name": "prism_Type_0001.prism_v_0000",
+            "risk_score": 0.8378,
+            "vulnerability_hint": "integer_overflow",
+            "predicted_class": 1,
+            "detection_source": "GNN"
+          },
+          {
+            "function_name": "prism_v_0005",
+            "contract_name": "prism_Type_0001",
+            "full_name": "prism_Type_0001.prism_v_0005",
+            "risk_score": 0.591,
+            "vulnerability_hint": "access_control",
+            "predicted_class": 2,
+            "detection_source": "GNN"
+          }
+        ]
+      },
+      "llm": {
+        "status": "skipped",
+        "reason": "--with-llm was not supplied"
+      },
+      "routing": {
+        "policy": "any_gnn_hotspot",
+        "routed_to_foundry": true,
+        "hotspot_count": 2
+      },
+      "foundry": {
+        "guided_reference_test": {
+          "command": [
+            "/Users/nguyendinhkhang/.foundry/bin/forge",
+            "test",
+            "--fuzz-seed",
+            "42",
+            "--match-contract",
+            "UncheckedBankTest",
+            "--match-test",
+            "testGuidedExploit",
+            "-vvv"
+          ],
+          "return_code": 0,
+          "timed_out": false,
+          "passed": true,
+          "duration_ms": 427.02,
+          "stdout_sha256": "6711293148c5fb0984a21188a38b466f8a8025bb8e2ee6c133f6749396ee6456",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_tail": "No files changed, compilation skipped\n2026-09-28T02:21:53.146784Z  WARN evm::traces::external: etherscan config not found\n\nRan 1 test for test/UncheckedBank.t.sol:UncheckedBankTest\n[PASS] testGuidedExploit() (gas: 27202)\nSuite result: ok. 1 passed; 0 failed; 0 skipped; finished in 448.25\u00b5s (71.63\u00b5s CPU time)\n\nRan 1 test suite in 180.63ms (448.25\u00b5s CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)\n",
+          "stderr_tail": ""
+        },
+        "parameterized_reference_fuzz": {
+          "command": [
+            "/Users/nguyendinhkhang/.foundry/bin/forge",
+            "test",
+            "--fuzz-seed",
+            "42",
+            "--match-contract",
+            "UncheckedBankTest",
+            "--match-test",
+            "testRandomFuzz",
+            "--fuzz-runs",
+            "10000",
+            "-vvv"
+          ],
+          "return_code": 0,
+          "timed_out": false,
+          "passed": true,
+          "duration_ms": 627.26,
+          "stdout_sha256": "44678e04556e9a047e45999756909c75a0943613d6bf51e71b1eee6bf9142d93",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_tail": "No files changed, compilation skipped\n2026-09-28T02:21:53.600251Z  WARN evm::traces::external: etherscan config not found\n\nRan 1 test for test/UncheckedBank.t.sol:UncheckedBankTest\n[PASS] testRandomFuzz(uint256) (runs: 10000, \u03bc: 50029, ~: 50029)\nSuite result: ok. 1 passed; 0 failed; 0 skipped; finished in 351.77ms (351.25ms CPU time)\n\nRan 1 test suite in 355.93ms (351.77ms CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)\n",
+          "stderr_tail": ""
+        }
+      }
+    },
+    {
+      "target": "UnprotectedVault",
+      "source": "artifacts/fuzzing_runs/benchmark_workspace/src/UnprotectedVault.sol",
+      "source_sha256": "e500b0ca9ad05e5653f457675f8ab8e2818b6bd654ad323289d8559de94abf3d",
+      "vulnerability_class": "Access Control",
+      "swc": "SWC-105",
+      "harness_kind": "pre-authored Foundry reference harness",
+      "gnn": {
+        "status": "completed",
+        "checkpoint": "artifacts/nss2026/runs/random/gnnmhav2/seed_42/best_model.pt",
+        "checkpoint_sha256": "3fc2937a90bf9081fa08e0c93d46ed2761977f9a19bff59af4702b1dc50f2f08",
+        "masked_identifier_count": 7,
+        "graphs_built": 5,
+        "hotspot_count": 3,
+        "hotspots": [
+          {
+            "function_name": "prism_v_0001",
+            "contract_name": "prism_Type_0000",
+            "full_name": "prism_Type_0000.prism_v_0001",
+            "risk_score": 0.7727,
+            "vulnerability_hint": "access_control",
+            "predicted_class": 2,
+            "detection_source": "GNN"
+          },
+          {
+            "function_name": "prism_v_0005",
+            "contract_name": "prism_Type_0000",
+            "full_name": "prism_Type_0000.prism_v_0005",
+            "risk_score": 0.591,
+            "vulnerability_hint": "access_control",
+            "predicted_class": 2,
+            "detection_source": "GNN"
+          },
+          {
+            "function_name": "constructor",
+            "contract_name": "prism_Type_0000",
+            "full_name": "prism_Type_0000.constructor",
+            "risk_score": 0.3785,
+            "vulnerability_hint": "access_control",
+            "predicted_class": 2,
+            "detection_source": "GNN"
+          }
+        ]
+      },
+      "llm": {
+        "status": "skipped",
+        "reason": "--with-llm was not supplied"
+      },
+      "routing": {
+        "policy": "any_gnn_hotspot",
+        "routed_to_foundry": true,
+        "hotspot_count": 3
+      },
+      "foundry": {
+        "guided_reference_test": {
+          "command": [
+            "/Users/nguyendinhkhang/.foundry/bin/forge",
+            "test",
+            "--fuzz-seed",
+            "42",
+            "--match-contract",
+            "UnprotectedVaultTest",
+            "--match-test",
+            "testGuidedExploit",
+            "-vvv"
+          ],
+          "return_code": 0,
+          "timed_out": false,
+          "passed": true,
+          "duration_ms": 532.97,
+          "stdout_sha256": "391c9db8caa719f07d5ef5608503301846333562557985852b7d374d81cc71f4",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_tail": "No files changed, compilation skipped\n2026-09-28T02:21:54.819967Z  WARN evm::traces::external: etherscan config not found\n\nRan 1 test for test/UnprotectedVault.t.sol:UnprotectedVaultTest\n[PASS] testGuidedExploit() (gas: 48550)\nSuite result: ok. 1 passed; 0 failed; 0 skipped; finished in 1.55ms (67.79\u00b5s CPU time)\n\nRan 1 test suite in 188.93ms (1.55ms CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)\n",
+          "stderr_tail": ""
+        },
+        "parameterized_reference_fuzz": {
+          "command": [
+            "/Users/nguyendinhkhang/.foundry/bin/forge",
+            "test",
+            "--fuzz-seed",
+            "42",
+            "--match-contract",
+            "UnprotectedVaultTest",
+            "--match-test",
+            "testRandomFuzz",
+            "--fuzz-runs",
+            "10000",
+            "-vvv"
+          ],
+          "return_code": 0,
+          "timed_out": false,
+          "passed": true,
+          "duration_ms": 474.29,
+          "stdout_sha256": "522751919bf559277d26c0c4ffb461a5b4ac870bef290d6ffbaa3dc5e174c8d6",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_tail": "No files changed, compilation skipped\n2026-09-28T02:21:55.227073Z  WARN evm::traces::external: etherscan config not found\n\nRan 1 test for test/UnprotectedVault.t.sol:UnprotectedVaultTest\n[PASS] testRandomFuzz(uint256) (runs: 10000, \u03bc: 42252, ~: 42252)\nSuite result: ok. 1 passed; 0 failed; 0 skipped; finished in 256.16ms (255.58ms CPU time)\n\nRan 1 test suite in 256.95ms (256.16ms CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)\n",
+          "stderr_tail": ""
+        }
+      }
+    }
+  ],
+  "summary": {
+    "case_count": 5,
+    "gnn_completed": 5,
+    "llm_completed": 0,
+    "guided_foundry_passed": 5,
+    "fuzz_foundry_passed": 5
+  }
+}

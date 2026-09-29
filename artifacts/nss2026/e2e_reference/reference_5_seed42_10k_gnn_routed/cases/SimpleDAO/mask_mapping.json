@@ -1,0 +1,29 @@
+{
+  "original_to_masked": {
+    "attackCount": "prism_v_0000",
+    "AttackDAO": "prism_Type_0001",
+    "SimpleDAO": "prism_Type_0002",
+    "balances": "prism_v_0003",
+    "withdraw": "prism_v_0004",
+    "_target": "prism_v_0005",
+    "deposit": "prism_v_0006",
+    "attack": "prism_v_0007",
+    "target": "prism_v_0008",
+    "sent": "prism_v_0009",
+    "bal": "prism_v_0010"
+  },
+  "masked_to_original": {
+    "prism_v_0000": "attackCount",
+    "prism_Type_0001": "AttackDAO",
+    "prism_Type_0002": "SimpleDAO",
+    "prism_v_0003": "balances",
+    "prism_v_0004": "withdraw",
+    "prism_v_0005": "_target",
+    "prism_v_0006": "deposit",
+    "prism_v_0007": "attack",
+    "prism_v_0008": "target",
+    "prism_v_0009": "sent",
+    "prism_v_0010": "bal"
+  },
+  "counter": 11
+}

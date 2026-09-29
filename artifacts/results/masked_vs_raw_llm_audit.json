@@ -1,0 +1,1044 @@
+{
+  "timestamp_utc": "2026-09-29T06:43:50.631353+00:00",
+  "model": "deepseek-coder-v2:latest",
+  "sample_count": 57,
+  "mean_jaccard_similarity": 0.4561,
+  "non_empty_pairs_count": 49,
+  "non_empty_mean_jaccard": 0.3673,
+  "both_empty_pairs_count": 8,
+  "vulnerable_contracts_count": 30,
+  "vulnerable_recall_raw_pct": 100.0,
+  "vulnerable_recall_masked_pct": 43.33,
+  "safe_contracts_count": 27,
+  "safe_specificity_raw_pct": 40.74,
+  "safe_specificity_masked_pct": 70.37,
+  "raw_agreement_pct": 71.93,
+  "masked_agreement_pct": 56.14,
+  "paste_ready_slot_s4": "Under taxonomy-guided auditing across the five SWC classes, raw-code recall on the 30 vulnerable contracts reaches 30/30 (100.0%) with 11/27 (40.7%) safe specificity. On pseudonymized code, masked recall achieves 13/30 (43.3%) while safe specificity increases to 19/27 (70.4%). Across all 57 contracts, hypotheses agree with mean Jaccard similarity 0.46 (0.37 on non-empty pairs).",
+  "contract_evaluations": [
+    {
+      "file_name": "SafeAccessControl_0.sol",
+      "is_vulnerable": false,
+      "expected_swc": null,
+      "raw_findings": [
+        {
+          "function": "setOwner",
+          "swc": "SWC-105"
+        }
+      ],
+      "masked_findings": [],
+      "jaccard_similarity": 0.0,
+      "raw_agreed": false,
+      "masked_agreed": true,
+      "latency_seconds": 1.91
+    },
+    {
+      "file_name": "SafeAccessControl_1.sol",
+      "is_vulnerable": false,
+      "expected_swc": null,
+      "raw_findings": [
+        {
+          "function": "setOwner",
+          "swc": "SWC-105"
+        }
+      ],
+      "masked_findings": [],
+      "jaccard_similarity": 0.0,
+      "raw_agreed": false,
+      "masked_agreed": true,
+      "latency_seconds": 1.42
+    },
+    {
+      "file_name": "SafeAccessControl_2.sol",
+      "is_vulnerable": false,
+      "expected_swc": null,
+      "raw_findings": [
+        {
+          "function": "setOwner",
+          "swc": "SWC-105"
+        }
+      ],
+      "masked_findings": [],
+      "jaccard_similarity": 0.0,
+      "raw_agreed": false,
+      "masked_agreed": true,
+      "latency_seconds": 1.41
+    },
+    {
+      "file_name": "SafeAccessControl_3.sol",
+      "is_vulnerable": false,
+      "expected_swc": null,
+      "raw_findings": [
+        {
+          "function": "setOwner",
+          "swc": "SWC-105"
+        }
+      ],
+      "masked_findings": [],
+      "jaccard_similarity": 0.0,
+      "raw_agreed": false,
+      "masked_agreed": true,
+      "latency_seconds": 1.4
+    },
+    {
+      "file_name": "SafeAccessControl_4.sol",
+      "is_vulnerable": false,
+      "expected_swc": null,
+      "raw_findings": [
+        {
+          "function": "setOwner",
+          "swc": "SWC-105"
+        }
+      ],
+      "masked_findings": [],
+      "jaccard_similarity": 0.0,
+      "raw_agreed": false,
+      "masked_agreed": true,
+      "latency_seconds": 1.4
+    },
+    {
+      "file_name": "SafeOverflow_0.sol",
+      "is_vulnerable": false,
+      "expected_swc": null,
+      "raw_findings": [],
+      "masked_findings": [],
+      "jaccard_similarity": 1.0,
+      "raw_agreed": true,
+      "masked_agreed": true,
+      "latency_seconds": 1.12
+    },
+    {
+      "file_name": "SafeOverflow_1.sol",
+      "is_vulnerable": false,
+      "expected_swc": null,
+      "raw_findings": [],
+      "masked_findings": [],
+      "jaccard_similarity": 1.0,
+      "raw_agreed": true,
+      "masked_agreed": true,
+      "latency_seconds": 1.11
+    },
+    {
+      "file_name": "SafeOverflow_2.sol",
+      "is_vulnerable": false,
+      "expected_swc": null,
+      "raw_findings": [],
+      "masked_findings": [],
+      "jaccard_similarity": 1.0,
+      "raw_agreed": true,
+      "masked_agreed": true,
+      "latency_seconds": 1.13
+    },
+    {
+      "file_name": "SafeOverflow_3.sol",
+      "is_vulnerable": false,
+      "expected_swc": null,
+      "raw_findings": [],
+      "masked_findings": [],
+      "jaccard_similarity": 1.0,
+      "raw_agreed": true,
+      "masked_agreed": true,
+      "latency_seconds": 1.11
+    },
+    {
+      "file_name": "SafeOverflow_4.sol",
+      "is_vulnerable": false,
+      "expected_swc": null,
+      "raw_findings": [],
+      "masked_findings": [],
+      "jaccard_similarity": 1.0,
+      "raw_agreed": true,
+      "masked_agreed": true,
+      "latency_seconds": 1.12
+    },
+    {
+      "file_name": "SafeReentrancy_0.sol",
+      "is_vulnerable": false,
+      "expected_swc": null,
+      "raw_findings": [
+        {
+          "function": "withdraw",
+          "swc": "SWC-107"
+        }
+      ],
+      "masked_findings": [],
+      "jaccard_similarity": 0.0,
+      "raw_agreed": false,
+      "masked_agreed": true,
+      "latency_seconds": 1.6
+    },
+    {
+      "file_name": "SafeReentrancy_1.sol",
+      "is_vulnerable": false,
+      "expected_swc": null,
+      "raw_findings": [
+        {
+          "function": "withdraw",
+          "swc": "SWC-107"
+        }
+      ],
+      "masked_findings": [],
+      "jaccard_similarity": 0.0,
+      "raw_agreed": false,
+      "masked_agreed": true,
+      "latency_seconds": 1.64
+    },
+    {
+      "file_name": "SafeReentrancy_2.sol",
+      "is_vulnerable": false,
+      "expected_swc": null,
+      "raw_findings": [
+        {
+          "function": "withdraw",
+          "swc": "SWC-107"
+        }
+      ],
+      "masked_findings": [],
+      "jaccard_similarity": 0.0,
+      "raw_agreed": false,
+      "masked_agreed": true,
+      "latency_seconds": 1.62
+    },
+    {
+      "file_name": "SafeReentrancy_3.sol",
+      "is_vulnerable": false,
+      "expected_swc": null,
+      "raw_findings": [
+        {
+          "function": "withdraw",
+          "swc": "SWC-107"
+        }
+      ],
+      "masked_findings": [],
+      "jaccard_similarity": 0.0,
+      "raw_agreed": false,
+      "masked_agreed": true,
+      "latency_seconds": 1.62
+    },
+    {
+      "file_name": "SafeReentrancy_4.sol",
+      "is_vulnerable": false,
+      "expected_swc": null,
+      "raw_findings": [
+        {
+          "function": "withdraw",
+          "swc": "SWC-107"
+        }
+      ],
+      "masked_findings": [],
+      "jaccard_similarity": 0.0,
+      "raw_agreed": false,
+      "masked_agreed": true,
+      "latency_seconds": 1.66
+    },
+    {
+      "file_name": "SafeTimestamp_0.sol",
+      "is_vulnerable": false,
+      "expected_swc": null,
+      "raw_findings": [],
+      "masked_findings": [
+        {
+          "function": "play",
+          "swc": "SWC-105"
+        }
+      ],
+      "jaccard_similarity": 0.0,
+      "raw_agreed": true,
+      "masked_agreed": false,
+      "latency_seconds": 1.59
+    },
+    {
+      "file_name": "SafeTimestamp_1.sol",
+      "is_vulnerable": false,
+      "expected_swc": null,
+      "raw_findings": [
+        {
+          "function": "play",
+          "swc": "SWC-114"
+        }
+      ],
+      "masked_findings": [],
+      "jaccard_similarity": 0.0,
+      "raw_agreed": false,
+      "masked_agreed": true,
+      "latency_seconds": 1.41
+    },
+    {
+      "file_name": "SafeTimestamp_2.sol",
+      "is_vulnerable": false,
+      "expected_swc": null,
+      "raw_findings": [],
+      "masked_findings": [],
+      "jaccard_similarity": 1.0,
+      "raw_agreed": true,
+      "masked_agreed": true,
+      "latency_seconds": 1.17
+    },
+    {
+      "file_name": "SafeTimestamp_3.sol",
+      "is_vulnerable": false,
+      "expected_swc": null,
+      "raw_findings": [],
+      "masked_findings": [
+        {
+          "function": "play",
+          "swc": "SWC-105"
+        }
+      ],
+      "jaccard_similarity": 0.0,
+      "raw_agreed": true,
+      "masked_agreed": false,
+      "latency_seconds": 1.64
+    },
+    {
+      "file_name": "SafeTimestamp_4.sol",
+      "is_vulnerable": false,
+      "expected_swc": null,
+      "raw_findings": [],
+      "masked_findings": [
+        {
+          "function": "play",
+          "swc": "SWC-107"
+        }
+      ],
+      "jaccard_similarity": 0.0,
+      "raw_agreed": true,
+      "masked_agreed": false,
+      "latency_seconds": 1.59
+    },
+    {
+      "file_name": "SafeUncheckedReturn_0.sol",
+      "is_vulnerable": false,
+      "expected_swc": null,
+      "raw_findings": [
+        {
+          "function": "sendEther",
+          "swc": "SWC-104"
+        }
+      ],
+      "masked_findings": [
+        {
+          "function": "sendEther",
+          "swc": "SWC-104"
+        }
+      ],
+      "jaccard_similarity": 1.0,
+      "raw_agreed": false,
+      "masked_agreed": false,
+      "latency_seconds": 1.8
+    },
+    {
+      "file_name": "SafeUncheckedReturn_1.sol",
+      "is_vulnerable": false,
+      "expected_swc": null,
+      "raw_findings": [
+        {
+          "function": "sendEther",
+          "swc": "SWC-104"
+        }
+      ],
+      "masked_findings": [
+        {
+          "function": "sendEther",
+          "swc": "SWC-104"
+        }
+      ],
+      "jaccard_similarity": 1.0,
+      "raw_agreed": false,
+      "masked_agreed": false,
+      "latency_seconds": 1.89
+    },
+    {
+      "file_name": "SafeUncheckedReturn_2.sol",
+      "is_vulnerable": false,
+      "expected_swc": null,
+      "raw_findings": [
+        {
+          "function": "sendEther",
+          "swc": "SWC-104"
+        }
+      ],
+      "masked_findings": [
+        {
+          "function": "sendEther",
+          "swc": "SWC-104"
+        }
+      ],
+      "jaccard_similarity": 1.0,
+      "raw_agreed": false,
+      "masked_agreed": false,
+      "latency_seconds": 2.02
+    },
+    {
+      "file_name": "SafeUncheckedReturn_3.sol",
+      "is_vulnerable": false,
+      "expected_swc": null,
+      "raw_findings": [
+        {
+          "function": "sendEther",
+          "swc": "SWC-104"
+        }
+      ],
+      "masked_findings": [
+        {
+          "function": "sendEther",
+          "swc": "SWC-104"
+        }
+      ],
+      "jaccard_similarity": 1.0,
+      "raw_agreed": false,
+      "masked_agreed": false,
+      "latency_seconds": 1.93
+    },
+    {
+      "file_name": "SafeUncheckedReturn_4.sol",
+      "is_vulnerable": false,
+      "expected_swc": null,
+      "raw_findings": [
+        {
+          "function": "sendEther",
+          "swc": "SWC-104"
+        }
+      ],
+      "masked_findings": [
+        {
+          "function": "sendEther",
+          "swc": "SWC-104"
+        }
+      ],
+      "jaccard_similarity": 1.0,
+      "raw_agreed": false,
+      "masked_agreed": false,
+      "latency_seconds": 2.02
+    },
+    {
+      "file_name": "VulnAccessControl_0.sol",
+      "is_vulnerable": true,
+      "expected_swc": "SWC-105",
+      "raw_findings": [
+        {
+          "function": "setOwner",
+          "swc": "SWC-105"
+        }
+      ],
+      "masked_findings": [],
+      "jaccard_similarity": 0.0,
+      "raw_agreed": true,
+      "masked_agreed": false,
+      "latency_seconds": 1.63
+    },
+    {
+      "file_name": "VulnAccessControl_1.sol",
+      "is_vulnerable": true,
+      "expected_swc": "SWC-105",
+      "raw_findings": [
+        {
+          "function": "setOwner",
+          "swc": "SWC-105"
+        }
+      ],
+      "masked_findings": [],
+      "jaccard_similarity": 0.0,
+      "raw_agreed": true,
+      "masked_agreed": false,
+      "latency_seconds": 1.47
+    },
+    {
+      "file_name": "VulnAccessControl_2.sol",
+      "is_vulnerable": true,
+      "expected_swc": "SWC-105",
+      "raw_findings": [
+        {
+          "function": "setOwner",
+          "swc": "SWC-105"
+        }
+      ],
+      "masked_findings": [],
+      "jaccard_similarity": 0.0,
+      "raw_agreed": true,
+      "masked_agreed": false,
+      "latency_seconds": 1.53
+    },
+    {
+      "file_name": "VulnAccessControl_3.sol",
+      "is_vulnerable": true,
+      "expected_swc": "SWC-105",
+      "raw_findings": [
+        {
+          "function": "setOwner",
+          "swc": "SWC-105"
+        }
+      ],
+      "masked_findings": [],
+      "jaccard_similarity": 0.0,
+      "raw_agreed": true,
+      "masked_agreed": false,
+      "latency_seconds": 1.37
+    },
+    {
+      "file_name": "VulnAccessControl_4.sol",
+      "is_vulnerable": true,
+      "expected_swc": "SWC-105",
+      "raw_findings": [
+        {
+          "function": "setOwner",
+          "swc": "SWC-105"
+        }
+      ],
+      "masked_findings": [],
+      "jaccard_similarity": 0.0,
+      "raw_agreed": true,
+      "masked_agreed": false,
+      "latency_seconds": 1.59
+    },
+    {
+      "file_name": "VulnOverflow_0.sol",
+      "is_vulnerable": true,
+      "expected_swc": "SWC-101",
+      "raw_findings": [
+        {
+          "function": "transfer",
+          "swc": "SWC-101"
+        }
+      ],
+      "masked_findings": [],
+      "jaccard_similarity": 0.0,
+      "raw_agreed": true,
+      "masked_agreed": false,
+      "latency_seconds": 1.38
+    },
+    {
+      "file_name": "VulnOverflow_1.sol",
+      "is_vulnerable": true,
+      "expected_swc": "SWC-101",
+      "raw_findings": [
+        {
+          "function": "transfer",
+          "swc": "SWC-101"
+        }
+      ],
+      "masked_findings": [],
+      "jaccard_similarity": 0.0,
+      "raw_agreed": true,
+      "masked_agreed": false,
+      "latency_seconds": 1.39
+    },
+    {
+      "file_name": "VulnOverflow_2.sol",
+      "is_vulnerable": true,
+      "expected_swc": "SWC-101",
+      "raw_findings": [
+        {
+          "function": "transfer",
+          "swc": "SWC-101"
+        }
+      ],
+      "masked_findings": [],
+      "jaccard_similarity": 0.0,
+      "raw_agreed": true,
+      "masked_agreed": false,
+      "latency_seconds": 1.54
+    },
+    {
+      "file_name": "VulnOverflow_3.sol",
+      "is_vulnerable": true,
+      "expected_swc": "SWC-101",
+      "raw_findings": [
+        {
+          "function": "transfer",
+          "swc": "SWC-101"
+        }
+      ],
+      "masked_findings": [],
+      "jaccard_similarity": 0.0,
+      "raw_agreed": true,
+      "masked_agreed": false,
+      "latency_seconds": 1.65
+    },
+    {
+      "file_name": "VulnOverflow_4.sol",
+      "is_vulnerable": true,
+      "expected_swc": "SWC-101",
+      "raw_findings": [
+        {
+          "function": "transfer",
+          "swc": "SWC-101"
+        }
+      ],
+      "masked_findings": [],
+      "jaccard_similarity": 0.0,
+      "raw_agreed": true,
+      "masked_agreed": false,
+      "latency_seconds": 1.39
+    },
+    {
+      "file_name": "VulnReentrancy_0.sol",
+      "is_vulnerable": true,
+      "expected_swc": "SWC-107",
+      "raw_findings": [
+        {
+          "function": "withdraw",
+          "swc": "SWC-107"
+        }
+      ],
+      "masked_findings": [
+        {
+          "function": "withdraw",
+          "swc": "SWC-104"
+        }
+      ],
+      "jaccard_similarity": 0.0,
+      "raw_agreed": true,
+      "masked_agreed": false,
+      "latency_seconds": 1.84
+    },
+    {
+      "file_name": "VulnReentrancy_1.sol",
+      "is_vulnerable": true,
+      "expected_swc": "SWC-107",
+      "raw_findings": [
+        {
+          "function": "withdraw",
+          "swc": "SWC-107"
+        }
+      ],
+      "masked_findings": [
+        {
+          "function": "withdraw",
+          "swc": "SWC-104"
+        }
+      ],
+      "jaccard_similarity": 0.0,
+      "raw_agreed": true,
+      "masked_agreed": false,
+      "latency_seconds": 1.84
+    },
+    {
+      "file_name": "VulnReentrancy_2.sol",
+      "is_vulnerable": true,
+      "expected_swc": "SWC-107",
+      "raw_findings": [
+        {
+          "function": "withdraw",
+          "swc": "SWC-107"
+        }
+      ],
+      "masked_findings": [
+        {
+          "function": "withdraw",
+          "swc": "SWC-104"
+        }
+      ],
+      "jaccard_similarity": 0.0,
+      "raw_agreed": true,
+      "masked_agreed": false,
+      "latency_seconds": 1.83
+    },
+    {
+      "file_name": "VulnReentrancy_3.sol",
+      "is_vulnerable": true,
+      "expected_swc": "SWC-107",
+      "raw_findings": [
+        {
+          "function": "withdraw",
+          "swc": "SWC-107"
+        }
+      ],
+      "masked_findings": [],
+      "jaccard_similarity": 0.0,
+      "raw_agreed": true,
+      "masked_agreed": false,
+      "latency_seconds": 1.44
+    },
+    {
+      "file_name": "VulnReentrancy_4.sol",
+      "is_vulnerable": true,
+      "expected_swc": "SWC-107",
+      "raw_findings": [
+        {
+          "function": "withdraw",
+          "swc": "SWC-107"
+        }
+      ],
+      "masked_findings": [
+        {
+          "function": "withdraw",
+          "swc": "SWC-104"
+        }
+      ],
+      "jaccard_similarity": 0.0,
+      "raw_agreed": true,
+      "masked_agreed": false,
+      "latency_seconds": 1.89
+    },
+    {
+      "file_name": "VulnTimestamp_0.sol",
+      "is_vulnerable": true,
+      "expected_swc": "SWC-114",
+      "raw_findings": [
+        {
+          "function": "play",
+          "swc": "SWC-114"
+        }
+      ],
+      "masked_findings": [
+        {
+          "function": "play",
+          "swc": "SWC-114"
+        }
+      ],
+      "jaccard_similarity": 1.0,
+      "raw_agreed": true,
+      "masked_agreed": true,
+      "latency_seconds": 1.75
+    },
+    {
+      "file_name": "VulnTimestamp_1.sol",
+      "is_vulnerable": true,
+      "expected_swc": "SWC-114",
+      "raw_findings": [
+        {
+          "function": "play",
+          "swc": "SWC-114"
+        }
+      ],
+      "masked_findings": [
+        {
+          "function": "play",
+          "swc": "SWC-114"
+        }
+      ],
+      "jaccard_similarity": 1.0,
+      "raw_agreed": true,
+      "masked_agreed": true,
+      "latency_seconds": 1.71
+    },
+    {
+      "file_name": "VulnTimestamp_2.sol",
+      "is_vulnerable": true,
+      "expected_swc": "SWC-114",
+      "raw_findings": [
+        {
+          "function": "play",
+          "swc": "SWC-114"
+        }
+      ],
+      "masked_findings": [
+        {
+          "function": "play",
+          "swc": "SWC-114"
+        }
+      ],
+      "jaccard_similarity": 1.0,
+      "raw_agreed": true,
+      "masked_agreed": true,
+      "latency_seconds": 1.7
+    },
+    {
+      "file_name": "VulnTimestamp_3.sol",
+      "is_vulnerable": true,
+      "expected_swc": "SWC-114",
+      "raw_findings": [
+        {
+          "function": "play",
+          "swc": "SWC-114"
+        }
+      ],
+      "masked_findings": [
+        {
+          "function": "play",
+          "swc": "SWC-114"
+        }
+      ],
+      "jaccard_similarity": 1.0,
+      "raw_agreed": true,
+      "masked_agreed": true,
+      "latency_seconds": 1.7
+    },
+    {
+      "file_name": "VulnTimestamp_4.sol",
+      "is_vulnerable": true,
+      "expected_swc": "SWC-114",
+      "raw_findings": [
+        {
+          "function": "play",
+          "swc": "SWC-114"
+        }
+      ],
+      "masked_findings": [
+        {
+          "function": "play",
+          "swc": "SWC-114"
+        }
+      ],
+      "jaccard_similarity": 1.0,
+      "raw_agreed": true,
+      "masked_agreed": true,
+      "latency_seconds": 1.7
+    },
+    {
+      "file_name": "VulnUncheckedReturn_0.sol",
+      "is_vulnerable": true,
+      "expected_swc": "SWC-104",
+      "raw_findings": [
+        {
+          "function": "sendEther",
+          "swc": "SWC-104"
+        }
+      ],
+      "masked_findings": [
+        {
+          "function": "sendEther",
+          "swc": "SWC-104"
+        }
+      ],
+      "jaccard_similarity": 1.0,
+      "raw_agreed": true,
+      "masked_agreed": true,
+      "latency_seconds": 1.71
+    },
+    {
+      "file_name": "VulnUncheckedReturn_1.sol",
+      "is_vulnerable": true,
+      "expected_swc": "SWC-104",
+      "raw_findings": [
+        {
+          "function": "sendEther",
+          "swc": "SWC-104"
+        }
+      ],
+      "masked_findings": [
+        {
+          "function": "sendEther",
+          "swc": "SWC-104"
+        }
+      ],
+      "jaccard_similarity": 1.0,
+      "raw_agreed": true,
+      "masked_agreed": true,
+      "latency_seconds": 1.7
+    },
+    {
+      "file_name": "VulnUncheckedReturn_2.sol",
+      "is_vulnerable": true,
+      "expected_swc": "SWC-104",
+      "raw_findings": [
+        {
+          "function": "sendEther",
+          "swc": "SWC-104"
+        }
+      ],
+      "masked_findings": [
+        {
+          "function": "sendEther",
+          "swc": "SWC-104"
+        }
+      ],
+      "jaccard_similarity": 1.0,
+      "raw_agreed": true,
+      "masked_agreed": true,
+      "latency_seconds": 1.99
+    },
+    {
+      "file_name": "VulnUncheckedReturn_3.sol",
+      "is_vulnerable": true,
+      "expected_swc": "SWC-104",
+      "raw_findings": [
+        {
+          "function": "sendEther",
+          "swc": "SWC-104"
+        }
+      ],
+      "masked_findings": [
+        {
+          "function": "sendEther",
+          "swc": "SWC-104"
+        }
+      ],
+      "jaccard_similarity": 1.0,
+      "raw_agreed": true,
+      "masked_agreed": true,
+      "latency_seconds": 2.07
+    },
+    {
+      "file_name": "VulnUncheckedReturn_4.sol",
+      "is_vulnerable": true,
+      "expected_swc": "SWC-104",
+      "raw_findings": [
+        {
+          "function": "sendEther",
+          "swc": "SWC-104"
+        }
+      ],
+      "masked_findings": [
+        {
+          "function": "sendEther",
+          "swc": "SWC-104"
+        }
+      ],
+      "jaccard_similarity": 1.0,
+      "raw_agreed": true,
+      "masked_agreed": true,
+      "latency_seconds": 1.95
+    },
+    {
+      "file_name": "SafeBank.sol",
+      "is_vulnerable": false,
+      "expected_swc": null,
+      "raw_findings": [],
+      "masked_findings": [],
+      "jaccard_similarity": 1.0,
+      "raw_agreed": true,
+      "masked_agreed": true,
+      "latency_seconds": 1.63
+    },
+    {
+      "file_name": "SafeMathContract.sol",
+      "is_vulnerable": false,
+      "expected_swc": null,
+      "raw_findings": [],
+      "masked_findings": [],
+      "jaccard_similarity": 1.0,
+      "raw_agreed": true,
+      "masked_agreed": true,
+      "latency_seconds": 1.4
+    },
+    {
+      "file_name": "SimpleDAO.sol",
+      "is_vulnerable": true,
+      "expected_swc": "SWC-107",
+      "raw_findings": [
+        {
+          "function": "withdraw",
+          "swc": "SWC-107"
+        }
+      ],
+      "masked_findings": [
+        {
+          "function": "withdraw",
+          "swc": "SWC-107"
+        }
+      ],
+      "jaccard_similarity": 1.0,
+      "raw_agreed": true,
+      "masked_agreed": true,
+      "latency_seconds": 2.61
+    },
+    {
+      "file_name": "TokenSale.sol",
+      "is_vulnerable": true,
+      "expected_swc": "SWC-101",
+      "raw_findings": [
+        {
+          "function": "buy",
+          "swc": "SWC-101"
+        }
+      ],
+      "masked_findings": [
+        {
+          "function": "buy",
+          "swc": "SWC-101"
+        }
+      ],
+      "jaccard_similarity": 1.0,
+      "raw_agreed": true,
+      "masked_agreed": true,
+      "latency_seconds": 3.27
+    },
+    {
+      "file_name": "UnsafeWallet.sol",
+      "is_vulnerable": true,
+      "expected_swc": "SWC-105",
+      "raw_findings": [
+        {
+          "function": "changeOwner",
+          "swc": "SWC-105"
+        },
+        {
+          "function": "withdrawAll",
+          "swc": "SWC-105"
+        }
+      ],
+      "masked_findings": [
+        {
+          "function": "changeOwner",
+          "swc": "UNKNOWN"
+        },
+        {
+          "function": "withdrawAll",
+          "swc": "UNKNOWN"
+        }
+      ],
+      "jaccard_similarity": 0.0,
+      "raw_agreed": true,
+      "masked_agreed": false,
+      "latency_seconds": 4.44
+    },
+    {
+      "file_name": "VulnerableBank.sol",
+      "is_vulnerable": true,
+      "expected_swc": "SWC-107",
+      "raw_findings": [
+        {
+          "function": "withdraw",
+          "swc": "SWC-107"
+        },
+        {
+          "function": "emergencyWithdraw",
+          "swc": "UNKNOWN"
+        },
+        {
+          "function": "unsafeTransfer",
+          "swc": "SWC-104"
+        },
+        {
+          "function": "timeLock",
+          "swc": "UNKNOWN"
+        }
+      ],
+      "masked_findings": [
+        {
+          "function": "withdraw",
+          "swc": "SWC-107"
+        },
+        {
+          "function": "emergencyWithdraw",
+          "swc": "UNKNOWN"
+        },
+        {
+          "function": "unsafeTransfer",
+          "swc": "SWC-104"
+        },
+        {
+          "function": "timeLock",
+          "swc": "UNKNOWN"
+        }
+      ],
+      "jaccard_similarity": 1.0,
+      "raw_agreed": true,
+      "masked_agreed": true,
+      "latency_seconds": 9.69
+    },
+    {
+      "file_name": "WeakRandom.sol",
+      "is_vulnerable": true,
+      "expected_swc": "SWC-114",
+      "raw_findings": [
+        {
+          "function": "play",
+          "swc": "SWC-114"
+        }
+      ],
+      "masked_findings": [
+        {
+          "function": "play",
+          "swc": "UNKNOWN"
+        }
+      ],
+      "jaccard_similarity": 0.0,
+      "raw_agreed": true,
+      "masked_agreed": false,
+      "latency_seconds": 3.81
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "forward": {
+    "SafeUncheckedReturn_3": "prism_Type_0000",
+    "sendEther": "prism_v_0001",
+    "success": "prism_v_0002",
+    "amount": "prism_v_0003",
+    "to": "prism_v_0004"
+  },
+  "reverse": {
+    "prism_Type_0000": "SafeUncheckedReturn_3",
+    "prism_v_0001": "sendEther",
+    "prism_v_0002": "success",
+    "prism_v_0003": "amount",
+    "prism_v_0004": "to"
+  }
+}

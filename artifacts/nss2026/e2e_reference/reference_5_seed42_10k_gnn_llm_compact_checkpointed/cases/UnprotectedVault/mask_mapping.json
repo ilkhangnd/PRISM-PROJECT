@@ -1,0 +1,21 @@
+{
+  "original_to_masked": {
+    "UnprotectedVault": "prism_Type_0000",
+    "emergencyDrain": "prism_v_0001",
+    "initOwner": "prism_v_0002",
+    "_newOwner": "prism_v_0003",
+    "deposits": "prism_v_0004",
+    "deposit": "prism_v_0005",
+    "owner": "prism_v_0006"
+  },
+  "masked_to_original": {
+    "prism_Type_0000": "UnprotectedVault",
+    "prism_v_0001": "emergencyDrain",
+    "prism_v_0002": "initOwner",
+    "prism_v_0003": "_newOwner",
+    "prism_v_0004": "deposits",
+    "prism_v_0005": "deposit",
+    "prism_v_0006": "owner"
+  },
+  "counter": 7
+}

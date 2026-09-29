@@ -1,0 +1,14 @@
+{
+  "manifest": "artifacts/nss2026/function_gold_truth/adjudicated_gold_manifest.csv",
+  "row_count": 97,
+  "valid": true,
+  "decisions": {
+    "vulnerable": 33,
+    "safe": 64
+  },
+  "adjudication_statuses": {
+    "reviewed": 97
+  },
+  "errors": [],
+  "scope": "Independent function/span annotations only; contract-derived labels are rejected."
+}

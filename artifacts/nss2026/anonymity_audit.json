@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0",
+  "created_utc": "2026-09-29T17:14:35.510152+00:00",
+  "manuscript": "paper/main.tex",
+  "active_pdf_risks": [],
+  "source_artifact_risks": [],
+  "anonymous_author_block_present": true,
+  "figure_inputs": [
+    {
+      "tex_path": "figures/prism_architecture.pdf",
+      "exists": true,
+      "bytes": 140265
+    },
+    {
+      "tex_path": "figures/confusion_matrix_5class_en.pdf",
+      "exists": true,
+      "bytes": 27166
+    }
+  ],
+  "unreferenced_institutional_logo_present": false,
+  "supplementary_package": {
+    "present": true,
+    "archive_bytes": 153509,
+    "audited_members": 0,
+    "skipped_large_text_members": 0,
+    "text_risks": [],
+    "prohibited_members": []
+  },
+  "manual_checks_remaining": [
+    "Inspect raster/vector figure pixels for logos, identifying labels, and local paths.",
+    "Inspect generated PDF metadata after a clean build.",
+    "Open the eventual anonymous artifact URL in a private browser session."
+  ]
+}

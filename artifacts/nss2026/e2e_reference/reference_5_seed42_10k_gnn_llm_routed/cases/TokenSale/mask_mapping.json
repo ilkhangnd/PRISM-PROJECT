@@ -1,0 +1,19 @@
+{
+  "original_to_masked": {
+    "PRICE_PER_TOKEN": "prism_Type_0000",
+    "TokenSale": "prism_Type_0001",
+    "totalCost": "prism_v_0002",
+    "numTokens": "prism_v_0003",
+    "withdraw": "prism_v_0004",
+    "buy": "prism_v_0005"
+  },
+  "masked_to_original": {
+    "prism_Type_0000": "PRICE_PER_TOKEN",
+    "prism_Type_0001": "TokenSale",
+    "prism_v_0002": "totalCost",
+    "prism_v_0003": "numTokens",
+    "prism_v_0004": "withdraw",
+    "prism_v_0005": "buy"
+  },
+  "counter": 6
+}

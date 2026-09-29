@@ -1,0 +1,26 @@
+{
+  "forward": {
+    "PRICE_PER_TOKEN": "prism_Type_0000",
+    "getBalance": "prism_v_0001",
+    "TokenSale": "prism_Type_0002",
+    "numTokens": "prism_v_0003",
+    "balances": "prism_v_0004",
+    "revenue": "prism_v_0005",
+    "success": "prism_v_0006",
+    "cost": "prism_v_0007",
+    "sell": "prism_v_0008",
+    "buy": "prism_v_0009"
+  },
+  "reverse": {
+    "prism_Type_0000": "PRICE_PER_TOKEN",
+    "prism_v_0001": "getBalance",
+    "prism_Type_0002": "TokenSale",
+    "prism_v_0003": "numTokens",
+    "prism_v_0004": "balances",
+    "prism_v_0005": "revenue",
+    "prism_v_0006": "success",
+    "prism_v_0007": "cost",
+    "prism_v_0008": "sell",
+    "prism_v_0009": "buy"
+  }
+}

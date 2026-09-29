@@ -1,0 +1,45 @@
+{
+  "function": "prism_Type_0001.constructor",
+  "num_nodes": 3,
+  "num_edges": 2,
+  "nodes": [
+    {
+      "id": 0,
+      "label": "ENTRY_POINT",
+      "node_type": "NodeType.ENTRYPOINT",
+      "expression": "",
+      "irs": []
+    },
+    {
+      "id": 1,
+      "label": "EXPRESSION prism_v_0004 = msg.sender",
+      "node_type": "NodeType.EXPRESSION",
+      "expression": "prism_v_0004 = msg.sender",
+      "irs": [
+        "prism_v_0004(address) := msg.sender(address)"
+      ]
+    },
+    {
+      "id": 2,
+      "label": "EXPRESSION prism_v_0002 = block.timestamp + 86400",
+      "node_type": "NodeType.EXPRESSION",
+      "expression": "prism_v_0002 = block.timestamp + 86400",
+      "irs": [
+        "TMP_0(uint256) = block.timestamp (c)+ 86400",
+        "prism_v_0002(uint256) := TMP_0(uint256)"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": 0,
+      "target": 1,
+      "edge_type": "sequential"
+    },
+    {
+      "source": 1,
+      "target": 2,
+      "edge_type": "sequential"
+    }
+  ]
+}

@@ -432,7 +432,7 @@
     "TokenSale.t.sol",
     "UncheckedBank.t.sol",
     "UnprotectedVault.t.sol",
-    "WeakLottery.t.sol"
+    "TimestampLock.t.sol"
   ],
   "claim_boundaries": [
     "The 57 labels are benchmark/template labels from data/ground_truth_57.json, not independently source-span validated SWC ground truth.",
@@ -443,8 +443,8 @@
   "fresh_execution_scope": {
     "privacy_masking": "eligible on all frozen sources in an isolated output directory",
     "static_baseline": "eligible after a new runner writes only isolated outputs",
-    "end_to_end_foundry_replay": "blocked: harness coverage must be expanded and each exploit oracle documented",
-    "llm_masked_unmasked": "blocked: fixed model/version, prompts, decoding, and response logs are absent",
-    "patch_benchmark": "blocked: current AutoRepair is rule-based and the legacy runner mutates its workspace"
+    "end_to_end_foundry_replay": "case_study_only: physical EVM execution verified on 6 safe contracts in Stage 3 (refuting 6/6 false reentrancy alarms with mutexes); full automated end-to-end 57-contract GNN->LLM->harness generation and execution pipeline remains open (P0-E incomplete)",
+    "llm_masked_unmasked": "completed: executed via scripts/run_rq3_masked_vs_raw_audit.py on deepseek-coder-v2 with outputs in artifacts/results/masked_vs_raw_llm_audit.json",
+    "patch_benchmark": "case_study_only: empirical validation on 5 canonical contracts (RQ5); wider 57-contract benchmark remains open"
   }
 }

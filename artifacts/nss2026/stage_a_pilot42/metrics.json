@@ -1,0 +1,105 @@
+{
+  "created_utc": "2026-09-27T17:43:35.484709+00:00",
+  "purpose": "Fresh Stage-A binary model under frozen weak-label manifest",
+  "label_protocol": "contract-derived weak labels (label 8 = safe, labels 0-7 = vulnerable)",
+  "seed": 42,
+  "device": "cpu",
+  "python": "3.14.6",
+  "torch": "2.11.0",
+  "manifest": "artifacts/nss2026/stage_a_manifest.json",
+  "manifest_sha256": "5c98067bbadcdb3158e6a29ac8092c1a587c2ac1a9362e0847638005a184c500",
+  "hyperparameters": {
+    "epochs_requested": 12,
+    "epochs_completed": 12,
+    "best_epoch": 12,
+    "batch_size": 64,
+    "hidden_channels": 256,
+    "layers": 4,
+    "heads": 8,
+    "dropout": 0.15
+  },
+  "elapsed_seconds": 147.8493390083313,
+  "metrics": {
+    "accuracy": 0.8454619787408013,
+    "macro_precision": 0.738305304769857,
+    "macro_recall": 0.8909678075301269,
+    "macro_f1": 0.772686639819445,
+    "classification_report": {
+      "vulnerable": {
+        "precision": 0.9908151549942594,
+        "recall": 0.8266283524904214,
+        "f1-score": 0.9013054830287206,
+        "support": 3132.0
+      },
+      "safe": {
+        "precision": 0.48579545454545453,
+        "recall": 0.9553072625698324,
+        "f1-score": 0.6440677966101694,
+        "support": 537.0
+      },
+      "accuracy": 0.8454619787408013,
+      "macro avg": {
+        "precision": 0.738305304769857,
+        "recall": 0.8909678075301269,
+        "f1-score": 0.772686639819445,
+        "support": 3669.0
+      },
+      "weighted avg": {
+        "precision": 0.9168997613880975,
+        "recall": 0.8454619787408013,
+        "f1-score": 0.8636558134711404,
+        "support": 3669.0
+      }
+    }
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "validation_macro_f1": 0.6611858311797871
+    },
+    {
+      "epoch": 2,
+      "validation_macro_f1": 0.6211050512367114
+    },
+    {
+      "epoch": 3,
+      "validation_macro_f1": 0.6536104912282259
+    },
+    {
+      "epoch": 4,
+      "validation_macro_f1": 0.6673698565460884
+    },
+    {
+      "epoch": 5,
+      "validation_macro_f1": 0.674251757702801
+    },
+    {
+      "epoch": 6,
+      "validation_macro_f1": 0.708666104785938
+    },
+    {
+      "epoch": 7,
+      "validation_macro_f1": 0.7069447193891774
+    },
+    {
+      "epoch": 8,
+      "validation_macro_f1": 0.7378454398593657
+    },
+    {
+      "epoch": 9,
+      "validation_macro_f1": 0.7474526669255348
+    },
+    {
+      "epoch": 10,
+      "validation_macro_f1": 0.7582578539371685
+    },
+    {
+      "epoch": 11,
+      "validation_macro_f1": 0.7594121873359778
+    },
+    {
+      "epoch": 12,
+      "validation_macro_f1": 0.7607276042814486
+    }
+  ]
+}

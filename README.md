@@ -1,4 +1,4 @@
-# PRISM: Confidential Smart Contract Auditing via Pseudonymized Graph Screening and Local Dynamic Verification
+# PRISM: Confidential Smart Contract Auditing with Pseudonymized Graph Screening
 
 [![Paper](https://img.shields.io/badge/Paper-NSS--2026-blue)](paper/main.pdf)
 [![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-brightgreen)](https://www.python.org/)
@@ -6,7 +6,7 @@
 [![Foundry](https://img.shields.io/badge/Foundry-Forge-red)](https://getfoundry.sh/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-Official implementation and empirical artifact for **PRISM**, an end-to-end, privacy-preserving smart contract audit pipeline that runs entirely on local infrastructure.
+Official implementation and empirical artifact for **PRISM**, a local-first smart-contract auditing prototype. PRISM combines reversible pseudonymization, graph-based function screening, local LLM hypotheses, and versioned Foundry reference-harness validation. It does not claim automated harness synthesis or benchmark-wide end-to-end dynamic performance.
 
 ---
 
@@ -17,12 +17,12 @@ Auditing smart contracts often faces a critical trilemma:
 2. **Static analyzer alarm fatigue**: rule-based analyzers like Slither flood auditors with false positives (e.g. 27/27 safe contracts flagged).
 3. **Fuzzer path explosion**: dynamic fuzzers struggle to reach deep business-logic states without guided invariant harnesses.
 
-**PRISM resolves this through a 5-stage pipeline:**
-1. **PrivacyFilter & DataMasker**: Reversibly pseudonymizes code identifiers (functions, variables, state variables) while strictly preserving AST and SSA semantics.
-2. **SSA Code Property Graph (CPG)**: Constructs a unified semantic graph combining Control Flow (CFG), Data Flow (DFG), and Call dependencies from Slither SSA IR.
-3. **Edge-Aware Multi-Head GAT (GNNMHAv2)**: Flags and prioritizes vulnerable hotspots across five canonical SWC taxonomy classes.
-4. **Quantized Local LLM**: Directs deep-state invariant harness generation on local inference hardware (zero cloud egress).
-5. **EVM Dynamic Execution & Verification**: Runs high-speed dual-mode fuzzing campaigns in Foundry to confirm exploitability and validate automated candidate patches.
+**PRISM is organized as the following local stages:**
+1. **PrivacyFilter & DataMasker**: Reversibly pseudonymize user-defined identifiers and remove configured secrets before learned analysis.
+2. **SSA Code Property Graph (CPG)**: Construct typed function-level graphs from Slither SSA IR.
+3. **Stage-A gate and GNN ranker**: Screen and prioritize functions across five SWC classes.
+4. **Local LLM audit**: Produce masked-code hypotheses. These hypotheses are not treated as confirmed findings.
+5. **Foundry reference-harness validation**: Execute pre-authored, versioned invariant and exploit tests for scoped canonical cases. This branch is independent of LLM output.
 
 ```
 Solidity Source
@@ -37,13 +37,11 @@ Solidity Source
  [Stage-A Binary Screening Gate] ──> Safe / Vulnerable
        │
        ▼ (if flagged)
- [GNNMHAv2 Edge-Aware Classifier] ──> Top-k Hotspot Ranking
+ [GNNMHAv2 Classifier] ──> Hotspot Ranking
        │
-       ▼
- [Local Quantized LLM] ──> Synthesizes Foundry Invariant Harnesses
+       ├──────────────► [Local LLM] ──> Unconfirmed hypotheses
        │
-       ▼
- [Foundry EVM Execution] ──> Exploit Verification & Validated Patches
+       └──────────────► [Foundry reference harnesses] ──> Scoped execution evidence
 ```
 
 ---
@@ -111,6 +109,12 @@ pip install -e .
 
 ## 🔬 Reproducing NSS 2026 Empirical Results
 
+### Evidence scope
+
+- The 57-contract experiment measures the static filtering cascade and pseudonymization utility.
+- The five canonical contracts have pre-authored Foundry reference harnesses. Their 300 seeded runs and the five-case integrated trace are reproducible execution evidence.
+- No artifact in this repository establishes general-purpose harness synthesis, 57-contract end-to-end recall/specificity, or LLM-generated repair performance. See [`research/04-results/LANE2_EVIDENCE_STATUS.md`](research/04-results/LANE2_EVIDENCE_STATUS.md).
+
 ### 1. Summarize 5-Seed Baseline Comparisons (Table 2 & Table 3)
 ```bash
 python scripts/summarize_nss2026_baselines.py
@@ -134,12 +138,22 @@ cd benchmarks/foundry_campaign
 forge test -vv
 ```
 
-### 5. Generate Confusion Matrices
+### 5. Reproduce the scoped five-case integration trace
+```bash
+python scripts/run_nss2026_reference_e2e.py \
+  --with-llm --llm-compact --llm-max-tokens 128 \
+  --llm-timeout-seconds 105 --llm-request-timeout-seconds 90 \
+  --route-via-gnn --seed 42 --fuzz-runs 10000 \
+  --output artifacts/nss2026/e2e_reference/reproduction_run
+```
+This command requires a locally running Ollama instance with the configured model, Slither, a local `solc`, and Foundry. It uses pre-authored harnesses and records all stage outcomes without substituting mock LLM output.
+
+### 6. Generate Confusion Matrices
 ```bash
 python scripts/generate_styled_confusion_matrices.py
 ```
 
-### 6. Audit Double-Blind Anonymity Compliance
+### 7. Audit Double-Blind Anonymity Compliance
 ```bash
 python scripts/audit_nss2026_anonymity.py
 ```
@@ -158,7 +172,7 @@ This project is released under the **MIT License**.
 For academic citations, please refer to:
 ```bibtex
 @inproceedings{prism2026nss,
-  title     = {PRISM: Confidential Smart Contract Auditing via Pseudonymized Graph Screening and Local Dynamic Verification},
+  title     = {PRISM: Confidential Smart Contract Auditing with Pseudonymized Graph Screening},
   booktitle = {Proceedings of the 20th International Conference on Network and System Security (NSS 2026)},
   year      = {2026},
   publisher = {Springer}

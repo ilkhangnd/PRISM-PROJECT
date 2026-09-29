@@ -1,0 +1,14 @@
+{
+  "forward": {
+    "SafeTimestamp_1": "prism_Type_0000",
+    "guess": "prism_v_0001",
+    "play": "prism_v_0002",
+    "seed": "prism_v_0003"
+  },
+  "reverse": {
+    "prism_Type_0000": "SafeTimestamp_1",
+    "prism_v_0001": "guess",
+    "prism_v_0002": "play",
+    "prism_v_0003": "seed"
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "timestamp_utc": "2026-09-28T06:44:12.445290+00:00",
+  "execution_mode": "REAL_PHYSICAL_PROCESS_EXECUTION",
+  "repair_module": "src.sai.repair.AutoRepair",
+  "compiler_version": "solc 0.8.30",
+  "fuzzer_version": "Foundry 1.5.1 / forge",
+  "fuzz_runs_per_patch": 10000,
+  "total_patches_generated": 5,
+  "verification_ladder": {
+    "stage_1_compilation": {
+      "passed": 5,
+      "total": 5,
+      "pct": 100.0
+    },
+    "stage_2_ast_diff_minimality": {
+      "passed": 5,
+      "total": 5,
+      "pct": 100.0
+    },
+    "stage_3_exploit_blocked": {
+      "passed": 4,
+      "total": 5,
+      "pct": 80.0
+    },
+    "stage_4_regression_passed": {
+      "passed": 4,
+      "total": 5,
+      "pct": 80.0
+    },
+    "stage_5_abi_storage_invariance": {
+      "passed": 5,
+      "total": 5,
+      "pct": 100.0
+    }
+  },
+  "patch_records": [
+    {
+      "contract": "SimpleDAO",
+      "vulnerability_type": "reentrancy",
+      "repair_description": "Reorder: update state before external call (Checks-Effects-Interactions)",
+      "stage_1_solc_compilation": true,
+      "stage_2_syntax_diff_minimality": true,
+      "stage_3_exploit_replay_blocked": true,
+      "stage_4_regression_fuzzing_passed": true,
+      "stage_5_abi_and_storage_invariance": true,
+      "diff_path": "artifacts/patch_runs/patch_diffs/SimpleDAO.diff",
+      "patch_path": "artifacts/patch_runs/patched_contracts/SimpleDAO.sol"
+    },
+    {
+      "contract": "TokenSale",
+      "vulnerability_type": "integer_overflow",
+      "repair_description": "Remove unchecked block to enable overflow protection",
+      "stage_1_solc_compilation": true,
+      "stage_2_syntax_diff_minimality": true,
+      "stage_3_exploit_replay_blocked": true,
+      "stage_4_regression_fuzzing_passed": true,
+      "stage_5_abi_and_storage_invariance": true,
+      "diff_path": "artifacts/patch_runs/patch_diffs/TokenSale.diff",
+      "patch_path": "artifacts/patch_runs/patched_contracts/TokenSale.sol"
+    },
+    {
+      "contract": "UnprotectedVault",
+      "vulnerability_type": "access_control",
+      "repair_description": "Add onlyOwner modifier or access control check",
+      "stage_1_solc_compilation": true,
+      "stage_2_syntax_diff_minimality": true,
+      "stage_3_exploit_replay_blocked": true,
+      "stage_4_regression_fuzzing_passed": true,
+      "stage_5_abi_and_storage_invariance": true,
+      "diff_path": "artifacts/patch_runs/patch_diffs/UnprotectedVault.diff",
+      "patch_path": "artifacts/patch_runs/patched_contracts/UnprotectedVault.sol"
+    },
+    {
+      "contract": "UncheckedBank",
+      "vulnerability_type": "unchecked_return",
+      "repair_description": "Check return value of send()/call()",
+      "stage_1_solc_compilation": true,
+      "stage_2_syntax_diff_minimality": true,
+      "stage_3_exploit_replay_blocked": true,
+      "stage_4_regression_fuzzing_passed": true,
+      "stage_5_abi_and_storage_invariance": true,
+      "diff_path": "artifacts/patch_runs/patch_diffs/UncheckedBank.diff",
+      "patch_path": "artifacts/patch_runs/patched_contracts/UncheckedBank.sol"
+    },
+    {
+      "contract": "WeakLottery",
+      "vulnerability_type": "timestamp_dependence",
+      "repair_description": "Replace block.timestamp with secure alternative",
+      "stage_1_solc_compilation": true,
+      "stage_2_syntax_diff_minimality": true,
+      "stage_3_exploit_replay_blocked": false,
+      "stage_4_regression_fuzzing_passed": false,
+      "stage_5_abi_and_storage_invariance": true,
+      "diff_path": "artifacts/patch_runs/patch_diffs/WeakLottery.diff",
+      "patch_path": "artifacts/patch_runs/patched_contracts/WeakLottery.sol"
+    }
+  ]
+}

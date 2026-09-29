@@ -1,0 +1,33 @@
+{
+  "function": "prism_Type_0003.prism_v_0004",
+  "num_nodes": 2,
+  "num_edges": 1,
+  "nodes": [
+    {
+      "id": 0,
+      "label": "ENTRY_POINT",
+      "node_type": "NodeType.ENTRYPOINT",
+      "expression": "",
+      "irs": []
+    },
+    {
+      "id": 1,
+      "label": "EXPRESSION address(msg.sender).transfer(address(this).balance)",
+      "node_type": "NodeType.EXPRESSION",
+      "expression": "address(msg.sender).transfer(address(this).balance)",
+      "irs": [
+        "TMP_3 = CONVERT msg.sender to address",
+        "TMP_4 = CONVERT this to address",
+        "TMP_5(uint256) = SOLIDITY_CALL balance(address)(TMP_4)",
+        "Transfer dest:TMP_3 value:TMP_5"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": 0,
+      "target": 1,
+      "edge_type": "sequential"
+    }
+  ]
+}

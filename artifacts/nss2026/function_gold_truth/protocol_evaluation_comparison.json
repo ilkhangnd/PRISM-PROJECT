@@ -1,0 +1,48 @@
+{
+  "provenance_notice": "Single-author expert semantic review; construct validity exploration only. Multi-annotator agreement is future work.",
+  "protocol_1_weak_contract_level": {
+    "scope": "Contract-Level Derived Ground Truth (n=57)",
+    "total_samples": 57,
+    "vulnerable_count": 30,
+    "safe_count": 27,
+    "slither_metrics": {
+      "precision": 0.5263,
+      "recall": 1.0,
+      "f1_score": 0.6897,
+      "specificity": 0.0,
+      "tp": 30,
+      "fp": 27,
+      "fn": 0,
+      "tn": 0
+    }
+  },
+  "protocol_2_expert_function_level": {
+    "scope": "Single-Author Expert Function-Level Review (n=97)",
+    "total_functions": 97,
+    "vulnerable_functions": 33,
+    "safe_functions": 64,
+    "contract_inheritance_baseline": {
+      "description": "Naive contract-level label inheritance to functions",
+      "precision": 0.6346,
+      "recall": 1.0,
+      "f1_score": 0.7765,
+      "specificity": 0.7031,
+      "tp": 33,
+      "fp": 19,
+      "fn": 0,
+      "tn": 45
+    },
+    "slither_localized_detection": {
+      "description": "Slither static analysis on localized function targets",
+      "precision": 0.3402,
+      "recall": 1.0,
+      "f1_score": 0.5077,
+      "specificity": 0.0,
+      "tp": 33,
+      "fp": 64,
+      "fn": 0,
+      "tn": 0
+    }
+  },
+  "construct_validity_analysis": "Naive contract-level label inheritance induces 19 false-positive function associations because safe utility functions (e.g., constructors, getters, deposit helpers) inside vulnerable contracts inherit the vulnerable label. Isolating exact callable spans clarifies construct validity."
+}

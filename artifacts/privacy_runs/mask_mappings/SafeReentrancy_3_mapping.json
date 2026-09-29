@@ -1,0 +1,20 @@
+{
+  "forward": {
+    "SafeReentrancy_3": "prism_Type_0000",
+    "noReentrant": "prism_v_0001",
+    "balances": "prism_v_0002",
+    "withdraw": "prism_v_0003",
+    "success": "prism_v_0004",
+    "locked": "prism_v_0005",
+    "amount": "prism_v_0006"
+  },
+  "reverse": {
+    "prism_Type_0000": "SafeReentrancy_3",
+    "prism_v_0001": "noReentrant",
+    "prism_v_0002": "balances",
+    "prism_v_0003": "withdraw",
+    "prism_v_0004": "success",
+    "prism_v_0005": "locked",
+    "prism_v_0006": "amount"
+  }
+}

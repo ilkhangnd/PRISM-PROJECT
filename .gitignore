@@ -63,3 +63,23 @@ out/
 .ruff_cache/
 .coverage
 htmlcov/
+
+# Local archive & backups
+archive/
+PRISM_Supplementary_Material.zip
+PRISM_Supplementary_Material/
+
+# Model weights & large binaries (>100MB blocked by GitHub)
+artifacts/nss2026/p1_codebert/model/
+*.h5
+*.ot
+*.bin
+*.msgpack
+
+# Upstream raw benchmark datasets (29,000+ files / ~1.1GB downloaded from upstream)
+data/bench/
+data/solidifi/
+data/lisa/
+data/defi-exploits/
+data/smartbugs/
+

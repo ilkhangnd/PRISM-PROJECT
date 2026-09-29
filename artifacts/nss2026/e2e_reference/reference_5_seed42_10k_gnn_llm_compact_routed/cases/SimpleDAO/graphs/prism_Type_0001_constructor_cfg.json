@@ -1,0 +1,32 @@
+{
+  "function": "prism_Type_0001.constructor",
+  "num_nodes": 2,
+  "num_edges": 1,
+  "nodes": [
+    {
+      "id": 0,
+      "label": "ENTRY_POINT",
+      "node_type": "NodeType.ENTRYPOINT",
+      "expression": "",
+      "irs": []
+    },
+    {
+      "id": 1,
+      "label": "EXPRESSION prism_v_0007 = prism_Type_0002(address(prism_v_0006))",
+      "node_type": "NodeType.EXPRESSION",
+      "expression": "prism_v_0007 = prism_Type_0002(address(prism_v_0006))",
+      "irs": [
+        "TMP_3 = CONVERT prism_v_0006 to address",
+        "TMP_4 = CONVERT TMP_3 to prism_Type_0002",
+        "prism_v_0007(prism_Type_0002) := TMP_4(prism_Type_0002)"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": 0,
+      "target": 1,
+      "edge_type": "sequential"
+    }
+  ]
+}

@@ -1,0 +1,209 @@
+[
+  {
+    "contract": "SimpleDAO",
+    "function": "SimpleDAO.donate",
+    "source": "data/raw/SimpleDAO.sol",
+    "label": 0,
+    "label_name": "reentrancy",
+    "num_nodes": 2,
+    "num_edges": 1
+  },
+  {
+    "contract": "SimpleDAO",
+    "function": "SimpleDAO.withdraw",
+    "source": "data/raw/SimpleDAO.sol",
+    "label": 0,
+    "label_name": "reentrancy",
+    "num_nodes": 7,
+    "num_edges": 8
+  },
+  {
+    "contract": "SimpleDAO",
+    "function": "SimpleDAO.queryCredit",
+    "source": "data/raw/SimpleDAO.sol",
+    "label": 0,
+    "label_name": "reentrancy",
+    "num_nodes": 2,
+    "num_edges": 1
+  },
+  {
+    "contract": "TokenSale",
+    "function": "TokenSale.buy",
+    "source": "data/raw/TokenSale.sol",
+    "label": 1,
+    "label_name": "integer_overflow",
+    "num_nodes": 5,
+    "num_edges": 5
+  },
+  {
+    "contract": "TokenSale",
+    "function": "TokenSale.sell",
+    "source": "data/raw/TokenSale.sol",
+    "label": 1,
+    "label_name": "integer_overflow",
+    "num_nodes": 7,
+    "num_edges": 8
+  },
+  {
+    "contract": "TokenSale",
+    "function": "TokenSale.getBalance",
+    "source": "data/raw/TokenSale.sol",
+    "label": 1,
+    "label_name": "integer_overflow",
+    "num_nodes": 2,
+    "num_edges": 1
+  },
+  {
+    "contract": "UnsafeWallet",
+    "function": "UnsafeWallet.constructor",
+    "source": "data/raw/UnsafeWallet.sol",
+    "label": 2,
+    "label_name": "access_control",
+    "num_nodes": 2,
+    "num_edges": 1
+  },
+  {
+    "contract": "UnsafeWallet",
+    "function": "UnsafeWallet.deposit",
+    "source": "data/raw/UnsafeWallet.sol",
+    "label": 2,
+    "label_name": "access_control",
+    "num_nodes": 2,
+    "num_edges": 1
+  },
+  {
+    "contract": "UnsafeWallet",
+    "function": "UnsafeWallet.changeOwner",
+    "source": "data/raw/UnsafeWallet.sol",
+    "label": 2,
+    "label_name": "access_control",
+    "num_nodes": 2,
+    "num_edges": 1
+  },
+  {
+    "contract": "UnsafeWallet",
+    "function": "UnsafeWallet.withdrawAll",
+    "source": "data/raw/UnsafeWallet.sol",
+    "label": 2,
+    "label_name": "access_control",
+    "num_nodes": 5,
+    "num_edges": 6
+  },
+  {
+    "contract": "UnsafeWallet",
+    "function": "UnsafeWallet.getUserDeposit",
+    "source": "data/raw/UnsafeWallet.sol",
+    "label": 2,
+    "label_name": "access_control",
+    "num_nodes": 2,
+    "num_edges": 1
+  },
+  {
+    "contract": "VulnerableBank",
+    "function": "VulnerableBank.constructor",
+    "source": "data/raw/VulnerableBank.sol",
+    "label": 0,
+    "label_name": "reentrancy",
+    "num_nodes": 2,
+    "num_edges": 1
+  },
+  {
+    "contract": "VulnerableBank",
+    "function": "VulnerableBank.withdraw",
+    "source": "data/raw/VulnerableBank.sol",
+    "label": 0,
+    "label_name": "reentrancy",
+    "num_nodes": 7,
+    "num_edges": 7
+  },
+  {
+    "contract": "VulnerableBank",
+    "function": "VulnerableBank.deposit",
+    "source": "data/raw/VulnerableBank.sol",
+    "label": 0,
+    "label_name": "reentrancy",
+    "num_nodes": 4,
+    "num_edges": 3
+  },
+  {
+    "contract": "VulnerableBank",
+    "function": "VulnerableBank.emergencyWithdraw",
+    "source": "data/raw/VulnerableBank.sol",
+    "label": 0,
+    "label_name": "reentrancy",
+    "num_nodes": 5,
+    "num_edges": 6
+  },
+  {
+    "contract": "VulnerableBank",
+    "function": "VulnerableBank.unsafeTransfer",
+    "source": "data/raw/VulnerableBank.sol",
+    "label": 0,
+    "label_name": "reentrancy",
+    "num_nodes": 3,
+    "num_edges": 2
+  },
+  {
+    "contract": "VulnerableBank",
+    "function": "VulnerableBank.timeLock",
+    "source": "data/raw/VulnerableBank.sol",
+    "label": 0,
+    "label_name": "reentrancy",
+    "num_nodes": 2,
+    "num_edges": 1
+  },
+  {
+    "contract": "VulnerableBank",
+    "function": "VulnerableBank.getBalance",
+    "source": "data/raw/VulnerableBank.sol",
+    "label": 0,
+    "label_name": "reentrancy",
+    "num_nodes": 2,
+    "num_edges": 1
+  },
+  {
+    "contract": "VulnerableBank",
+    "function": "VulnerableBank.receive",
+    "source": "data/raw/VulnerableBank.sol",
+    "label": 0,
+    "label_name": "reentrancy",
+    "num_nodes": 2,
+    "num_edges": 1
+  },
+  {
+    "contract": "WeakRandom",
+    "function": "WeakRandom.constructor",
+    "source": "data/raw/WeakRandom.sol",
+    "label": 6,
+    "label_name": "timestamp_dependence",
+    "num_nodes": 2,
+    "num_edges": 1
+  },
+  {
+    "contract": "WeakRandom",
+    "function": "WeakRandom.play",
+    "source": "data/raw/WeakRandom.sol",
+    "label": 6,
+    "label_name": "timestamp_dependence",
+    "num_nodes": 12,
+    "num_edges": 16
+  },
+  {
+    "contract": "WeakRandom",
+    "function": "WeakRandom.getJackpot",
+    "source": "data/raw/WeakRandom.sol",
+    "label": 6,
+    "label_name": "timestamp_dependence",
+    "num_nodes": 2,
+    "num_edges": 1
+  },
+  {
+    "contract": "WeakRandom",
+    "function": "WeakRandom.receive",
+    "source": "data/raw/WeakRandom.sol",
+    "label": 6,
+    "label_name": "timestamp_dependence",
+    "num_nodes": 2,
+    "num_edges": 1
+  }
+]

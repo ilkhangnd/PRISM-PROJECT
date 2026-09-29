@@ -1,0 +1,40 @@
+{
+  "forward": {
+    "emergencyWithdraw": "prism_v_0000",
+    "unsafeTransfer": "prism_v_0001",
+    "VulnerableBank": "prism_Type_0002",
+    "Withdrawal": "prism_Type_0003",
+    "getBalance": "prism_v_0004",
+    "onlyOwner": "prism_v_0005",
+    "balances": "prism_v_0006",
+    "timeLock": "prism_v_0007",
+    "withdraw": "prism_v_0008",
+    "deposit": "prism_v_0009",
+    "success": "prism_v_0010",
+    "Deposit": "prism_Type_0011",
+    "locked": "prism_v_0012",
+    "amount": "prism_v_0013",
+    "owner": "prism_v_0014",
+    "user": "prism_v_0015",
+    "to": "prism_v_0016"
+  },
+  "reverse": {
+    "prism_v_0000": "emergencyWithdraw",
+    "prism_v_0001": "unsafeTransfer",
+    "prism_Type_0002": "VulnerableBank",
+    "prism_Type_0003": "Withdrawal",
+    "prism_v_0004": "getBalance",
+    "prism_v_0005": "onlyOwner",
+    "prism_v_0006": "balances",
+    "prism_v_0007": "timeLock",
+    "prism_v_0008": "withdraw",
+    "prism_v_0009": "deposit",
+    "prism_v_0010": "success",
+    "prism_Type_0011": "Deposit",
+    "prism_v_0012": "locked",
+    "prism_v_0013": "amount",
+    "prism_v_0014": "owner",
+    "prism_v_0015": "user",
+    "prism_v_0016": "to"
+  }
+}

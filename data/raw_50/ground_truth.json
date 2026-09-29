@@ -1,0 +1,202 @@
+{
+    "VulnReentrancy_0.sol": {
+        "vulnerabilities": [
+            "reentrancy"
+        ]
+    },
+    "SafeReentrancy_0.sol": {
+        "vulnerabilities": []
+    },
+    "VulnReentrancy_1.sol": {
+        "vulnerabilities": [
+            "reentrancy"
+        ]
+    },
+    "SafeReentrancy_1.sol": {
+        "vulnerabilities": []
+    },
+    "VulnReentrancy_2.sol": {
+        "vulnerabilities": [
+            "reentrancy"
+        ]
+    },
+    "SafeReentrancy_2.sol": {
+        "vulnerabilities": []
+    },
+    "VulnReentrancy_3.sol": {
+        "vulnerabilities": [
+            "reentrancy"
+        ]
+    },
+    "SafeReentrancy_3.sol": {
+        "vulnerabilities": []
+    },
+    "VulnReentrancy_4.sol": {
+        "vulnerabilities": [
+            "reentrancy"
+        ]
+    },
+    "SafeReentrancy_4.sol": {
+        "vulnerabilities": []
+    },
+    "VulnAccessControl_0.sol": {
+        "vulnerabilities": [
+            "access_control"
+        ]
+    },
+    "SafeAccessControl_0.sol": {
+        "vulnerabilities": []
+    },
+    "VulnAccessControl_1.sol": {
+        "vulnerabilities": [
+            "access_control"
+        ]
+    },
+    "SafeAccessControl_1.sol": {
+        "vulnerabilities": []
+    },
+    "VulnAccessControl_2.sol": {
+        "vulnerabilities": [
+            "access_control"
+        ]
+    },
+    "SafeAccessControl_2.sol": {
+        "vulnerabilities": []
+    },
+    "VulnAccessControl_3.sol": {
+        "vulnerabilities": [
+            "access_control"
+        ]
+    },
+    "SafeAccessControl_3.sol": {
+        "vulnerabilities": []
+    },
+    "VulnAccessControl_4.sol": {
+        "vulnerabilities": [
+            "access_control"
+        ]
+    },
+    "SafeAccessControl_4.sol": {
+        "vulnerabilities": []
+    },
+    "VulnUncheckedReturn_0.sol": {
+        "vulnerabilities": [
+            "unchecked_return"
+        ]
+    },
+    "SafeUncheckedReturn_0.sol": {
+        "vulnerabilities": []
+    },
+    "VulnUncheckedReturn_1.sol": {
+        "vulnerabilities": [
+            "unchecked_return"
+        ]
+    },
+    "SafeUncheckedReturn_1.sol": {
+        "vulnerabilities": []
+    },
+    "VulnUncheckedReturn_2.sol": {
+        "vulnerabilities": [
+            "unchecked_return"
+        ]
+    },
+    "SafeUncheckedReturn_2.sol": {
+        "vulnerabilities": []
+    },
+    "VulnUncheckedReturn_3.sol": {
+        "vulnerabilities": [
+            "unchecked_return"
+        ]
+    },
+    "SafeUncheckedReturn_3.sol": {
+        "vulnerabilities": []
+    },
+    "VulnUncheckedReturn_4.sol": {
+        "vulnerabilities": [
+            "unchecked_return"
+        ]
+    },
+    "SafeUncheckedReturn_4.sol": {
+        "vulnerabilities": []
+    },
+    "VulnOverflow_0.sol": {
+        "vulnerabilities": [
+            "integer_overflow"
+        ]
+    },
+    "SafeOverflow_0.sol": {
+        "vulnerabilities": []
+    },
+    "VulnOverflow_1.sol": {
+        "vulnerabilities": [
+            "integer_overflow"
+        ]
+    },
+    "SafeOverflow_1.sol": {
+        "vulnerabilities": []
+    },
+    "VulnOverflow_2.sol": {
+        "vulnerabilities": [
+            "integer_overflow"
+        ]
+    },
+    "SafeOverflow_2.sol": {
+        "vulnerabilities": []
+    },
+    "VulnOverflow_3.sol": {
+        "vulnerabilities": [
+            "integer_overflow"
+        ]
+    },
+    "SafeOverflow_3.sol": {
+        "vulnerabilities": []
+    },
+    "VulnOverflow_4.sol": {
+        "vulnerabilities": [
+            "integer_overflow"
+        ]
+    },
+    "SafeOverflow_4.sol": {
+        "vulnerabilities": []
+    },
+    "VulnTimestamp_0.sol": {
+        "vulnerabilities": [
+            "timestamp_dependence"
+        ]
+    },
+    "SafeTimestamp_0.sol": {
+        "vulnerabilities": []
+    },
+    "VulnTimestamp_1.sol": {
+        "vulnerabilities": [
+            "timestamp_dependence"
+        ]
+    },
+    "SafeTimestamp_1.sol": {
+        "vulnerabilities": []
+    },
+    "VulnTimestamp_2.sol": {
+        "vulnerabilities": [
+            "timestamp_dependence"
+        ]
+    },
+    "SafeTimestamp_2.sol": {
+        "vulnerabilities": []
+    },
+    "VulnTimestamp_3.sol": {
+        "vulnerabilities": [
+            "timestamp_dependence"
+        ]
+    },
+    "SafeTimestamp_3.sol": {
+        "vulnerabilities": []
+    },
+    "VulnTimestamp_4.sol": {
+        "vulnerabilities": [
+            "timestamp_dependence"
+        ]
+    },
+    "SafeTimestamp_4.sol": {
+        "vulnerabilities": []
+    }
+}

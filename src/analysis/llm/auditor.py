@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import json
 import logging
+import re
 
 from src.analysis.llm.prompt_engine import PromptEngine
 
@@ -28,15 +29,23 @@ class LLMAuditor:
         base_url: str = "http://localhost:11434",
         api_key: str | None = None,
         allow_mock_fallback: bool = True,
+        temperature: float = 0.1,
+        max_tokens: int = 4096,
+        timeout: int = 120,
     ):
         self.provider = provider
         self.model = model
         self.base_url = base_url
         self.api_key = api_key
         self.allow_mock_fallback = allow_mock_fallback
+        self.temperature = temperature
+        self.max_tokens = max_tokens
+        self.timeout = timeout
         self.prompt_engine = PromptEngine()
 
-    def analyze(self, source_code: str, hotspots: list[dict] | None = None) -> list[dict]:
+    def analyze(
+        self, source_code: str, hotspots: list[dict] | None = None, compact: bool = False
+    ) -> list[dict]:
         """
         Analyze source code for vulnerabilities using LLM.
 
@@ -47,20 +56,34 @@ class LLMAuditor:
         Returns:
             List of vulnerability dicts.
         """
-        system_prompt = self.prompt_engine.get_system_prompt("security_auditor")
+        system_prompt = self.prompt_engine.get_system_prompt(
+            "security_auditor_compact" if compact else "security_auditor"
+        )
         user_prompt = self.prompt_engine.render(
-            "vulnerability_scan",
+            "vulnerability_scan_compact" if compact else "vulnerability_scan",
             source_code=source_code,
             hotspots=hotspots or [],
         )
 
         response = self._query(system_prompt, user_prompt)
 
-        try:
-            return json.loads(response) if isinstance(response, str) else response
-        except json.JSONDecodeError:
-            logger.warning("LLM response was not valid JSON, returning raw text")
-            return [{"raw_response": response}]
+        if not isinstance(response, str):
+            return response
+        # Local models often wrap otherwise valid JSON in a Markdown fence.
+        # Parse that form before treating it as unstructured evidence.
+        candidates = [response.strip()]
+        candidates.extend(re.findall(r"```(?:json)?\s*(.*?)```", response, flags=re.DOTALL | re.IGNORECASE))
+        array_start, array_end = response.find("["), response.rfind("]")
+        if array_start >= 0 and array_end > array_start:
+            candidates.append(response[array_start : array_end + 1])
+        for candidate in candidates:
+            try:
+                parsed = json.loads(candidate.strip())
+                return parsed if isinstance(parsed, list) else [parsed]
+            except json.JSONDecodeError:
+                continue
+        logger.warning("LLM response was not valid JSON, returning raw text")
+        return [{"raw_response": response}]
 
     def generate_seeds(
         self, source_code: str, coverage_pct: float, uncovered_branches: list[dict], num_seeds: int = 5
@@ -94,7 +117,13 @@ class LLMAuditor:
         try:
             from src.analysis.llm.local_llm import LocalLLM
 
-            llm = LocalLLM(model=self.model, base_url=self.base_url)
+            llm = LocalLLM(
+                model=self.model,
+                base_url=self.base_url,
+                temperature=self.temperature,
+                max_tokens=self.max_tokens,
+                timeout=self.timeout,
+            )
             response = llm.chat(user_prompt, system_prompt)
             return response.content
         except Exception as e:
